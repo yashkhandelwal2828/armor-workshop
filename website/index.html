@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Build your own armor in an interactive 3D workshop. Explore parts, change finishes, and watch robotic assembly."
+    />
+    <meta name="theme-color" content="#050a0e" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <title>Armor Workshop</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <a class="wordmark" href="./"
+          ><i class="reactor-logo" aria-hidden="true"></i
+          ><span>ARMOR<small>WORKSHOP</small></span></a
+        ><button id="explore" aria-pressed="false">Free roam</button
+        ><button id="cinema" aria-pressed="false">
+          Cinematic view <span>↗</span>
+        </button>
+      </header>
+      <main id="viewport" aria-label="Interactive Iron Man workshop">
+        <div id="loading" role="status">
+          <div class="boot-orbit"></div>
+          <span>Loading workshop…</span>
+        </div>
+      </main>
+      <div class="vignette" aria-hidden="true"></div>
+      <div class="scene-title">
+        <h1>THE<br />ARMORY<span>.</span></h1>
+        <div class="active-mark">
+          <span id="mark-number">VII</span>
+          <div>
+            <span>ACTIVE HELMET</span>
+            <p id="configuration">Mark VII</p>
+          </div>
+        </div>
+      </div>
+      <div id="explore-help" hidden>
+        <span
+          >Drag to look · Scroll to move · WASD / arrows to travel · Q / E down
+          / up · Shift faster · Esc exit</span
+        >
+        <div class="travel-buttons">
+          <button data-travel="KeyA" aria-label="Move left">Left</button
+          ><button data-travel="KeyW" aria-label="Move forward">Forward</button
+          ><button data-travel="KeyS" aria-label="Move backward">Back</button
+          ><button data-travel="KeyD" aria-label="Move right">Right</button
+          ><button data-travel="KeyQ" aria-label="Move down">Down</button
+          ><button data-travel="KeyE" aria-label="Move up">Up</button>
+        </div>
+      </div>
+      <div id="part-label" aria-hidden="true"></div>
+      <div class="view-reticle" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="scene-caption">
+        <p>Drag to orbit. Right-drag to pan. Free roam to travel.</p>
+      </div>
+      <nav class="dock" aria-label="Workshop tools">
+        <button data-panel="helmet" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M6 4 12 2l6 2 2 8-3 8-5 2-5-2-3-8Z M6 11l4 1m4 0 4-1M9 17h6"
+            /></svg
+          ><span>Armor</span></button
+        ><button data-panel="paint" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 2 8 12a8 8 0 0 1-16 0Z M8 16q0 3 4 3" /></svg
+          ><span>Finish</span></button
+        ><button data-panel="view" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4 M8 12h8m-4-4v8"
+            /></svg
+          ><span>Inspect</span></button
+        ><button data-panel="inventory" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 3h18v18H3Z M3 10h18M12 3v18" /></svg
+          ><span>Inventory</span></button
+        ><span class="dock-divider"></span
+        ><button id="replay" title="Replay suit scan">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 10a8 8 0 1 1 1 8M4 3v7h7" /></svg
+          ><span>Reveal</span>
+        </button>
+      </nav>
+      <aside aria-label="Suit customization" inert>
+        <div class="panel-heading">
+          <span id="panel-title">ARMOR SYSTEM</span
+          ><button id="close-panel" aria-label="Close controls">×</button>
+        </div>
+        <div class="panel-subheading">
+          <button id="reset" title="Restore original configuration">
+            Reset
+          </button>
+        </div>
+        <section data-section="inventory">
+          <div class="button-row">
+            <button id="inventory-tour">View shelves</button
+            ><button id="inventory-suit">Return to suit</button>
+          </div>
+          <div class="inventory-summary">
+            <span id="inventory-count" aria-live="polite"></span>
+          </div>
+          <label class="search-label" for="inventory-search"
+            >Find a component</label
+          ><input
+            id="inventory-search"
+            type="search"
+            placeholder="Search components…"
+            autocomplete="off"
+          />
+          <div class="inventory-types" aria-label="Part types">
+            <button data-part-type="All" aria-pressed="true">All</button
+            ><button data-part-type="Helmets" aria-pressed="false">
+              Helmets</button
+            ><button data-part-type="Torso" aria-pressed="false">Torso</button
+            ><button data-part-type="Arms" aria-pressed="false">Arms</button
+            ><button data-part-type="Hands" aria-pressed="false">Hands</button
+            ><button data-part-type="Legs" aria-pressed="false">Legs</button
+            ><button data-part-type="Shoulders" aria-pressed="false">
+              Shoulders
+            </button>
+          </div>
+          <div class="inventory-tabs" aria-label="Inventory collections">
+            <button data-category="All" aria-pressed="true">All</button
+            ><button data-category="Arsenal" aria-pressed="false">
+              Arsenal</button
+            ><button data-category="Foundry" aria-pressed="false">
+              Foundry</button
+            ><button data-category="Aegis" aria-pressed="false">Aegis</button
+            ><button data-category="Vector" aria-pressed="false">Vector</button
+            ><button data-category="Helix" aria-pressed="false">Helix</button
+            ><button data-category="Helmets" aria-pressed="false">
+              Helmets</button
+            ><button data-category="Components" aria-pressed="false">
+              Classic</button
+            ><button data-category="Bastion" aria-pressed="false">
+              Bastion
+            </button>
+          </div>
+          <p id="inventory-empty" hidden>
+            No parts match. Try another name or category.
+          </p>
+          <div class="shelf-pages">
+            <button id="inventory-prev" aria-label="Previous shelf bank">
+              ‹</button
+            ><span id="inventory-bank"></span
+            ><button id="inventory-next" aria-label="Next shelf bank">›</button>
+          </div>
+          <div id="inventory-list"></div>
+        </section>
+        <section data-section="helmet">
+          <button id="armor-inventory" class="export">Browse components</button>
+          <div class="segmented" id="helmets">
+            <button data-helmet="7" aria-pressed="true">
+              <strong>VII</strong><span>CLASSIC ARMOR</span></button
+            ><button data-helmet="85" aria-pressed="false">
+              <strong>85</strong><span>NANOTECH ERA</span>
+            </button>
+          </div>
+          <label class="range-label" for="lift"
+            >Lift helmet <output id="lift-value">0%</output></label
+          ><input id="lift" type="range" min="0" max="100" value="0" /><label
+            class="range-label"
+            for="face"
+            >Slide faceplate <output id="face-value">0%</output></label
+          ><input id="face" type="range" min="0" max="100" value="0" /><small
+            id="face-note"
+            >Inspection slide, not mechanical opening.</small
+          >
+        </section>
+        <section data-section="paint">
+          <div class="presets" aria-label="Paint presets">
+            <button data-finish="classic" title="Classic red and gold">
+              <i style="--swatch: #a41c23"></i>Classic</button
+            ><button data-finish="stealth" title="Graphite and silver">
+              <i style="--swatch: #45545e"></i>Stealth</button
+            ><button data-finish="midas" title="Gold and warm alloy">
+              <i style="--swatch: #c49a52"></i>Midas
+            </button>
+          </div>
+          <label for="region">Armor region</label
+          ><select id="region">
+            <option value="All armor">All armor</option>
+          </select>
+          <div class="paint-row">
+            <label>Primary<input type="color" id="red" value="#950e1f" /></label
+            ><label
+              >Accent<input type="color" id="gold" value="#d3a264"
+            /></label>
+          </div>
+          <small id="paint-note"
+            >Choose a region to paint it independently.</small
+          >
+          <div class="button-row">
+            <button id="focus">Focus part</button
+            ><button id="isolate" aria-pressed="false">Isolate part</button>
+          </div>
+        </section>
+        <section data-section="view">
+          <p class="view-help">
+            Select a part directly on the suit, or choose a region in Finish.
+          </p>
+          <div class="button-row">
+            <button id="front">Front</button><button id="back">Back</button
+            ><button id="garage">Garage</button>
+          </div>
+          <div class="toggles">
+            <label><input type="checkbox" id="rotate" /> Auto-rotate suit</label
+            ><label
+              ><input type="checkbox" id="room" checked /> Show garage</label
+            >
+          </div>
+          <label for="quality">Render quality</label
+          ><select id="quality">
+            <option value="balanced">Balanced</option>
+            <option value="high" selected>High</option>
+            <option value="ultra">Ultra</option></select
+          ><button class="export" id="capture" style="margin-top: 20px">
+            Save image ↗
+          </button>
+        </section>
+        <details>
+          <summary>Credits &amp; privacy</summary>
+          <p>
+            Unofficial Iron Man fan project. Not affiliated with Marvel. Your
+            configuration stays in this browser; no accounts or analytics.
+          </p>
+          <p>
+            Adapted models:
+            <a
+              href="https://sketchfab.com/3d-models/iron-man-mark-7-0217589c832a4384b2531c0eb69f7ba5"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Mark VII — Gource / Baconsoup</a
+            >
+            and
+            <a
+              href="https://sketchfab.com/3d-models/iron-man-mark-85-8da781aa74024366844b36444c650d69"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Mark 85 — LLIypuk / Harlow fx</a
+            >. Licensed under
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >CC BY 4.0</a
+            >. Geometry and materials modified.
+            <a href="./credits.html" target="_blank" rel="noopener noreferrer"
+              >Full asset credits</a
+            >.
+          </p>
+        </details>
+      </aside>
+      <div id="inventory-detail" hidden>
+        <button id="inventory-browse">‹ Browse parts</button>
+        <h3 id="inventory-name"></h3>
+        <p id="inventory-description"></p>
+        <button id="inventory-equip" class="export">Equip helmet</button
+        ><button id="inventory-restore" hidden>
+          Restore classic component
+        </button>
+      </div>
+      <footer>
+        <a
+          class="credits-link"
+          href="./credits.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Unofficial fan project · Credits</a
+        ><span id="status" role="status">Loading assets</span>
+      </footer>
+    </div>
+    <div id="assembly-hud" hidden role="status">
+      <span class="eyebrow">ASSEMBLING</span>
+      <h2 id="assembly-part"></h2>
+      <strong id="assembly-stage">SCAN</strong
+      ><progress
+        aria-label="Assembly progress"
+        id="assembly-progress"
+        max="1"
+        value="0"
+      ></progress>
+      <div class="button-row">
+        <button id="assembly-sound" aria-pressed="true">Sound on</button
+        ><button id="assembly-skip">Finish now</button
+        ><button id="assembly-cancel">Cancel</button>
+      </div>
+    </div>
+    <noscript
+      ><div class="startup-error">
+        Enable JavaScript to open the 3D workshop.
+      </div></noscript
+    >
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

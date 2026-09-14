@@ -1,0 +1,172 @@
+[
+  {
+    "id": "salvage-cuirass",
+    "name": "Mark I-inspired Salvage Cuirass",
+    "region": "Chest and back",
+    "family": "Foundry",
+    "subtype": "Salvage cuirass",
+    "description": "Comic-inspired contoured chest and back assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/salvage-cuirass.png",
+    "colors": [
+      "#4d5256",
+      "#95999b"
+    ],
+    "vertices": 36974,
+    "triangles": 35496,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "suitcase-cuirass",
+    "name": "Mark V-inspired Suitcase Lamellar Cuirass",
+    "region": "Chest and back",
+    "family": "Foundry",
+    "subtype": "Suitcase lamellar cuirass",
+    "description": "Comic-inspired contoured chest and back assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/suitcase-cuirass.png",
+    "colors": [
+      "#861822",
+      "#a2aab1"
+    ],
+    "vertices": 36974,
+    "triangles": 35496,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "orbital-pack",
+    "name": "Starboost-inspired Twin-Thruster Orbital Pack",
+    "region": "Chest and back",
+    "family": "Foundry",
+    "subtype": "Twin-thruster back assembly",
+    "description": "Fitted ceramic cuirass and paired dorsal turbines with recessed nozzles, cooling ribs and turned exhaust lips. Comic-inspired fan concept.",
+    "thumbnail": "/premium/orbital-pack.png",
+    "colors": [
+      "#adb5bf",
+      "#b18e55"
+    ],
+    "vertices": 44282,
+    "triangles": 49976,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "heavy-left-gauntlet",
+    "name": "Igor-inspired Left Hydraulic Gauntlet",
+    "region": "Left forearm",
+    "family": "Foundry",
+    "subtype": "Heavy hydraulic gauntlet",
+    "description": "Comic-inspired contoured left forearm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/heavy-left-gauntlet.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "vertices": 7677,
+    "triangles": 9760,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "heavy-right-gauntlet",
+    "name": "Igor-inspired Right Hydraulic Gauntlet",
+    "region": "Right forearm",
+    "family": "Foundry",
+    "subtype": "Heavy hydraulic gauntlet",
+    "description": "Comic-inspired contoured right forearm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/heavy-right-gauntlet.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "vertices": 8380,
+    "triangles": 11153,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "velocity-left-greave",
+    "name": "Shotgun-inspired Left Swept Flight Greave",
+    "region": "Left shin",
+    "family": "Foundry",
+    "subtype": "Swept flight greave",
+    "description": "Comic-inspired contoured left shin assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/velocity-left-greave.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "vertices": 28471,
+    "triangles": 41459,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "velocity-right-greave",
+    "name": "Shotgun-inspired Right Swept Flight Greave",
+    "region": "Right shin",
+    "family": "Foundry",
+    "subtype": "Swept flight greave",
+    "description": "Comic-inspired contoured right shin assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/velocity-right-greave.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "vertices": 28514,
+    "triangles": 41459,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "nano-shield",
+    "name": "Mark 50-inspired Layered Energy Shield",
+    "region": "Left forearm",
+    "family": "Foundry",
+    "subtype": "Layered energy shield",
+    "description": "Contoured metal shield with recessed energy spine, alloy perimeter and rigid forearm mounts. Comic-inspired fan concept.",
+    "thumbnail": "/premium/nano-shield.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "vertices": 9735,
+    "triangles": 13852,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "nano-blade",
+    "name": "Mark 50-inspired Long Deploy Blade",
+    "region": "Right forearm",
+    "family": "Foundry",
+    "subtype": "Long deploy blade",
+    "description": "Tapered metal blade with separate beveled faces, central ridge and ceramic status trace. Comic-inspired fan concept.",
+    "thumbnail": "/premium/nano-blade.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "vertices": 8764,
+    "triangles": 11905,
+    "replaceBase": true,
+    "premium": true
+  },
+  {
+    "id": "delta-reactor",
+    "name": "Cyclotron precision reactor",
+    "region": "Reactor",
+    "family": "Foundry",
+    "subtype": "Triangular reactor",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/delta-reactor.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 9688,
+    "triangles": 19172,
+    "premium": true
+  }
+]

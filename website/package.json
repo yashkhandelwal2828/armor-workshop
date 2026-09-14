@@ -1,0 +1,48 @@
+{
+  "name": "armor-workshop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "test:inventory": "node tests/inventory-lab.mjs && node tests/inventory-lab-motion.mjs && node tests/inventory-lab-mobile.mjs",
+    "test:foundry": "node tests/foundry-integration.mjs && node tests/organized-shelves.mjs",
+    "test:arsenal": "node tests/arsenal.mjs && node tests/organized-shelves.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "lint": "eslint src *.js tests",
+    "format": "prettier --write src tests *.js *.html *.json *.md",
+    "format:check": "prettier --check src tests *.js *.html *.json *.md",
+    "test:unit": "node --test tests/runtime.test.mjs && node tests/servo.mjs",
+    "test:release": "playwright test",
+    "test": "npm run test:unit && npm run test:release",
+    "check": "npm run lint && npm run format:check && npm run build && npm test",
+    "check:source": "npm run lint && npm run format:check && npm run build && npm run test:unit"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
+    "eslint": "^10.10.0",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.6",
+    "vite": "^7.3.6"
+  },
+  "version": "0.1.0",
+  "description": "Interactive 3D armor workshop with configurable components and robotic assembly.",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "license": "MIT",
+  "author": "Yash Khandelwal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yashkhandelwal2828/armor-workshop.git",
+    "directory": "website"
+  },
+  "bugs": {
+    "url": "https://github.com/yashkhandelwal2828/armor-workshop/issues"
+  },
+  "homepage": "https://github.com/yashkhandelwal2828/armor-workshop#readme"
+}

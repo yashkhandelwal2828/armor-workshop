@@ -1,0 +1,482 @@
+[
+  {
+    "id": "arsenal-helmet-0",
+    "name": "Extremis contour helmet",
+    "region": "Helmet",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured helmet with tapered gold faceplate, narrow inset optics and flush temporal bearings. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-helmet-0.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 12907,
+    "triangles": 14209,
+    "premium": true
+  },
+  {
+    "id": "arsenal-helmet-1",
+    "name": "Prime split-brow helmet",
+    "region": "Helmet",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured helmet with tapered gold faceplate, narrow inset optics and flush temporal bearings. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-helmet-1.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 25615,
+    "triangles": 41767,
+    "premium": true
+  },
+  {
+    "id": "arsenal-helmet-2",
+    "name": "Stealth interceptor helmet",
+    "region": "Helmet",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured helmet with tapered gold faceplate, narrow inset optics and flush temporal bearings. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-helmet-2.png",
+    "colors": [
+      "#2c343c",
+      "#9eaab1"
+    ],
+    "replaceBase": true,
+    "vertices": 25615,
+    "triangles": 41767,
+    "premium": true
+  },
+  {
+    "id": "arsenal-helmet-3",
+    "name": "Centurion V-crown helmet",
+    "region": "Helmet",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured helmet with tapered gold faceplate, narrow inset optics and flush temporal bearings. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-helmet-3.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 25615,
+    "triangles": 41767,
+    "premium": true
+  },
+  {
+    "id": "arsenal-helmet-4",
+    "name": "Deep-pressure armor helmet",
+    "region": "Helmet",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured helmet with tapered gold faceplate, narrow inset optics and flush temporal bearings. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-helmet-4.png",
+    "colors": [
+      "#48212a",
+      "#b38955"
+    ],
+    "replaceBase": true,
+    "vertices": 12907,
+    "triangles": 14209,
+    "premium": true
+  },
+  {
+    "id": "arsenal-helmet-5",
+    "name": "Spectre narrow-optic helmet",
+    "region": "Helmet",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured helmet with tapered gold faceplate, narrow inset optics and flush temporal bearings. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-helmet-5.png",
+    "colors": [
+      "#2c343c",
+      "#9eaab1"
+    ],
+    "replaceBase": true,
+    "vertices": 25615,
+    "triangles": 41767,
+    "premium": true
+  },
+  {
+    "id": "arsenal-reactor-0",
+    "name": "Cyclotron precision reactor",
+    "region": "Reactor",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-reactor-0.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 9688,
+    "triangles": 19172,
+    "premium": true
+  },
+  {
+    "id": "arsenal-reactor-1",
+    "name": "Hex-aperture reactor",
+    "region": "Reactor",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-reactor-1.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 8660,
+    "triangles": 17128,
+    "premium": true
+  },
+  {
+    "id": "arsenal-reactor-2",
+    "name": "Turbine iris reactor",
+    "region": "Reactor",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-reactor-2.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 8228,
+    "triangles": 16264,
+    "premium": true
+  },
+  {
+    "id": "arsenal-reactor-3",
+    "name": "Delta containment reactor",
+    "region": "Reactor",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-reactor-3.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 11144,
+    "triangles": 22012,
+    "premium": true
+  },
+  {
+    "id": "arsenal-reactor-4",
+    "name": "Concentric arc reactor",
+    "region": "Reactor",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-reactor-4.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 9688,
+    "triangles": 19172,
+    "premium": true
+  },
+  {
+    "id": "arsenal-reactor-5",
+    "name": "Hex containment reactor",
+    "region": "Reactor",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-reactor-5.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 7712,
+    "triangles": 15264,
+    "premium": true
+  },
+  {
+    "id": "arsenal-reactor-6",
+    "name": "Iris containment reactor",
+    "region": "Reactor",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured arc core with copper windings, turned titanium bezels and recessed optical containment. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-reactor-6.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 10484,
+    "triangles": 20700,
+    "premium": true
+  },
+  {
+    "id": "arsenal-torso-0",
+    "name": "Extremis flight cuirass",
+    "region": "Chest and back",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured chest and back assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-torso-0.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 36974,
+    "triangles": 35496,
+    "premium": true
+  },
+  {
+    "id": "arsenal-torso-1",
+    "name": "Pressure armor cuirass",
+    "region": "Chest and back",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured chest and back assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-torso-1.png",
+    "colors": [
+      "#2e3a46",
+      "#bd955b"
+    ],
+    "replaceBase": true,
+    "vertices": 38938,
+    "triangles": 39376,
+    "premium": true
+  },
+  {
+    "id": "arsenal-torso-2",
+    "name": "Prime service cuirass",
+    "region": "Chest and back",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured chest and back assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-torso-2.png",
+    "colors": [
+      "#42484f",
+      "#9ea6ad"
+    ],
+    "replaceBase": true,
+    "vertices": 36974,
+    "triangles": 35496,
+    "premium": true
+  },
+  {
+    "id": "arsenal-arm-0",
+    "name": "Pile-driver bracer",
+    "region": "Left forearm",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured left forearm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-arm-0.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 8429,
+    "triangles": 11260,
+    "premium": true
+  },
+  {
+    "id": "arsenal-arm-1",
+    "name": "Rotary emitter bracer",
+    "region": "Right forearm",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured right forearm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-arm-1.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 9100,
+    "triangles": 12565,
+    "premium": true
+  },
+  {
+    "id": "arsenal-arm-2",
+    "name": "Rescue clamp bracer",
+    "region": "Left forearm",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured left forearm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-arm-2.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 8909,
+    "triangles": 12204,
+    "premium": true
+  },
+  {
+    "id": "arsenal-arm-3",
+    "name": "Scanner array bracer",
+    "region": "Right forearm",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured right forearm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-arm-3.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 7628,
+    "triangles": 9653,
+    "premium": true
+  },
+  {
+    "id": "arsenal-leg-0",
+    "name": "Heavy suspension greave",
+    "region": "Left shin",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured left shin assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-leg-0.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 29047,
+    "triangles": 42603,
+    "premium": true
+  },
+  {
+    "id": "arsenal-leg-1",
+    "name": "Orbital landing greave",
+    "region": "Right shin",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured right shin assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-leg-1.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 28514,
+    "triangles": 41459,
+    "premium": true
+  },
+  {
+    "id": "arsenal-leg-2",
+    "name": "Aero stabilizer greave",
+    "region": "Left shin",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured left shin assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-leg-2.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 28543,
+    "triangles": 41599,
+    "premium": true
+  },
+  {
+    "id": "arsenal-leg-3",
+    "name": "Hydraulic exoframe greave",
+    "region": "Right shin",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured right shin assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-leg-3.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 29090,
+    "triangles": 42603,
+    "premium": true
+  },
+  {
+    "id": "arsenal-hand-0",
+    "name": "Magnetic utility glove",
+    "region": "Left hand",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured left hand assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-hand-0.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 61004,
+    "triangles": 71820,
+    "premium": true
+  },
+  {
+    "id": "arsenal-hand-1",
+    "name": "Precision repair glove",
+    "region": "Right hand",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured right hand assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-hand-1.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 60998,
+    "triangles": 71811,
+    "premium": true
+  },
+  {
+    "id": "arsenal-hand-2",
+    "name": "Prism emitter glove",
+    "region": "Right hand",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured right hand assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-hand-2.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 60998,
+    "triangles": 71811,
+    "premium": true
+  },
+  {
+    "id": "arsenal-shoulder--1",
+    "name": "Sentinel left shoulder",
+    "region": "Left shoulder and upper arm",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured left shoulder and upper arm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-shoulder--1.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 15558,
+    "triangles": 17654,
+    "premium": true
+  },
+  {
+    "id": "arsenal-shoulder-1",
+    "name": "Sentinel right shoulder",
+    "region": "Right shoulder and upper arm",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured right shoulder and upper arm assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-shoulder-1.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 15556,
+    "triangles": 17656,
+    "premium": true
+  },
+  {
+    "id": "arsenal-abdomen",
+    "name": "Cross-braced abdominal harness",
+    "region": "Abdomen",
+    "family": "Arsenal",
+    "description": "Comic-inspired contoured abdomen assembly with fitted anatomical foundation, swept armor panels, recessed fasteners and satin metal finishes. Fan design study; not a canonical suit replica.",
+    "thumbnail": "/premium/arsenal-abdomen.png",
+    "colors": [
+      "#861822",
+      "#c59752"
+    ],
+    "replaceBase": true,
+    "vertices": 14632,
+    "triangles": 16124,
+    "premium": true
+  }
+]

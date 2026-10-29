@@ -1,23 +1,2 @@
-# Local authoring masters, downloaded references, and reversible backups
-/outputs/
-/work/
-# Dependencies and generated output
-node_modules/
-dist/
-test-results/
-playwright-report/
-coverage/
-# Machine settings and credentials
 .DS_Store
-.env
-.env.*
-!.env.example
-*.log
-*.blend1
-
-# Local deployment metadata
-.vercel/
-
-# Third-party and derived artwork distributed separately
-/website/public/models/
-/website/public/premium/*.png
+Thumbs.db

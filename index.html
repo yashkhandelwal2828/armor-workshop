@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arjun &amp; Meera · Shubh Vivah</title>
+<meta name="description" content="You are invited to the wedding celebrations of Arjun & Meera.">
+<meta name="theme-color" content="#3B0A12">
+<meta property="og:title" content="Arjun & Meera · Shubh Vivah">
+<meta property="og:description" content="Tap to open your wedding invitation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236E1423'/%3E%3Ccircle cx='32' cy='32' r='25' fill='none' stroke='%23E9CF8A' stroke-width='2'/%3E%3Cpath d='M32 14c5 8 9 12 9 18a9 9 0 0 1-18 0c0-6 4-10 9-18z' fill='%23F29F05'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus+SC&family=Pinyon+Script&family=Tiro+Devanagari+Hindi&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<!-- ═════════════ GATE: carved palace doors ═════════════ -->
+<div id="gate" class="gate" aria-label="Invitation cover">
+  <div class="gate-glow" aria-hidden="true"></div>
+  <div class="door door-l" aria-hidden="true"><div class="door-art"></div><span class="mauli mauli-l"></span></div>
+  <div class="door door-r" aria-hidden="true"><div class="door-art"></div><span class="mauli mauli-r"></span></div>
+
+  <div class="gate-top">
+    <p class="deva">॥ श्री गणेशाय नमः ॥</p>
+    <p class="gate-dear" id="gateDear">You are warmly invited</p>
+  </div>
+
+  <button class="seal" id="seal" type="button" aria-label="Tap to open the invitation">
+    <span class="seal-halo" aria-hidden="true"></span>
+    <span class="seal-face">
+      <span class="seal-mandala" aria-hidden="true"></span>
+      <span class="seal-mono" id="sealMono">A <i>&amp;</i> M</span>
+      <span class="seal-cta">Tap to open</span>
+    </span>
+  </button>
+
+  <div class="gate-bottom">
+    <p class="gate-names" id="gateNames">Arjun &amp; Meera</p>
+    <p class="gate-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>Best enjoyed with sound on</p>
+  </div>
+</div>
+
+<!-- ═════════════ Marigold garland curtain ═════════════ -->
+<div id="garlands" class="garlands" aria-hidden="true"></div>
+
+<!-- ═════════════ Ambient canvas (petals, confetti, sparkles) ═════════════ -->
+<canvas id="fx" class="fx" aria-hidden="true"></canvas>
+
+<!-- ═════════════ Floating controls ═════════════ -->
+<button id="musicBtn" class="music-btn" type="button" aria-label="Pause music" aria-pressed="true">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<nav id="dock" class="dock" aria-label="Sections">
+  <a href="#home" data-nav="home"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6 6 6 10a6 6 0 0 1-12 0c0-4 3-6 6-10z"/></svg><span>Home</span></a>
+  <a href="#date" data-nav="date"><svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 7h14v10H5z"/></svg><span>Date</span></a>
+  <a href="#events" data-nav="events"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-6 4.4 2.3 7L12 16l-6.3 4.3 2.3-7-6-4.4h7.6z"/></svg><span>Events</span></a>
+  <a href="#venue" data-nav="venue"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Venue</span></a>
+  <a href="#rsvp" data-nav="rsvp"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg><span>RSVP</span></a>
+</nav>
+
+<main id="site">
+
+  <!-- ═════════════ HERO ═════════════ -->
+  <section id="home" class="hero">
+    <div class="toran" id="toran" aria-hidden="true"></div>
+    <div class="hero-mandala" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <p class="deva rise" style="--d:0">॥ श्री गणेशाय नमः ॥</p>
+      <p class="eyebrow rise" style="--d:1" id="heroBlessing">With the blessings of our elders</p>
+
+      <figure class="arch rise" style="--d:2">
+        <div class="arch-frame">
+          <div class="photo-slot" data-photo="hero" data-mono="1"></div>
+        </div>
+        <span class="arch-lamp l" aria-hidden="true"></span>
+        <span class="arch-lamp r" aria-hidden="true"></span>
+      </figure>
+
+      <p class="together rise" style="--d:3">Together with their families</p>
+      <h1 class="names">
+        <span class="name rise" style="--d:4" id="groomName">Arjun</span>
+        <span class="amp rise" style="--d:5">&amp;</span>
+        <span class="name rise" style="--d:6" id="brideName">Meera</span>
+      </h1>
+      <p class="sub rise" style="--d:7">are getting married</p>
+      <div class="hero-date rise" style="--d:8">
+        <span id="heroWeekday">Friday</span>
+        <b id="heroDate">12 · 02 · 2027</b>
+        <span id="heroCity">Udaipur</span>
+      </div>
+    </div>
+
+    <div class="skyline" aria-hidden="true">
+      <div class="palace" id="palace"></div>
+      <div class="diyas" id="diyas"></div>
+    </div>
+
+    <a href="#invite" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- ═════════════ INVITATION ═════════════ -->
+  <section id="invite" class="invite band-ivory">
+    <div class="wrap narrow">
+      <div class="divider" aria-hidden="true"></div>
+      <p class="invite-blessing reveal" id="invBlessing"></p>
+      <p class="invite-hosts reveal" id="invHosts"></p>
+      <div class="invite-lines reveal" id="invLines"></div>
+
+      <div class="couple reveal">
+        <div class="person">
+          <h3 id="groomFull">Arjun Sharma</h3>
+          <p id="groomParents"></p>
+        </div>
+        <span class="couple-knot" aria-hidden="true"></span>
+        <div class="person">
+          <h3 id="brideFull">Meera Iyer</h3>
+          <p id="brideParents"></p>
+        </div>
+      </div>
+      <p class="invite-closing reveal" id="invClosing"></p>
+    </div>
+  </section>
+
+  <!-- ═════════════ SCRATCH TO REVEAL ═════════════ -->
+  <section id="date" class="scratch band-cream arch-top">
+    <div class="wrap narrow">
+      <p class="eyebrow reveal">A little surprise</p>
+      <h2 class="script-h reveal">Scratch to reveal</h2>
+      <p class="lede reveal">Rub the three gold coins to uncover our wedding date.</p>
+
+      <div class="coins reveal" id="coins">
+        <div class="coin" data-k="day"><div class="coin-under"><small>Day</small><b id="cDay">12</b></div><canvas></canvas></div>
+        <div class="coin" data-k="month"><div class="coin-under"><small>Month</small><b id="cMonth">Feb</b></div><canvas></canvas></div>
+        <div class="coin" data-k="year"><div class="coin-under"><small>Year</small><b id="cYear">2027</b></div><canvas></canvas></div>
+      </div>
+
+      <div class="revealed-msg" id="revealedMsg">
+        <h3 class="script-h small">Save the date</h3>
+        <p id="revealLine">Friday, 12 February 2027 · Udaipur</p>
+        <a class="btn btn-gold" id="calBtn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 7h14v10H5zm6 2v3H8v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+          Add to Google Calendar
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ COUNTDOWN ═════════════ -->
+  <section class="countdown band-maroon arch-top">
+    <div class="wrap">
+      <p class="eyebrow light reveal">Counting down to forever</p>
+      <div class="timer reveal" id="timer" role="timer" aria-live="off">
+        <div class="tile"><b data-u="d">00</b><small>Days</small></div>
+        <div class="tile"><b data-u="h">00</b><small>Hours</small></div>
+        <div class="tile"><b data-u="m">00</b><small>Minutes</small></div>
+        <div class="tile"><b data-u="s">00</b><small>Seconds</small></div>
+      </div>
+      <p class="timer-note reveal" id="timerNote">until the pheras begin</p>
+    </div>
+  </section>
+
+  <!-- ═════════════ OUR STORY / GALLERY ═════════════ -->
+  <section id="story" class="story band-ivory arch-top">
+    <div class="wrap">
+      <p class="eyebrow reveal">How it began</p>
+      <h2 class="script-h reveal">Our story</h2>
+      <p class="lede narrow-p reveal" id="storyText"></p>
+      <div class="deck" id="deck" aria-label="Photo gallery. Swipe the top photo."></div>
+      <p class="deck-hint"><span class="swipe-ico" aria-hidden="true"></span>Swipe the photos · tap to enlarge</p>
+    </div>
+  </section>
+
+  <!-- ═════════════ EVENTS ═════════════ -->
+  <section id="events" class="events band-cream arch-top">
+    <div class="wrap">
+      <p class="eyebrow reveal">The festivities</p>
+      <h2 class="script-h reveal">Wedding celebrations</h2>
+      <p class="lede reveal">Five days of colour, music and love. Tap a card for details.</p>
+      <div class="timeline" id="timeline">
+        <svg class="thread" preserveAspectRatio="none" aria-hidden="true"><path id="threadPath"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ VENUE ═════════════ -->
+  <section id="venue" class="venue band-maroon arch-top">
+    <div class="wrap">
+      <p class="eyebrow light reveal">Where hearts unite</p>
+      <h2 class="script-h light reveal">The venue</h2>
+      <div class="venue-card reveal">
+        <div class="venue-photo photo-slot" data-photo="venue" data-palace="1"></div>
+        <div class="venue-body">
+          <h3 id="venueName">The Leela Palace</h3>
+          <p class="venue-area" id="venueArea"></p>
+          <p class="venue-addr" id="venueAddr"></p>
+          <div class="btn-row">
+            <a class="btn btn-gold" id="mapBtn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+              Open in Google Maps
+            </a>
+            <button class="btn btn-ghost light" id="copyAddr" type="button">Copy address</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ STAY & TRAVEL ═════════════ -->
+  <section class="stay band-ivory arch-top">
+    <div class="wrap">
+      <p class="eyebrow reveal">For our guests</p>
+      <h2 class="script-h reveal">Stay &amp; travel</h2>
+      <div class="info-grid" id="infoGrid"></div>
+      <h3 class="contacts-h reveal">Questions? Call family</h3>
+      <div class="contacts" id="contacts"></div>
+    </div>
+  </section>
+
+  <!-- ═════════════ RSVP ═════════════ -->
+  <section id="rsvp" class="rsvp band-cream arch-top">
+    <div class="wrap narrow">
+      <p class="eyebrow reveal">Will you join us?</p>
+      <h2 class="script-h reveal">RSVP</h2>
+      <p class="lede reveal" id="rsvpDeadline"></p>
+
+      <form class="rsvp-card reveal" id="rsvpForm" novalidate>
+        <label class="field">
+          <span>Your name</span>
+          <input id="rName" name="name" autocomplete="name" required placeholder="e.g. Sunita & Vikram Gupta">
+        </label>
+
+        <fieldset class="field">
+          <legend>Will you attend?</legend>
+          <div class="seg" role="radiogroup">
+            <label><input type="radio" name="attend" id="rYes" value="yes" checked><span>Joyfully yes</span></label>
+            <label><input type="radio" name="attend" id="rNo" value="no"><span>Sadly no</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field attend-only">
+          <span>Number of guests</span>
+          <div class="stepper">
+            <button type="button" id="gMinus" aria-label="Fewer guests">−</button>
+            <output id="gCount">2</output>
+            <button type="button" id="gPlus" aria-label="More guests">+</button>
+          </div>
+        </div>
+
+        <fieldset class="field attend-only">
+          <legend>Which functions?</legend>
+          <div class="chips" id="eventChips"></div>
+        </fieldset>
+
+        <label class="field">
+          <span>A message for the couple</span>
+          <textarea id="rMsg" name="msg" rows="3" placeholder="Your wishes and blessings…"></textarea>
+        </label>
+
+        <p class="form-err" id="formErr" hidden>Please add your name so we know who's coming.</p>
+        <button class="btn btn-maroon wide" type="submit">Prepare my RSVP</button>
+      </form>
+
+      <div class="rsvp-done" id="rsvpDone" hidden>
+        <div class="done-seal" aria-hidden="true"></div>
+        <h3 class="script-h small">Dhanyavaad!</h3>
+        <p>Your reply is ready. Tap below to send it to the family on WhatsApp.</p>
+        <a class="btn btn-whatsapp wide" id="waLink" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+          Send on WhatsApp
+        </a>
+        <button class="btn btn-ghost" id="copyRsvp" type="button">Copy message instead</button>
+        <button class="link-btn" id="editRsvp" type="button">Edit my reply</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ BLESSINGS + FOOTER ═════════════ -->
+  <footer class="finale band-night arch-top">
+    <div class="wrap narrow">
+      <div class="farewell-photo photo-slot" data-photo="farewell" data-mono="1"></div>
+      <h2 class="script-h light reveal">Shower your blessings</h2>
+      <p class="lede light reveal">Tap the button and send flower petals to the couple.</p>
+      <button class="blessing-btn" id="blessBtn" type="button">
+        <span class="bless-flower" aria-hidden="true"></span>
+        <span>Send blessings</span>
+        <b id="blessCount">0</b>
+      </button>
+
+      <div class="divider light" aria-hidden="true"></div>
+      <p class="hashtag">Share your moments with <button type="button" id="hashtag" class="hash-btn">#ArjunKiMeera</button></p>
+      <p class="deva big">॥ शुभ विवाह ॥</p>
+      <p class="sign">With love from <span id="footHosts">the Sharma &amp; Iyer families</span></p>
+    </div>
+  </footer>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">×</button>
+  <button class="lb-nav prev" id="lbPrev" type="button" aria-label="Previous photo">‹</button>
+  <figure><div class="lb-img photo-slot" id="lbImg"></div><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-nav next" id="lbNext" type="button" aria-label="Next photo">›</button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

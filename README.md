@@ -1,58 +1,29 @@
-# Armor Workshop
+# Shubh Vivah · Arjun & Meera
 
-An interactive Iron Man-inspired workshop built with **Three.js, Vite, and Blender**. Mix armor components, create your own finish, and watch robotic arms install each part.
+An interactive Indian wedding invitation website. Guests tap a gold seal to open carved palace doors, marigold garlands part to reveal the invitation, and the page unfolds with falling rose petals, scratch-to-reveal date coins, a live countdown, a swipeable photo deck, flip cards for every function, venue details, and an RSVP that sends straight to WhatsApp.
 
-## Features
+## Edit the details
 
-- Browse 69 catalog entries across helmets, torso armor, reactors, arms, hands, shoulders, and legs.
-- Paint the whole suit or individual regions, with preset finishes and local saved configurations.
-- Watch staged robotic assembly with synthesized mechanical audio, cancellation, and instant installation.
-- Explore the workshop, inspect individual components, and export images.
-- Use desktop or touch controls, with reduced-motion support and adjustable render quality.
+Everything (names, parents, dates, events, venue, contacts, WhatsApp number) lives in **`js/config.js`**.
 
-## Getting started
+## Add photos
 
-Requires **Node.js 22.13+**, npm, and a browser with WebGL 2.
+Put images in **`assets/photos/`**. See `assets/photos/README.md` for file names.
 
-```sh
-git clone https://github.com/yashkhandelwal2828/armor-workshop.git
-cd armor-workshop/website
-npm ci
-npm run dev
+## Background music
+
+Add an mp3 at `assets/music.mp3`. Without it, a soft synthesized tanpura and santoor plays.
+
+## Personal links for relatives
+
+Add the guest's name to the link and the doors greet them by name:
+
+```
+https://<your-site>/?to=Sharma%20Family
 ```
 
-Open the local URL printed by Vite.
+## Publish
 
-**Model assets:** this repository contains the application source and catalogs. Model GLBs and rendered thumbnails are not included. The interactive scene requires compatible model exports described in [Asset setup](website/ASSET_SETUP.md); without them, the app displays its loading fallback. Source checks and builds work without the asset pack.
+The site is plain HTML, CSS and JavaScript with no build step. It deploys to GitHub Pages on every push to `main`. In the repository go to **Settings → Pages** and set **Source** to **GitHub Actions** once.
 
-## Development
-
-Run these commands from `website/`:
-
-```sh
-npm run check:source  # Lint, formatting, production build, and unit tests
-npm run build        # Generate dist/ for static hosting
-npm run preview      # Preview the production build
-```
-
-With the compatible model pack installed, run `npx playwright install chromium` followed by `npm run check` for the full browser suite. Public CI runs source checks without artwork.
-
-See the [development guide](website/README.md) for controls, project structure, hosting, and detailed testing instructions. Contributions are welcome; read [CONTRIBUTING.md](website/CONTRIBUTING.md).
-
-## Credits
-
-Created by [Yash Khandelwal](https://github.com/yashkhandelwal2828).
-
-- **[Three.js](https://threejs.org/)** — rendering, cameras, lighting, and post-processing.
-- **[Vite](https://vite.dev/)** — local development and production builds.
-- **[Blender](https://www.blender.org/)** — armor, workshop, and robot asset authoring.
-- **Mark VII source model** — Gource / Baconsoup.
-- **Mark 85 source model** — LLIypuk / Harlow fx.
-
-Model sources, modification notices, and recorded CC BY 4.0 terms are documented in [Asset credits](website/ASSET_CREDITS.md). The interface also includes a credits page.
-
-## License
-
-Original application code and documentation are licensed under the [MIT License](LICENSE). Third-party packages retain their own licenses. Model assets, rendered artwork, character designs, and trademarks are outside the scope of the code license.
-
-This is an unofficial fan project, not affiliated with or endorsed by Marvel. Iron Man and associated characters and marks belong to their respective owners.
+To preview locally, run `python3 -m http.server` in this folder and open http://localhost:8000.

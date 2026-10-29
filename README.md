@@ -28,3 +28,7 @@ https://<your-site>/?to=Sharma%20Family&lang=en
 The site is plain HTML, CSS and JavaScript with no build step. It deploys to GitHub Pages on every push to `main`. In the repository go to **Settings → Pages** and set **Source** to **GitHub Actions** once.
 
 To preview locally, run `python3 -m http.server` in this folder and open http://localhost:8000.
+
+## Credits
+
+3D opening uses [three.js](https://threejs.org) r128 (MIT), bundled in `js/vendor/`.

@@ -273,7 +273,9 @@ ${studs}
     }
     host.appendChild(frag);
   }
-  buildGarlands();
+  const cinema = window.Cinema && !reduceMotion ? (() => { try { return window.Cinema.create({ doorSVG }); } catch (e) { return null; } })() : null;
+  if (cinema) { document.body.classList.add("cinema-mode"); cinema.start(); $("#garlands").remove(); }
+  else buildGarlands();
 
   /* ═════════════ Toran (door hanging) ═════════════ */
   function buildToran() {
@@ -658,16 +660,53 @@ ${studs}
   document.body.classList.add("preopen");
   let opened = false;
 
+  function requestTilt() {
+    try {
+      const DO = window.DeviceOrientationEvent;
+      if (DO && typeof DO.requestPermission === "function") DO.requestPermission().catch(() => {});
+    } catch { /* not supported */ }
+  }
+
+  function revealSite() {
+    document.body.classList.remove("preopen", "locked");
+    document.body.classList.add("revealed");
+    FX.ambient(true);
+    FX.rain(reduceMotion ? 0 : 36);
+  }
+
   function openInvite() {
     if (opened) return;
     opened = true;
     Sound.init(); Sound.ctx?.resume();
+    requestTilt();
     navigator.vibrate?.(30);
     gate.classList.add("opening");
     Sound.bell(660, 0.34);
     setTimeout(() => Sound.bell(990, 0.16), 260);
-    const fast = reduceMotion ? 0.3 : 1;
+    const r = $("#seal").getBoundingClientRect();
+    FX.burst(r.left + r.width / 2, r.top + r.height / 2, 46, 0.7);
 
+    if (cinema) {
+      setTimeout(() => Sound.whoosh(2.6, 0.12), 250);
+      cinema.open({
+        fast: Math.max(1, Number(params.get("slowmo")) || 1),
+        onPass() {
+          gate.classList.add("gone");
+          Sound.chimes();
+          Sound.whoosh(2.2, 0.1);
+          Sound.startMusic();
+          musicBtn.setAttribute("aria-pressed", "true");
+        },
+        onReveal() {
+          cinema.dock($("#home"));
+          revealSite();
+        },
+        onDone() { gate.remove(); },
+      });
+      return;
+    }
+
+    const fast = reduceMotion ? 0.3 : 1;
     setTimeout(() => {
       gate.classList.add("open");
       Sound.whoosh(1.9, 0.14);
@@ -683,12 +722,7 @@ ${studs}
       musicBtn.setAttribute("aria-pressed", "true");
     }, 2200 * fast);
 
-    setTimeout(() => {
-      document.body.classList.remove("preopen", "locked");
-      document.body.classList.add("revealed");
-      FX.ambient(true);
-      FX.rain(reduceMotion ? 0 : 36);
-    }, 2900 * fast);
+    setTimeout(revealSite, 2900 * fast);
 
     setTimeout(() => {
       garlands.classList.add("gone");
@@ -696,6 +730,40 @@ ${studs}
       setTimeout(() => garlands.remove(), 1000);
     }, 4300 * fast);
   }
+
+  /* ═════════════ Tilt parallax (phone motion or pointer) ═════════════ */
+  (() => {
+    const hero = $("#home");
+    let tx = 0, ty = 0, cx = 0, cy = 0, gyro = false, rafP = 0;
+    const tick = () => {
+      rafP = 0;
+      cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
+      hero.style.setProperty("--tx", cx.toFixed(3));
+      hero.style.setProperty("--ty", cy.toFixed(3));
+      cinema?.setTilt(cx, cy);
+      if (Math.abs(tx - cx) > 0.002 || Math.abs(ty - cy) > 0.002) rafP = requestAnimationFrame(tick);
+    };
+    const kick = () => { if (!rafP) rafP = requestAnimationFrame(tick); };
+    if (reduceMotion) return;
+    addEventListener("deviceorientation", (e) => {
+      if (e.gamma == null) return;
+      gyro = true;
+      tx = Math.max(-1, Math.min(1, e.gamma / 22));
+      ty = Math.max(-1, Math.min(1, (e.beta - 50) / 22));
+      kick();
+    }, { passive: true });
+    addEventListener("pointermove", (e) => {
+      if (gyro || e.pointerType === "touch") return;
+      tx = (e.clientX / innerWidth) * 2 - 1;
+      ty = (e.clientY / innerHeight) * 2 - 1;
+      kick();
+    }, { passive: true });
+    hero.addEventListener("pointerdown", (e) => {
+      if (!cinema || !document.body.classList.contains("revealed")) return;
+      cinema.poke(e.clientX, e.clientY, hero.getBoundingClientRect());
+    });
+  })();
+
   $("#seal").addEventListener("click", openInvite);
   scrollTo(0, 0);
 
@@ -808,23 +876,30 @@ ${studs}
   }
   setupCoins();
 
-  /* ═════════════ Countdown ═════════════ */
+  /* ═════════════ Countdown (split-flap) ═════════════ */
   function setupCountdown() {
-    const cells = { d: $('[data-u="d"]'), h: $('[data-u="h"]'), m: $('[data-u="m"]'), s: $('[data-u="s"]') };
-    const prev = {};
+    const flaps = {};
+    $$("[data-u]").forEach((b) => {
+      b.innerHTML = '<span class="fl"><span class="fl-half fl-top"><i>00</i></span><span class="fl-half fl-bot"><i>00</i></span><span class="fl-half fl-ftop"><i>00</i></span><span class="fl-half fl-fbot"><i>00</i></span></span>';
+      flaps[b.dataset.u] = { el: $(".fl", b), top: $(".fl-top i", b), bot: $(".fl-bot i", b), ftop: $(".fl-ftop i", b), fbot: $(".fl-fbot i", b), val: null };
+    });
+    const set = (f, txt) => {
+      if (f.val === txt) return;
+      const old = f.val ?? txt;
+      f.val = txt;
+      if (old === txt || reduceMotion) { f.top.textContent = f.bot.textContent = f.ftop.textContent = f.fbot.textContent = txt; return; }
+      f.top.textContent = txt; f.bot.textContent = old;
+      f.ftop.textContent = old; f.fbot.textContent = txt;
+      f.el.classList.remove("go"); void f.el.offsetWidth; f.el.classList.add("go");
+      clearTimeout(f.t);
+      f.t = setTimeout(() => { f.bot.textContent = txt; f.el.classList.remove("go"); }, 620);
+    };
     const tick = () => {
       const diff = Math.max(0, wedDate - Date.now());
       $("#timerNote").dataset.i18n = diff === 0 ? "cdDone" : "cdNote";
       $("#timerNote").textContent = u($("#timerNote").dataset.i18n);
       const v = { d: Math.floor(diff / 864e5), h: Math.floor(diff / 36e5) % 24, m: Math.floor(diff / 6e4) % 60, s: Math.floor(diff / 1e3) % 60 };
-      for (const k in v) {
-        const txt = String(v[k]).padStart(2, "0");
-        if (prev[k] !== txt) {
-          cells[k].textContent = txt;
-          if (prev[k] !== undefined && !reduceMotion) { cells[k].classList.remove("flip"); void cells[k].offsetWidth; cells[k].classList.add("flip"); }
-          prev[k] = txt;
-        }
-      }
+      for (const k in v) set(flaps[k], String(v[k]).padStart(2, "0"));
     };
     tick(); setInterval(tick, 1000);
   }
@@ -870,14 +945,14 @@ ${studs}
       if (!active) return;
       dx = e.clientX - sx; dy = e.clientY - sy;
       if (Math.abs(dx) > 6) moved = true;
-      active.style.transform = `translate(${dx}px, ${dy * 0.25}px) rotate(${dx * 0.07}deg)`;
+      active.style.transform = `perspective(900px) translate(${dx}px, ${dy * 0.25}px) rotate(${dx * 0.06}deg) rotateY(${dx * 0.12}deg) rotateX(${-dy * 0.05}deg)`;
     });
     const release = () => {
       if (!active) return;
       const c = active; active = null; c.classList.remove("dragging");
       if (Math.abs(dx) > 80) {
         const dir = Math.sign(dx);
-        c.style.transform = `translate(${dir * 140}%, ${dy * 0.3}px) rotate(${dir * 24}deg)`;
+        c.style.transform = `perspective(900px) translate(${dir * 140}%, ${dy * 0.3}px) rotate(${dir * 24}deg) rotateY(${dir * 40}deg)`;
         Sound.whoosh(0.5, 0.06);
         setTimeout(() => { order.push(order.shift()); layout(); }, 260);
       } else {

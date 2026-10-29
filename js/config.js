@@ -1,170 +1,170 @@
 /*
   ───────────────────────────────────────────────────────────────
   WEDDING DETAILS — edit this file only.
-  Everything on the website (names, dates, events, venue, RSVP)
-  is read from here.
+  Text is written as { hi: "हिंदी", en: "English" }. The site opens
+  in Hindi; guests can switch to English with the button at the top.
 
-  Photos: put your images in  assets/photos/  with the file names
-  used below (or change the names here). Any photo that is missing
-  shows an ornamental placeholder, so the site never looks broken.
+  Photos: put images in  assets/photos/  (see the README there).
+  Missing photos show an ornamental placeholder.
 
-  Personal links for relatives:
-    https://<your-site>/?to=Sharma%20Family
-    https://<your-site>/#for-Sharma-Family
-  The gate will greet them by name.
+  Personal links for relatives (the doors greet them by name):
+    https://<your-site>/?to=शर्मा%20परिवार
+    https://<your-site>/?to=Sharma%20Family&lang=en
   ───────────────────────────────────────────────────────────────
 */
 window.WEDDING = {
+  monogram: ["M", "S"],
+
   groom: {
-    first: "Arjun",
-    full: "Arjun Sharma",
-    parents: "Son of Mrs. Kavita & Mr. Rajesh Sharma",
+    title: { hi: "आयुष्मान्", en: "Chi." },
+    name: { hi: "मोहित", en: "Mohit" },
+    parents: [
+      { hi: "(सुपुत्र श्रीमती ऊषा एवं राजेश खण्डेलवाल)", en: "Son of Smt. Usha & Shri Rajesh Khandelwal" },
+    ],
   },
   bride: {
-    first: "Meera",
-    full: "Meera Iyer",
-    parents: "Daughter of Mrs. Lakshmi & Mr. Venkatesh Iyer",
+    title: { hi: "आयुष्मति", en: "Sau." },
+    name: { hi: "सोनल", en: "Sonal" },
+    parents: [
+      { hi: "(सुपौत्री श्रीमती मिथलेश देवी एवं श्री भगवानदास जी गुप्ता)", en: "Granddaughter of Smt. Mithlesh Devi & Shri Bhagwandas Ji Gupta" },
+      { hi: "(सुपुत्री श्रीमती मीनाक्षी देवी एवं श्री सुनील जी गुप्ता)", en: "Daughter of Smt. Meenakshi Devi & Shri Sunil Ji Gupta" },
+    ],
   },
 
-  hashtag: "#ArjunKiMeera",
+  hashtag: "#MohitWedsSonal",
 
-  // Main muhurat (used for the countdown + calendar). Keep the +05:30 for IST.
-  weddingDate: "2027-02-12T19:30:00+05:30",
-  dateLabel: { day: "12", month: "Feb", year: "2027", weekday: "Friday" },
-  city: "Udaipur, Rajasthan",
+  // Countdown target: baraat departure
+  weddingDate: "2026-11-20T17:30:00+05:30",
+  dateLabel: {
+    day: "20",
+    month: { hi: "नवम्बर", en: "Nov" },
+    monthLong: { hi: "नवम्बर", en: "November" },
+    year: "2026",
+    weekday: { hi: "शुक्रवार", en: "Friday" },
+  },
+  city: { hi: "जयपुर", en: "Jaipur" },
+
+  shloka: {
+    hi: ["ॐ वक्रतुण्ड महाकाय, सूर्य कोटि समप्रभः।", "निर्विघ्नं कुरुमे देव, सर्व कार्येषु सर्वदा॥"],
+  },
 
   invitation: {
-    blessing: "With the divine blessings of Shri Ganesh and our elders",
-    hosts: "The Sharma & Iyer families",
-    lines: [
-      "request the honour of your presence",
-      "as two hearts, two families and two cultures",
-      "come together in the sacred bond of marriage.",
-    ],
-    closing: "Your blessings will make our celebration complete.",
+    doha: ["विघ्न हरण मंगल करण, गणनायक गणराज।", "प्रथम निमंत्रण आपको, सकल सुधारो काज॥"],
+    blessing: { hi: "श्री राधागोविन्द जी महाराज की असीम अनुकम्पा से", en: "With the infinite grace of Shri Radha Govind Ji Maharaj" },
+    hosts: { hi: "श्रीमती मालती देवी एवं धर्मपत्नी स्व. श्री रामप्रसाद जी खण्डेलवाल", en: "Smt. Malti Devi, wife of Late Shri Ramprasad Ji Khandelwal" },
+    relation: { hi: "अपने सुपौत्र", en: "joyfully invites you to the wedding of her grandson" },
+    occasion: { hi: "के मंगल परिणयोत्सव की मधुर बेला पर आपको सस्नेह सादर आमंत्रित करते हैं।", en: "Your gracious presence will make this auspicious occasion complete." },
+    closing: { hi: "कृपया पधारकर वर-वधु को आशीर्वाद प्रदान कर हमें अनुगृहीत करें।", en: "Kindly join us and bless the couple." },
   },
 
-  // Gallery photos (swipe deck). Add as many as you like.
   photos: {
     hero: "assets/photos/hero.jpg",
     farewell: "assets/photos/farewell.jpg",
     gallery: [
-      { src: "assets/photos/1.jpg", caption: "Where it all began" },
-      { src: "assets/photos/2.jpg", caption: "The roka" },
-      { src: "assets/photos/3.jpg", caption: "Chai, always chai" },
-      { src: "assets/photos/4.jpg", caption: "The proposal" },
-      { src: "assets/photos/5.jpg", caption: "Two families, one table" },
-      { src: "assets/photos/6.jpg", caption: "Forever starts now" },
+      { src: "assets/photos/1.jpg", caption: { hi: "मोहित ♥ सोनल", en: "Mohit ♥ Sonal" } },
+      { src: "assets/photos/2.jpg", caption: { hi: "साथ का सफ़र", en: "Together" } },
+      { src: "assets/photos/3.jpg", caption: { hi: "मुस्कुराहटें", en: "All smiles" } },
+      { src: "assets/photos/4.jpg", caption: { hi: "दो परिवार, एक रिश्ता", en: "Two families, one bond" } },
+      { src: "assets/photos/5.jpg", caption: { hi: "सदा के लिए", en: "Forever" } },
     ],
   },
 
-  story:
-    "A chance meeting at a friend's Diwali party, a debate over the best chaat in town, and countless phone calls later, Arjun and Meera knew. Now our families come together to celebrate the beginning of their forever.",
-
-  // Festivities. theme: haldi | mehendi | sangeet | wedding | reception
-  events: [
-    {
-      theme: "haldi",
-      name: "Haldi",
-      local: "हल्दी",
-      date: "Wednesday, 10 Feb 2027",
-      time: "10:00 AM onwards",
-      start: "2027-02-10T10:00:00+05:30",
-      end: "2027-02-10T13:00:00+05:30",
-      venue: "Poolside Lawns, The Leela Palace",
-      dress: "Shades of yellow",
-      palette: ["#F7D046", "#F2A93B", "#FFF3C4"],
-      note: "Wear clothes you don't mind getting a little yellow!",
-    },
-    {
-      theme: "mehendi",
-      name: "Mehendi",
-      local: "मेहंदी",
-      date: "Wednesday, 10 Feb 2027",
-      time: "4:00 PM onwards",
-      start: "2027-02-10T16:00:00+05:30",
-      end: "2027-02-10T20:00:00+05:30",
-      venue: "Garden Courtyard, The Leela Palace",
-      dress: "Greens & florals",
-      palette: ["#5E7D2F", "#A3B86C", "#F2C6D0"],
-      note: "Henna artists, folk music and chaat counters.",
-    },
-    {
-      theme: "sangeet",
-      name: "Sangeet",
-      local: "संगीत",
-      date: "Thursday, 11 Feb 2027",
-      time: "7:30 PM onwards",
-      start: "2027-02-11T19:30:00+05:30",
-      end: "2027-02-11T23:30:00+05:30",
-      venue: "Grand Ballroom, The Leela Palace",
-      dress: "Glam jewel tones",
-      palette: ["#8E2A6B", "#3D2C7A", "#D4A84A"],
-      note: "Bring your best dance moves. Family performances await.",
-    },
-    {
-      theme: "wedding",
-      name: "Shubh Vivah",
-      local: "शुभ विवाह",
-      date: "Friday, 12 Feb 2027",
-      time: "Baraat 5:30 PM · Pheras 7:30 PM",
-      start: "2027-02-12T17:30:00+05:30",
-      end: "2027-02-12T23:00:00+05:30",
-      venue: "Lakeside Mandap, The Leela Palace",
-      dress: "Traditional reds & golds",
-      palette: ["#A4161A", "#C9A04A", "#F4E7CF"],
-      note: "Join the baraat at the main gate at 5:30 PM sharp.",
-    },
-    {
-      theme: "reception",
-      name: "Reception",
-      local: "स्वागत समारोह",
-      date: "Saturday, 13 Feb 2027",
-      time: "8:00 PM onwards",
-      start: "2027-02-13T20:00:00+05:30",
-      end: "2027-02-13T23:59:00+05:30",
-      venue: "Durbar Hall, The Leela Palace",
-      dress: "Indo-western evening",
-      palette: ["#1F2A4A", "#C9A04A", "#E9D8C4"],
-      note: "Dinner, music and a toast to the newlyweds.",
-    },
-  ],
-
+  // Venue for all ceremonies (from the card)
   venue: {
-    name: "The Leela Palace",
-    area: "Lake Pichola, Udaipur",
-    address: "Lake Pichola, Udaipur, Rajasthan 313001",
-    mapsUrl: "https://maps.google.com/?q=The+Leela+Palace+Udaipur",
+    name: { hi: "‘राजकमल पैलेस’", en: "Rajkamal Palace" },
+    address: { hi: "रजत पथ, मांग्यावास रोड, मानसरोवर (जयपुर) - 302020", en: "Rajat Path, Mangyawas Road, Mansarovar, Jaipur - 302020" },
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Rajkamal+Palace+Rajat+Path+Mangyawas+Road+Mansarovar+Jaipur",
     photo: "assets/photos/venue.jpg",
   },
-
-  stay: [
-    {
-      title: "Stay",
-      text: "Rooms are reserved for all outstation guests at The Leela Palace from 9 to 14 Feb. Just share your arrival details with us.",
+  baraat: {
+    note: {
+      hi: "बारात 20 नवम्बर, 2026 को सायं 5:30 बजे शिव मन्दिर होटल न्यू हवेली से सजकर विवाह स्थल के लिए प्रस्थान करेगी।",
+      en: "The baraat will set off on 20 November 2026 at 5:30 PM from Shiv Mandir Hotel New Haveli to the venue.",
     },
-    {
-      title: "Getting there",
-      text: "Maharana Pratap Airport (UDR) is 40 minutes away and Udaipur City station is 20 minutes away. Cars will pick you up on arrival.",
-    },
-    {
-      title: "Weather",
-      text: "February in Udaipur is pleasant: around 25°C by day and 10°C at night. Carry a shawl for the evenings by the lake.",
-    },
-  ],
-
-  contacts: [
-    { name: "Rohan Sharma", role: "Groom's brother", phone: "+91 98765 43210" },
-    { name: "Priya Iyer", role: "Bride's sister", phone: "+91 98765 12345" },
-  ],
-
-  rsvp: {
-    // WhatsApp number in international format, digits only (91 = India).
-    whatsapp: "919876543210",
-    deadline: "Please reply by 15 January 2027",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hotel+New+Haveli+Shiv+Mandir+Mansarovar+Jaipur",
   },
 
-  // Optional background music. Put an mp3 at this path.
-  // If the file is missing, a soft tanpura drone plays instead.
+  // Day-wise programme. icon: ganesh | kalash | haldi | tilak | sangeet | bhoj | bhat | chaak | nikasi | baraat | phere
+  days: [
+    {
+      date: "2026-11-16",
+      wd: { hi: "सोम", en: "Mon" },
+      label: { hi: "सोमवार, 16 नवम्बर 2026", en: "Monday, 16 November 2026" },
+      events: [
+        { icon: "ganesh", name: { hi: "गणेश पूजन", en: "Ganesh Pujan" }, time: { hi: "प्रातः 5:00 बजे", en: "5:00 AM" }, start: "2026-11-16T05:00:00+05:30",
+          about: { hi: "श्री गणेश जी के आह्वान के साथ मांगलिक कार्यों का शुभारंभ", en: "Invoking Shri Ganesh to begin the auspicious ceremonies" } },
+      ],
+    },
+    {
+      date: "2026-11-18",
+      wd: { hi: "बुध", en: "Wed" },
+      label: { hi: "बुधवार, 18 नवम्बर 2026", en: "Wednesday, 18 November 2026" },
+      events: [
+        { icon: "kalash", name: { hi: "बान सांकड़ी", en: "Baan Sankdi" }, time: { hi: "प्रातः 11:00 बजे", en: "11:00 AM" }, start: "2026-11-18T11:00:00+05:30",
+          about: { hi: "पारंपरिक बान की रस्म", en: "The traditional Baan ritual" } },
+      ],
+    },
+    {
+      date: "2026-11-19",
+      wd: { hi: "गुरु", en: "Thu" },
+      label: { hi: "गुरुवार, 19 नवम्बर 2026", en: "Thursday, 19 November 2026" },
+      events: [
+        { icon: "haldi", name: { hi: "हल्दी", en: "Haldi" }, time: { hi: "प्रातः 11:00 बजे", en: "11:00 AM" }, start: "2026-11-19T11:00:00+05:30",
+          about: { hi: "हल्दी की रस्म: रंग, हँसी और आशीर्वाद", en: "Turmeric ceremony full of colour and blessings" } },
+        { icon: "tilak", name: { hi: "लग्न-टीका", en: "Lagan-Tika" }, time: { hi: "सायं 4:00 बजे से", en: "4:00 PM onwards" }, start: "2026-11-19T16:00:00+05:30",
+          about: { hi: "लग्न-टीका की शुभ रस्म", en: "The auspicious Lagan-Tika ceremony" } },
+        { icon: "sangeet", name: { hi: "संगीत", en: "Sangeet" }, time: { hi: "सायं 7:00 बजे से", en: "7:00 PM onwards" }, start: "2026-11-19T19:00:00+05:30",
+          about: { hi: "गीत, संगीत और नृत्य की शाम", en: "An evening of music and dance" } },
+        { icon: "bhoj", name: { hi: "प्रीतिभोज", en: "Dinner" }, time: { hi: "सायं 7:30 बजे से", en: "7:30 PM onwards" }, start: "2026-11-19T19:30:00+05:30",
+          about: { hi: "स्नेह भोज", en: "Dinner with family and friends" } },
+      ],
+    },
+    {
+      date: "2026-11-20",
+      wd: { hi: "शुक्र", en: "Fri" },
+      label: { hi: "शुक्रवार, 20 नवम्बर 2026", en: "Friday, 20 November 2026" },
+      main: true,
+      events: [
+        { icon: "bhat", name: { hi: "भात", en: "Bhaat" }, time: { hi: "प्रातः 10:00 बजे", en: "10:00 AM" }, start: "2026-11-20T10:00:00+05:30",
+          about: { hi: "ननिहाल पक्ष द्वारा भात (मायरा) की रस्म", en: "Bhaat (Mayra) by the maternal family" } },
+        { icon: "chaak", name: { hi: "चाक", en: "Chaak Pujan" }, time: { hi: "दोपहर 2:00 बजे", en: "2:00 PM" }, start: "2026-11-20T14:00:00+05:30",
+          about: { hi: "चाक पूजन की पारंपरिक रस्म", en: "Traditional worship of the potter's wheel" } },
+        { icon: "nikasi", name: { hi: "निकासी", en: "Nikasi" }, time: { hi: "सायं 4:00 बजे", en: "4:00 PM" }, start: "2026-11-20T16:00:00+05:30",
+          about: { hi: "दूल्हे की निकासी", en: "The groom's ceremonial departure" } },
+        { icon: "baraat", name: { hi: "बारात प्रस्थान", en: "Baraat" }, time: { hi: "सायं 5:30 बजे", en: "5:30 PM" }, start: "2026-11-20T17:30:00+05:30",
+          about: { hi: "शिव मन्दिर होटल न्यू हवेली से विवाह स्थल के लिए", en: "From Shiv Mandir Hotel New Haveli to the venue" }, map: "baraat" },
+        { icon: "bhoj", name: { hi: "प्रीतिभोज", en: "Dinner" }, time: { hi: "सायं 7:15 बजे", en: "7:15 PM" }, start: "2026-11-20T19:15:00+05:30",
+          about: { hi: "स्नेह भोज", en: "Wedding dinner" } },
+        { icon: "phere", name: { hi: "पाणिग्रहण संस्कार", en: "Pheras" }, time: { hi: "शुभ लग्नानुसार", en: "At the auspicious muhurat" },
+          about: { hi: "सात फेरों का पवित्र बंधन", en: "The sacred seven vows" }, highlight: true },
+      ],
+    },
+  ],
+
+  // Family listing (names stay as written on the card)
+  family: [
+    { title: { hi: "विशेष आग्रह", en: "With warm requests" }, names: ["सीताराम ताम्बी", "सुमन - वल्लभ जी", "सीमा - के.के. जी", "शीतल - राहुल जी", "श्रुति, खुशी"] },
+    { title: { hi: "उत्तराकांक्षी", en: "Eagerly awaiting you" }, names: ["सुरेश - रानी", "महेश - किरण", "दिनेश - मोनिका"] },
+    { title: { hi: "दर्शनाभिलाषी", en: "Hoping to see you" }, names: ["घनश्याम, विमल, मुकेश", "राकेश, राहुल, यश, प्राजल", "दक्ष एवं समस्त घीया परिवार", "(कंचनपुर वाले)"] },
+    { title: { hi: "ननिहाल पक्ष", en: "Maternal family" }, names: ["रामरतन जी - सावित्री देवी", "नीरज - रेखा", "रमेश - मीनाक्षी", "अभिषेक - विदीषा", "शुभम् - सौरव", "एवं समस्त बड़गोती परिवार", "(अचरोल वाले)"] },
+    { title: { hi: "बाल मनुहार", en: "With love from the little ones" }, names: ["रिद्धी, ख्वाहिश"] },
+  ],
+
+  businesses: [
+    { name: { hi: "फैशन पैलेस", en: "Fashion Palace" }, place: { hi: "80 फीट रोड, महेश नगर, जयपुर", en: "80 Feet Road, Mahesh Nagar, Jaipur" } },
+    { name: { hi: "फैशन फुटवियर", en: "Fashion Footwear" }, place: { hi: "सरावगी मैन्शन, जयपुर", en: "Saraogi Mansion, Jaipur" } },
+  ],
+
+  sender: {
+    name: { hi: "राजेश खण्डेलवाल", en: "Rajesh Khandelwal" },
+    address: { hi: "प्लॉट नं. 327, गली नं. 10, बरकत नगर, टोंक फाटक, जयपुर", en: "Plot No. 327, Gali No. 10, Barkat Nagar, Tonk Phatak, Jaipur" },
+    phones: ["+91 93140 23987", "+91 77338 41613"],
+  },
+
+  rsvp: {
+    // WhatsApp number for replies, digits only with country code
+    whatsapp: "919314023987",
+  },
+
   music: "assets/music.mp3",
 };

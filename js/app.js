@@ -1,4 +1,4 @@
-/* Shubh Vivah — interactive wedding invitation */
+/* शुभ विवाह — interactive wedding invitation (Hindi / English) */
 (() => {
   "use strict";
 
@@ -14,6 +14,91 @@
     get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage unavailable */ } },
   };
+
+  /* ═════════════ Language ═════════════ */
+  const params = new URLSearchParams(location.search);
+  let L = params.get("lang") === "en" || location.hash === "#en" ? "en" : params.get("lang") === "hi" ? "hi" : store.get("lang", "hi");
+  if (L !== "en") L = "hi";
+  const t = (v) => (v && typeof v === "object" && !Array.isArray(v) ? v[L] ?? v.hi ?? v.en : v ?? "");
+
+  const UI = {
+    tapOpen: { hi: "खोलें", en: "Tap to open" },
+    gateHint: { hi: "आवाज़ चालू रखें", en: "Best enjoyed with sound on" },
+    sang: { hi: "संग", en: "weds" },
+    mangal: { hi: "मंगल परिणयोत्सव", en: "Wedding Celebration" },
+    navHome: { hi: "मुख्य", en: "Home" }, navDate: { hi: "तिथि", en: "Date" }, navEvents: { hi: "कार्यक्रम", en: "Events" },
+    navVenue: { hi: "स्थान", en: "Venue" }, navRsvp: { hi: "उपस्थिति", en: "RSVP" },
+    scratchEye: { hi: "एक छोटा सा सरप्राइज़", en: "A little surprise" },
+    scratchH: { hi: "खुरचें और देखें", en: "Scratch to reveal" },
+    scratchLede: { hi: "तीनों सोने के सिक्कों को उँगली से खुरचें और शुभ तिथि देखें।", en: "Rub the three gold coins to uncover the wedding date." },
+    cDay: { hi: "दिन", en: "Day" }, cMonth: { hi: "माह", en: "Month" }, cYear: { hi: "वर्ष", en: "Year" },
+    scratch: { hi: "खुरचें", en: "SCRATCH" },
+    saveDate: { hi: "तिथि याद रखें", en: "Save the date" },
+    calBtn: { hi: "Google कैलेंडर में जोड़ें", en: "Add to Google Calendar" },
+    cdEye: { hi: "शुभ घड़ी की उलटी गिनती", en: "Counting down to the big day" },
+    uD: { hi: "दिन", en: "Days" }, uH: { hi: "घंटे", en: "Hours" }, uM: { hi: "मिनट", en: "Minutes" }, uS: { hi: "सेकंड", en: "Seconds" },
+    cdNote: { hi: "बारात प्रस्थान तक", en: "until the baraat sets off" },
+    cdDone: { hi: "शुभ विवाह सम्पन्न! आपके आशीर्वाद के लिए धन्यवाद।", en: "They're married! Thank you for your blessings." },
+    evEye: { hi: "मांगलिक कार्यक्रम", en: "The ceremonies" },
+    evH: { hi: "वैवाहिक कार्यक्रम", en: "Wedding programme" },
+    evLede: { hi: "दिन चुनें और सभी रस्मों का समय देखें।", en: "Pick a day to see every ceremony." },
+    addCal: { hi: "+ कैलेंडर में जोड़ें", en: "+ Add to calendar" },
+    route: { hi: "रास्ता देखें", en: "Directions" },
+    atVenue: { hi: "स्थान:", en: "Venue:" },
+    venueEye: { hi: "स्थान", en: "The venue" },
+    venueH: { hi: "विवाह स्थल", en: "Where we celebrate" },
+    mapBtn: { hi: "Google मैप्स पर देखें", en: "Open in Google Maps" },
+    copyAddr: { hi: "पता कॉपी करें", en: "Copy address" },
+    baraatH: { hi: "बारात प्रस्थान", en: "Baraat departure" },
+    baraatMap: { hi: "होटल न्यू हवेली का रास्ता देखें →", en: "Directions to Hotel New Haveli →" },
+    galEye: { hi: "यादें", en: "Moments" },
+    galH: { hi: "हमारे पल", en: "Our moments" },
+    galLede: { hi: "मोहित और सोनल के कुछ खूबसूरत पल", en: "A few beautiful moments of Mohit & Sonal" },
+    galHint: { hi: "फोटो स्वाइप करें · बड़ा देखने के लिए टैप करें", en: "Swipe the photos · tap to enlarge" },
+    famEye: { hi: "स्नेह एवं आग्रह", en: "With love" },
+    famH: { hi: "हमारा परिवार", en: "Our family" },
+    bizH: { hi: "प्रतिष्ठान", en: "Family business" },
+    senderH: { hi: "प्रेषक", en: "Sent by" },
+    rsvpEye: { hi: "क्या आप पधारेंगे?", en: "Will you join us?" },
+    rsvpH: { hi: "आपकी उपस्थिति", en: "RSVP" },
+    rsvpLede: { hi: "कृपया अपनी उपस्थिति की सूचना दें, ताकि हम आपके स्वागत की तैयारी कर सकें।", en: "Please let us know if you can come so we can welcome you properly." },
+    fName: { hi: "आपका नाम", en: "Your name" },
+    fNamePh: { hi: "जैसे: सुनीता एवं विक्रम गुप्ता", en: "e.g. Sunita & Vikram Gupta" },
+    fAttend: { hi: "क्या आप आएँगे?", en: "Will you attend?" },
+    fYes: { hi: "अवश्य आएँगे", en: "Joyfully yes" },
+    fNo: { hi: "नहीं आ पाएँगे", en: "Sadly no" },
+    fGuests: { hi: "कितने सदस्य?", en: "Number of guests" },
+    fDays: { hi: "किन कार्यक्रमों में?", en: "Which days?" },
+    fMsg: { hi: "वर-वधु के लिए संदेश", en: "A message for the couple" },
+    fMsgPh: { hi: "आपकी शुभकामनाएँ…", en: "Your wishes and blessings…" },
+    fErr: { hi: "कृपया अपना नाम लिखें।", en: "Please add your name so we know who's coming." },
+    fSubmit: { hi: "जवाब तैयार करें", en: "Prepare my RSVP" },
+    doneH: { hi: "धन्यवाद!", en: "Thank you!" },
+    doneP: { hi: "आपका जवाब तैयार है। नीचे टैप करके WhatsApp पर भेजें।", en: "Your reply is ready. Tap below to send it on WhatsApp." },
+    doneWa: { hi: "WhatsApp पर भेजें", en: "Send on WhatsApp" },
+    doneCopy: { hi: "संदेश कॉपी करें", en: "Copy message instead" },
+    doneEdit: { hi: "जवाब बदलें", en: "Edit my reply" },
+    blessH: { hi: "आशीर्वाद दें", en: "Shower your blessings" },
+    blessLede: { hi: "बटन दबाएँ और वर-वधु पर पुष्प वर्षा करें।", en: "Tap the button to shower petals on the couple." },
+    blessBtn: { hi: "आशीर्वाद भेजें", en: "Send blessings" },
+    hashLine: { hi: "अपनी तस्वीरें साझा करें", en: "Share your moments with" },
+    sign: { hi: "आपके आगमन की प्रतीक्षा में · समस्त खण्डेलवाल परिवार", en: "Awaiting your presence · the Khandelwal family" },
+    copiedAddr: { hi: "पता कॉपी हो गया", en: "Address copied" },
+    copiedHash: { hi: "हैशटैग कॉपी हो गया", en: "Hashtag copied" },
+    copiedRsvp: { hi: "संदेश कॉपी हो गया", en: "RSVP copied" },
+    copyFail: { hi: "कृपया टेक्स्ट स्वयं कॉपी करें", en: "Select and copy the text manually" },
+    shriman: { hi: "श्रीमान्", en: "Dear" },
+    invited: { hi: "आपको सस्नेह सादर आमंत्रित करते हैं", en: "you are warmly invited" },
+    invitedPlain: { hi: "आपको सस्नेह सादर आमंत्रण", en: "You are warmly invited" },
+    yesLine: { hi: "उपस्थिति: अवश्य आएँगे", en: "Attending: Yes" },
+    noLine: { hi: "उपस्थिति: क्षमा करें, नहीं आ पाएँगे", en: "Attending: Sorry, can't make it" },
+    members: { hi: "सदस्य", en: "guests" },
+    nameLbl: { hi: "नाम", en: "Name" },
+    daysLbl: { hi: "कार्यक्रम", en: "Days" },
+    msgLbl: { hi: "संदेश", en: "Message" },
+    rsvpFor: { hi: "मोहित संग सोनल के शुभ विवाह हेतु उपस्थिति", en: "RSVP for Mohit & Sonal's wedding" },
+  };
+  const u = (k) => t(UI[k]);
 
   /* ═════════════ Generated ornaments ═════════════ */
   function mandalaSVG(color, sw = 1.2) {
@@ -38,115 +123,97 @@
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><g transform="translate(200 200)" fill="none" stroke="${color}" stroke-width="${sw}">${g}</g></svg>`;
   }
 
-  const jaaliTile = (c, op = 1) =>
-    `<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46"><g fill="none" stroke="${c}" stroke-opacity="${op}" stroke-width="1.2"><circle cx="0" cy="0" r="23"/><circle cx="46" cy="0" r="23"/><circle cx="0" cy="46" r="23"/><circle cx="46" cy="46" r="23"/><circle cx="23" cy="23" r="23"/><circle cx="23" cy="23" r="5"/></g></svg>`;
+  const ganeshSVG = (c, accent) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 80 92" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M41 25 L43 15 Q50 4 57 15 L59 25"/><path d="M46 14 Q50 9 54 14"/><circle cx="50" cy="6.5" r="1.7" fill="${c}"/>
+    <path d="M39 25 H61"/><path d="M40 28.5 H60" stroke-width="1"/><circle cx="45" cy="20" r=".9" fill="${c}"/><circle cx="55" cy="20" r=".9" fill="${c}"/>
+    <path d="M40 30 C26 22 14 30 17 44 C19 53 28 57 34 55 C37 54 39 51 40 48"/><path d="M60 30 C74 22 86 30 83 44 C81 53 72 57 66 55 C63 54 61 51 60 48"/>
+    <path d="M36 36 C28 33 23 38 25 45" stroke-width="1.1"/><path d="M64 36 C72 33 77 38 75 45" stroke-width="1.1"/>
+    <path d="M40 28 C38 36 39 44 43 49"/><path d="M60 28 C62 36 61 44 57 49"/>
+    <path d="M50 30.5 V36" stroke="${accent}" stroke-width="2.2"/><circle cx="50" cy="38" r="1" fill="${accent}" stroke="none"/>
+    <path d="M44 39.5 Q46 41.5 48 39.5"/><path d="M52 39.5 Q54 41.5 56 39.5"/>
+    <path d="M46 44 C45 56 43 66 47 74 C51 82 61 81 62 73 C63 67 57 65 55 69"/><path d="M54 44 C54 54 53 61 54 66"/>
+    <path d="M43 50 Q39 54 41 58"/>
+    <path d="M64 82 H77 Q76 88 70.5 88 Q65 88 64 82Z"/><circle cx="67.5" cy="80" r="1.9"/><circle cx="70.5" cy="79" r="1.9"/><circle cx="73.5" cy="80" r="1.9"/>
+  </svg>`;
 
+  const knotSVG2 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" fill="none" stroke="#8a1a2c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18 C30 22 46 30 54 42"/><path d="M8 26 C28 30 42 36 52 46"/><path d="M112 18 C90 22 74 30 66 42"/><path d="M112 26 C92 30 78 36 68 46"/><path d="M54 50 C48 62 44 72 38 82 L46 84 C50 74 54 64 58 53"/><path d="M66 50 C72 62 76 72 82 82 L74 84 C70 74 66 64 62 53"/><ellipse cx="60" cy="46" rx="9" ry="7" fill="#c9a04a"/><circle cx="60" cy="46" r="2" fill="#8a1a2c"/><path d="M38 82 l2 4 M42 83 l1 4 M46 84 v4 M82 82 l-2 4 M78 83 l-1 4 M74 84 v4" stroke-width="1.2"/></svg>`;
+
+  const shehnaiSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#5b1219" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21h20l14-9v24l-14-9H6z"/><path d="M12 27v6M18 27v6"/><path d="M6 21v6"/></svg>`;
+
+  const jaaliTile = (c) => `<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46"><g fill="none" stroke="${c}" stroke-width="1.2"><circle cx="0" cy="0" r="23"/><circle cx="46" cy="0" r="23"/><circle cx="0" cy="46" r="23"/><circle cx="46" cy="46" r="23"/><circle cx="23" cy="23" r="23"/><circle cx="23" cy="23" r="5"/></g></svg>`;
   const dividerSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 34"><g fill="none" stroke="#B8913F" stroke-width="1.2"><path d="M4 17H112"/><path d="M208 17H316"/><path d="M112 17l8-5 8 5-8 5z" fill="#C9A04A"/><path d="M192 17l8-5 8 5-8 5z" fill="#C9A04A"/></g><g transform="translate(160 18)" fill="#C9A04A"><path d="M0-15C6-8 7-2 0 6C-7-2-6-8 0-15z"/><path d="M0 6C-3-3-11-6-17-5C-14 2-7 7 0 6z" opacity=".85"/><path d="M0 6C3-3 11-6 17-5C14 2 7 7 0 6z" opacity=".85"/><path d="M0 6C-8 1-18 2-24 5C-17 9-8 9 0 6z" opacity=".6"/><path d="M0 6C8 1 18 2 24 5C17 9 8 9 0 6z" opacity=".6"/></g></svg>`;
-
-  const knotSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 60"><g fill="none" stroke="#C9A04A" stroke-width="2.2"><circle cx="20" cy="22" r="10"/><circle cx="20" cy="38" r="10"/></g><path d="M20 4l3 4-3 3-3-3z" fill="#A4161A"/></svg>`;
-
   const lotusSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="#8a1a2c"><path d="M24 8c5 6 6 12 0 22-6-10-5-16 0-22z"/><path d="M24 30c-2-8-9-13-17-13 1 8 8 14 17 13z" opacity=".85"/><path d="M24 30c2-8 9-13 17-13-1 8-8 14-17 13z" opacity=".85"/><path d="M24 31c-6-4-15-4-21-1 6 5 15 6 21 1z" opacity=".6"/><path d="M24 31c6-4 15-4 21-1-6 5-15 6-21 1z" opacity=".6"/></g><path d="M10 38h28" stroke="#5b1219" stroke-width="2" stroke-linecap="round"/></svg>`;
-
   const swipeSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14"><path d="M1 7h18M14 2l5 5-5 5" fill="none" stroke="#6D4B3E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
   const noiseSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .45 0 0 0 0 .28 0 0 0 0 .12 0 0 0 .07 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>`;
 
-  // Mughal arch outline as a responsive polygon
   function archClip() {
     const pts = [];
-    const N = 28;
-    for (let i = 0; i <= N; i++) {
-      const t = i / N;
-      const y = 0.36 * (1 - Math.sqrt(1 - (1 - t) ** 2)) * 0.82 + 0.07 * (1 - t ** 4);
-      pts.push([t * 50, y * 100]);
+    for (let i = 0; i <= 28; i++) {
+      const s = i / 28;
+      const y = 0.36 * (1 - Math.sqrt(1 - (1 - s) ** 2)) * 0.82 + 0.07 * (1 - s ** 4);
+      pts.push([s * 50, y * 100]);
     }
     const left = pts.map(([x, y]) => `${x.toFixed(2)}% ${y.toFixed(2)}%`);
     const right = pts.slice(0, -1).reverse().map(([x, y]) => `${(100 - x).toFixed(2)}% ${y.toFixed(2)}%`);
     return `polygon(0% 100%, ${left.join(",")}, ${right.join(",")}, 100% 100%)`;
   }
 
-  root.style.setProperty("--mandala", svgURI(mandalaSVG("#9C7A2E", 1.1)));
-  root.style.setProperty("--mandala-dark", svgURI(mandalaSVG("#6b3a12", 1.6)));
-  root.style.setProperty("--mandala-gold", svgURI(mandalaSVG("rgba(233,207,138,.35)", 1)));
-  root.style.setProperty("--mandala-white", svgURI(mandalaSVG("#ffffff", 1.4)));
-  root.style.setProperty("--jaali-gold", svgURI(jaaliTile("#E9CF8A")));
-  root.style.setProperty("--divider", svgURI(dividerSVG));
-  root.style.setProperty("--knot", svgURI(knotSVG));
-  root.style.setProperty("--lotus", svgURI(lotusSVG));
-  root.style.setProperty("--swipe", svgURI(swipeSVG));
-  root.style.setProperty("--paper", svgURI(noiseSVG));
-  root.style.setProperty("--arch-clip", archClip());
+  [
+    ["--mandala", svgURI(mandalaSVG("#9C7A2E", 1.1))],
+    ["--mandala-dark", svgURI(mandalaSVG("#6b3a12", 1.6))],
+    ["--mandala-gold", svgURI(mandalaSVG("rgba(233,207,138,.35)", 1))],
+    ["--mandala-maroon", svgURI(mandalaSVG("#8a1a2c", 2.4))],
+    ["--mandala-white", svgURI(mandalaSVG("#ffffff", 1.4))],
+    ["--ganesh-gold", svgURI(ganeshSVG("#F3D99B", "#F29F05"))],
+    ["--ganesh-maroon", svgURI(ganeshSVG("#8a1a2c", "#E8710A"))],
+    ["--knot2", svgURI(knotSVG2)],
+    ["--shehnai", svgURI(shehnaiSVG)],
+    ["--jaali-gold", svgURI(jaaliTile("#E9CF8A"))],
+    ["--divider", svgURI(dividerSVG)],
+    ["--lotus", svgURI(lotusSVG)],
+    ["--swipe", svgURI(swipeSVG)],
+    ["--paper", svgURI(noiseSVG)],
+    ["--arch-clip", archClip()],
+  ].forEach(([k, v]) => root.style.setProperty(k, v));
 
-  /* ═════════════ Content from config ═════════════ */
-  const initials = `${W.groom.first[0]} <i>&amp;</i> ${W.bride.first[0]}`;
-  const couple = `${W.groom.first} & ${W.bride.first}`;
+  /* ═════════════ Basics ═════════════ */
   const wedDate = new Date(W.weddingDate);
-  const setText = (id, t) => { const el = document.getElementById(id); if (el) el.textContent = t; };
-
-  $("#sealMono").innerHTML = initials;
-  setText("gateNames", couple);
-  setText("groomName", W.groom.first);
-  setText("brideName", W.bride.first);
-  setText("groomFull", W.groom.full);
-  setText("brideFull", W.bride.full);
-  setText("groomParents", W.groom.parents);
-  setText("brideParents", W.bride.parents);
-  setText("heroBlessing", W.invitation.blessing);
-  setText("invBlessing", W.invitation.blessing);
-  setText("invHosts", W.invitation.hosts);
-  $("#invLines").innerHTML = W.invitation.lines.map((l) => `<p>${esc(l)}</p>`).join("");
-  setText("invClosing", W.invitation.closing);
-  setText("heroWeekday", W.dateLabel.weekday);
-  setText("heroCity", W.city.split(",")[0]);
-  const mm = String(wedDate.toLocaleString("en-IN", { month: "numeric", timeZone: "Asia/Kolkata" })).padStart(2, "0");
-  setText("heroDate", `${W.dateLabel.day} · ${mm} · ${W.dateLabel.year}`);
-  setText("cDay", W.dateLabel.day);
-  setText("cMonth", W.dateLabel.month);
-  setText("cYear", W.dateLabel.year);
-  const longDate = wedDate.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata" });
-  setText("revealLine", `${longDate} · ${W.city.split(",")[0]}`);
-  setText("storyText", W.story);
-  setText("venueName", W.venue.name);
-  setText("venueArea", W.venue.area);
-  setText("venueAddr", W.venue.address);
-  $("#mapBtn").href = W.venue.mapsUrl;
-  setText("rsvpDeadline", W.rsvp.deadline);
-  setText("hashtag", W.hashtag);
-  setText("footHosts", W.invitation.hosts.replace(/^The /, "the "));
-  document.title = `${couple} · Shubh Vivah`;
-
-  // Personal greeting: ?to=Sharma%20Family  or  #for-Sharma-Family
+  const initials = `${W.monogram[0]} <i>&amp;</i> ${W.monogram[1]}`;
   const guest = (() => {
-    const q = new URLSearchParams(location.search).get("to");
+    const q = params.get("to");
     if (q) return q.trim().slice(0, 60);
     const m = location.hash.match(/^#for-(.+)$/);
     return m ? decodeURIComponent(m[1]).replace(/-/g, " ").trim().slice(0, 60) : "";
   })();
-  if (guest) {
-    $("#gateDear").innerHTML = `Dear <b>${esc(guest)}</b>you are warmly invited`;
-    $("#rName").value = guest;
-  }
+  const coupleText = () => `${t(W.groom.name)} ${u("sang")} ${t(W.bride.name)}`;
+  const venueShort = () => `${t(W.venue.name).replace(/[‘’']/g, "")}, ${t(W.city)}`;
 
-  /* ═════════════ Toast / clipboard ═════════════ */
   let toastT;
   function toast(msg) {
-    const t = $("#toast");
-    t.textContent = msg;
-    t.classList.add("show");
+    const el = $("#toast");
+    el.textContent = msg;
+    el.classList.add("show");
     clearTimeout(toastT);
-    toastT = setTimeout(() => t.classList.remove("show"), 2200);
+    toastT = setTimeout(() => el.classList.remove("show"), 2200);
   }
-  function copy(text, okMsg) {
-    const done = () => toast(okMsg);
+  function copy(text, okKey) {
+    const done = () => toast(u(okKey));
     const fallback = () => {
       const ta = document.createElement("textarea");
       ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
       document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); done(); } catch { toast("Select and copy the text manually"); }
+      try { document.execCommand("copy"); done(); } catch { toast(u("copyFail")); }
       ta.remove();
     };
     if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(done, fallback);
     else fallback();
+  }
+
+  const gcalStamp = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  function gcal({ title, start, end, location: loc, details }) {
+    const s = new Date(start), e = end ? new Date(end) : new Date(s.getTime() + 2 * 36e5);
+    const p = new URLSearchParams({ action: "TEMPLATE", text: title, dates: `${gcalStamp(s)}/${gcalStamp(e)}`, location: loc, details });
+    return `https://calendar.google.com/calendar/render?${p}`;
   }
 
   /* ═════════════ Door artwork ═════════════ */
@@ -301,8 +368,9 @@ ${studs}
   function fillSlot(el, src) {
     const ph = () => {
       el.classList.add("ph");
+      el.style.backgroundImage = "";
       if (el.dataset.palace) el.innerHTML = `<div class="ph-palace">${palaceSVG()}</div>`;
-      else el.innerHTML = `<div class="ph-mono"><span>${initials}</span><small>${esc(W.groom.first)} · ${esc(W.bride.first)}</small></div>`;
+      else el.innerHTML = `<div class="ph-mono"><span>${initials}</span><small>${esc(W.groom.name.en)} · ${esc(W.bride.name.en)}</small></div>`;
     };
     if (!src) return ph();
     const img = new Image();
@@ -314,6 +382,18 @@ ${studs}
     const key = el.dataset.photo;
     fillSlot(el, key === "venue" ? W.venue.photo : W.photos[key]);
   });
+
+  /* ═════════════ Jhoomar ornaments (tap to ring) ═════════════ */
+  function buildJhoomars() {
+    const host = $("#jhoomars");
+    const set = innerWidth < 600
+      ? [[4, 46], [14, 82], [86, 82], [96, 46]]
+      : [[5, 60], [11, 110], [17, 70], [83, 70], [89, 110], [95, 60]];
+    host.innerHTML = set.map(([x, len], i) =>
+      `<button class="jh" type="button" aria-label="Ring the bell" style="left:calc(${x}% - 18px);--len:${len}px;--sw:${(3 + (i % 3) * 0.5).toFixed(1)}s;animation-delay:${-i * 0.7}s"><span class="medal"></span><span class="bead"></span></button>`
+    ).join("");
+  }
+  buildJhoomars();
 
   /* ═════════════ Audio: bell, whoosh, music ═════════════ */
   const Sound = {
@@ -548,6 +628,31 @@ ${studs}
     FX.sparkle(e.clientX, e.clientY, 7, 18);
   }, { passive: true });
 
+  if (finePointer && !reduceMotion) {
+    let lastSp = 0;
+    addEventListener("pointermove", (e) => {
+      if (!document.body.classList.contains("revealed")) return;
+      const now = performance.now();
+      if (now - lastSp > 45) { lastSp = now; FX.sparkle(e.clientX, e.clientY, 1, 4); }
+    }, { passive: true });
+  }
+  addEventListener("pointerdown", (e) => {
+    if (!document.body.classList.contains("revealed")) return;
+    if (e.target.closest("button, a, input, textarea, label, .coin, .card, .ritual")) return;
+    FX.sparkle(e.clientX, e.clientY, 7, 18);
+  }, { passive: true });
+
+  $("#jhoomars").addEventListener("click", (e) => {
+    const jh = e.target.closest(".jh");
+    if (!jh) return;
+    Sound.init(); Sound.ctx?.resume();
+    jh.classList.remove("ring"); void jh.offsetWidth; jh.classList.add("ring");
+    Sound.bell(900 + Math.random() * 500, 0.12);
+    const r = jh.getBoundingClientRect();
+    FX.sparkle(r.left + r.width / 2, r.bottom - 10, 8, 16);
+    setTimeout(() => jh.classList.remove("ring"), 1600);
+  });
+
   /* ═════════════ Opening sequence ═════════════ */
   const gate = $("#gate"), garlands = $("#garlands");
   document.body.classList.add("preopen");
@@ -605,6 +710,7 @@ ${studs}
   }
 
   /* ═════════════ Scratch coins ═════════════ */
+  const coinPainters = [];
   function setupCoins() {
     const coins = $$(".coin");
     let doneCount = 0;
@@ -612,6 +718,7 @@ ${studs}
       const cv = $("canvas", coin), ctx = cv.getContext("2d", { willReadFrequently: true });
       let size = 0, dpr = 1, drawing = false, lx = 0, ly = 0, moves = 0, done = false;
       const paint = () => {
+        if (done) return;
         dpr = Math.min(2, devicePixelRatio || 1);
         size = coin.clientWidth;
         cv.width = cv.height = Math.round(size * dpr);
@@ -636,13 +743,13 @@ ${studs}
           ctx.quadraticCurveTo(-size * 0.05, -size * 0.31, 0, -size * 0.22); ctx.stroke();
         }
         ctx.restore();
-        ctx.fillStyle = "rgba(90,40,10,.75)"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-        ctx.font = `${Math.max(9, size * 0.085)}px "Marcellus SC", Georgia, serif`;
-        ctx.fillText("SCRATCH", c, c);
+        ctx.fillStyle = "rgba(90,40,10,.8)"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.font = L === "hi" ? `700 ${Math.max(11, size * 0.13)}px "Amita", serif` : `${Math.max(9, size * 0.085)}px "Marcellus SC", Georgia, serif`;
+        ctx.fillText(u("scratch"), c, c);
       };
-      const ro = new ResizeObserver(() => { if (!done && coin.clientWidth !== size) paint(); });
-      ro.observe(coin);
-      document.fonts?.ready.then(() => { if (!done) paint(); });
+      coinPainters.push(paint);
+      new ResizeObserver(() => { if (!done && coin.clientWidth !== size) paint(); }).observe(coin);
+      document.fonts?.ready.then(paint);
 
       const pos = (e) => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
       const scratch = (x, y) => {
@@ -686,7 +793,6 @@ ${studs}
       coin.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); finish(); } });
       coin.tabIndex = 0;
       coin.setAttribute("role", "button");
-      coin.setAttribute("aria-label", `Scratch to reveal the ${coin.dataset.k}`);
     });
 
     function allDone() {
@@ -702,28 +808,14 @@ ${studs}
   }
   setupCoins();
 
-  /* ═════════════ Calendar links ═════════════ */
-  const gcalStamp = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-  function gcal({ title, start, end, location, details }) {
-    const p = new URLSearchParams({ action: "TEMPLATE", text: title, dates: `${gcalStamp(new Date(start))}/${gcalStamp(new Date(end))}`, location, details });
-    return `https://calendar.google.com/calendar/render?${p}`;
-  }
-  const mainEvent = W.events.find((e) => e.theme === "wedding") || W.events[0];
-  $("#calBtn").href = gcal({
-    title: `${couple} · Wedding`,
-    start: W.weddingDate,
-    end: mainEvent?.end || W.weddingDate,
-    location: `${W.venue.name}, ${W.venue.address}`,
-    details: `${W.invitation.hosts} invite you to celebrate the wedding of ${W.groom.full} & ${W.bride.full}. ${location.href.split("#")[0]}`,
-  });
-
   /* ═════════════ Countdown ═════════════ */
   function setupCountdown() {
     const cells = { d: $('[data-u="d"]'), h: $('[data-u="h"]'), m: $('[data-u="m"]'), s: $('[data-u="s"]') };
     const prev = {};
     const tick = () => {
-      let diff = Math.max(0, wedDate - Date.now());
-      if (diff === 0) { setText("timerNote", "They're married! Thank you for your blessings."); }
+      const diff = Math.max(0, wedDate - Date.now());
+      $("#timerNote").dataset.i18n = diff === 0 ? "cdDone" : "cdNote";
+      $("#timerNote").textContent = u($("#timerNote").dataset.i18n);
       const v = { d: Math.floor(diff / 864e5), h: Math.floor(diff / 36e5) % 24, m: Math.floor(diff / 6e4) % 60, s: Math.floor(diff / 1e3) % 60 };
       for (const k in v) {
         const txt = String(v[k]).padStart(2, "0");
@@ -739,20 +831,23 @@ ${studs}
   setupCountdown();
 
   /* ═════════════ Photo deck + lightbox ═════════════ */
+  const deckCaptions = [];
+  let lbRefresh = () => {};
   function setupDeck() {
     const deck = $("#deck"), list = W.photos.gallery;
-    if (!list.length) { deck.closest("section").querySelector(".deck-hint").hidden = true; return; }
+    if (!list.length) { deck.closest("section").hidden = true; return; }
     const cards = list.map((p, i) => {
       const f = document.createElement("figure");
       f.className = "card";
-      f.innerHTML = `<span class="tape"></span><div class="photo-slot"></div><figcaption>${esc(p.caption || "")}</figcaption>`;
+      f.innerHTML = `<span class="tape"></span><div class="photo-slot"></div><figcaption></figcaption>`;
       fillSlot($(".photo-slot", f), p.src);
+      deckCaptions.push(() => ($("figcaption", f).textContent = t(p.caption)));
       f.dataset.i = i;
       f.rot = (Math.random() * 10 - 5).toFixed(1);
       deck.appendChild(f);
       return f;
     });
-    let order = cards.map((_, i) => i);
+    const order = cards.map((_, i) => i);
     const layout = () => {
       order.forEach((ci, pos) => {
         const c = cards[ci];
@@ -793,15 +888,15 @@ ${studs}
     deck.addEventListener("pointerup", release);
     deck.addEventListener("pointercancel", release);
 
-    // lightbox
     const lb = $("#lightbox"), lbImg = $("#lbImg");
     let cur = 0;
     const show = (i) => {
       cur = (i + list.length) % list.length;
       lbImg.removeAttribute("style"); lbImg.className = "lb-img photo-slot";
       fillSlot(lbImg, list[cur].src);
-      setText("lbCap", list[cur].caption || "");
+      $("#lbCap").textContent = t(list[cur].caption);
     };
+    lbRefresh = () => { if (!lb.hidden) $("#lbCap").textContent = t(list[cur].caption); };
     function openLB(i) { show(i); lb.hidden = false; document.body.style.overflow = "hidden"; $("#lbClose").focus(); }
     const close = () => { lb.hidden = true; document.body.style.overflow = ""; };
     $("#lbClose").onclick = close;
@@ -820,157 +915,201 @@ ${studs}
   }
   setupDeck();
 
-  /* ═════════════ Events ═════════════ */
+  /* ═════════════ Day-wise programme ═════════════ */
   const ICONS = {
-    haldi: '<svg viewBox="0 0 48 48"><path d="M8 24h32a16 13 0 0 1-32 0z"/><path d="M14 40h20"/><circle cx="24" cy="12" r="4"/><path d="M24 3v2M33 6l-1.5 1.5M15 6l1.5 1.5M36 13h-2M12 13h2"/></svg>',
-    mehendi: '<svg viewBox="0 0 48 48"><path d="M26 6c10 3 15 13 12 23s-14 15-21 11-6-12 0-15 11 1 9 6"/><circle cx="24" cy="30" r="2"/><path d="M20 20c2-2 5-3 8-2M18 26c-2-1-3-3-3-5"/></svg>',
-    sangeet: '<svg viewBox="0 0 48 48"><path d="M8 16h22l-3 22H11z"/><ellipse cx="19" cy="16" rx="11" ry="3"/><path d="M12 22l14 10M26 22L12 32"/><path d="M36 8v16"/><ellipse cx="33" cy="25" rx="3.5" ry="2.6"/><path d="M36 8l6 3"/></svg>',
-    wedding: '<svg viewBox="0 0 48 48"><path d="M24 6c6 7 9 12 9 17a9 9 0 0 1-18 0c0-5 3-10 9-17z"/><path d="M24 18c3 3 4 6 4 8a4 4 0 0 1-8 0c0-2 1-5 4-8z"/><path d="M8 36h32l-3 6H11z"/><path d="M12 36v-3h24v3"/></svg>',
-    reception: '<svg viewBox="0 0 48 48"><path d="M14 6h8l-1 10a3 3 0 0 1-6 0zM18 19v15M13 36h10"/><path d="M26 6h8l-1 10a3 3 0 0 1-6 0zM30 19v15M25 36h10"/><path d="M40 4l1 3 3 1-3 1-1 3-1-3-3-1 3-1zM8 22l.8 2 2 .8-2 .8L8 28l-.8-2.4-2-.8 2-.8z"/></svg>',
+    ganesh: '<path d="M10 30 Q24 44 38 30 Z"/><path d="M24 10 C28 16 29 20 24 26 C19 20 20 16 24 10Z"/><path d="M17 40 h14"/>',
+    kalash: '<path d="M17 19 h14"/><path d="M19 19 C9 24 10 39 24 41 C38 39 39 24 29 19"/><path d="M24 19 C20 12 15 10 11 12 M24 19 C28 12 33 10 37 12"/><circle cx="24" cy="12" r="3.5"/><path d="M15 30 h18"/>',
+    haldi: '<path d="M8 24h32a16 13 0 0 1-32 0z"/><path d="M14 40h20"/><circle cx="24" cy="12" r="4"/><path d="M24 3v2M33 6l-1.5 1.5M15 6l1.5 1.5M36 13h-2M12 13h2"/>',
+    tilak: '<ellipse cx="24" cy="32" rx="18" ry="6"/><path d="M24 12 C27 16 28 19 24 24 C20 19 21 16 24 12Z"/><circle cx="14" cy="31" r="2.2"/><circle cx="34" cy="31" r="2.2"/><path d="M20 26 h8"/>',
+    sangeet: '<path d="M8 16h22l-3 22H11z"/><ellipse cx="19" cy="16" rx="11" ry="3"/><path d="M12 22l14 10M26 22L12 32"/><path d="M36 8v16"/><ellipse cx="33" cy="25" rx="3.5" ry="2.6"/><path d="M36 8l6 3"/>',
+    bhoj: '<circle cx="24" cy="25" r="17"/><circle cx="17" cy="20" r="4.5"/><circle cx="30" cy="19" r="4.5"/><circle cx="24" cy="31" r="5"/>',
+    bhat: '<path d="M8 20h32v6H8z"/><path d="M10 26h28v15H10z"/><path d="M24 20v21"/><path d="M24 20c-4-8-12-8-10-2 2 4 10 2 10 2zM24 20c4-8 12-8 10-2-2 4-10 2-10 2z"/>',
+    chaak: '<circle cx="24" cy="22" r="15"/><circle cx="24" cy="22" r="4"/><path d="M24 7v11M24 26v11M9 22h11M28 22h11M13.4 11.4l7.8 7.8M26.8 24.8l7.8 7.8M34.6 11.4l-7.8 7.8M21.2 24.8l-7.8 7.8"/><path d="M14 42h20"/>',
+    nikasi: '<path d="M10 30 C10 15 38 15 38 30 Z"/><path d="M10 30h28"/><path d="M24 15V8c3-3 7-2 7 1"/><path d="M14 30v8M19 30v10M24 30v10M29 30v10M34 30v8"/>',
+    baraat: '<path d="M6 21h20l14-9v24l-14-9H6z"/><path d="M12 27v6M18 27v6"/>',
+    phere: '<path d="M24 6c6 7 9 12 9 17a9 9 0 0 1-18 0c0-5 3-10 9-17z"/><path d="M24 18c3 3 4 6 4 8a4 4 0 0 1-8 0c0-2 1-5 4-8z"/><path d="M8 36h32l-3 6H11z"/><path d="M12 36v-3h24v3"/>',
   };
-  const PIN = '<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
-  const CAL = '<svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 7h14v10H5z"/></svg>';
-  const CLOCK = '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.4 3.5 2.1-1 1.7L11 13V7h2z"/></svg>';
-  const DRESS = '<svg viewBox="0 0 24 24"><path d="M9 2h6l-1 4 4 4-2 2 3 10H5l3-10-2-2 4-4z"/></svg>';
 
-  function setupEvents() {
-    const tl = $("#timeline");
-    W.events.forEach((ev) => {
-      const el = document.createElement("article");
-      el.className = `ev ${ev.theme} reveal`;
-      el.tabIndex = 0;
-      el.setAttribute("role", "button");
-      el.setAttribute("aria-label", `${ev.name}. Tap to see dress code`);
-      const link = gcal({ title: `${ev.name} · ${couple}`, start: ev.start, end: ev.end, location: ev.venue, details: `Dress code: ${ev.dress}` });
-      el.innerHTML = `
-        <span class="knot" aria-hidden="true"></span>
-        <div class="ev-inner">
-          <div class="ev-face">
-            <div class="ev-head">
-              <div class="ev-icon">${ICONS[ev.theme] || ICONS.wedding}</div>
-              <span class="ev-local">${esc(ev.local || "")}</span>
-              <h3 class="ev-name">${esc(ev.name)}</h3>
-            </div>
-            <div class="ev-body">
-              <div class="ev-row">${CAL}<span>${esc(ev.date)}</span></div>
-              <div class="ev-row">${CLOCK}<span>${esc(ev.time)}</span></div>
-              <div class="ev-row">${PIN}<span>${esc(ev.venue)}</span></div>
-              <div class="ev-row">${DRESS}<span>${esc(ev.dress)}</span></div>
-              <span class="ev-more">Tap for dress code →</span>
-            </div>
-          </div>
-          <div class="ev-back" aria-hidden="true">
-            <h4>Dress code</h4>
-            <p class="dress">${esc(ev.dress)}</p>
-            <div class="swatches">${(ev.palette || []).map((c) => `<i style="background:${esc(c)}"></i>`).join("")}</div>
-            <p>${esc(ev.note || "")}</p>
-            <a href="${link}" target="_blank" rel="noopener">+ Add to calendar</a>
-          </div>
-        </div>`;
-      const flip = () => {
-        const f = el.classList.toggle("flipped");
-        $(".ev-back", el).setAttribute("aria-hidden", String(!f));
-        $(".ev-face", el).setAttribute("aria-hidden", String(f));
-        Sound.init(); Sound.whoosh(0.4, 0.04);
-      };
-      el.addEventListener("click", (e) => { if (!e.target.closest("a")) flip(); });
-      el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); } });
-      if (finePointer && !reduceMotion) {
-        el.addEventListener("pointermove", (e) => {
-          if (el.classList.contains("flipped")) return;
-          const r = el.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-          $(".ev-inner", el).style.transform = `rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
-        });
-        el.addEventListener("pointerleave", () => { $(".ev-inner", el).style.transform = ""; });
-      }
-      tl.appendChild(el);
-    });
+  let selectedDay = (() => {
+    const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
+    const i = W.days.findIndex((d) => d.date >= today);
+    const main = Math.max(0, W.days.findIndex((d) => d.main));
+    if (i === -1) return main;
+    return today < W.days[0].date ? main : i;
+  })();
 
-    // gold thread drawn as you scroll
-    const svg = $(".thread", tl), path = $("#threadPath");
-    svg.insertAdjacentHTML("afterbegin", '<defs><linearGradient id="threadGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f29f05"/><stop offset=".5" stop-color="#c9a04a"/><stop offset="1" stop-color="#a4161a"/></linearGradient></defs>');
-    let len = 1;
-    const size = () => {
-      const h = tl.offsetHeight;
-      svg.setAttribute("viewBox", `0 0 4 ${h}`);
-      path.setAttribute("d", `M2 0V${h}`);
-      len = h; path.style.strokeDasharray = `${len}`;
-      draw();
-    };
-    const draw = () => {
-      const r = tl.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (innerHeight * 0.7 - r.top) / r.height));
-      path.style.strokeDashoffset = String(len * (1 - p));
-    };
-    new ResizeObserver(size).observe(tl);
-    addEventListener("scroll", draw, { passive: true });
+  function renderDays() {
+    const tabs = $("#dayTabs");
+    tabs.innerHTML = W.days.map((d, i) => {
+      const dd = d.date.slice(8).replace(/^0/, "");
+      return `<button class="day-tab${d.main ? " main" : ""}" role="tab" type="button" aria-selected="${i === selectedDay}" data-i="${i}"><small>${esc(t(d.wd))}</small><b>${dd}</b><em>${esc(t(W.dateLabel.month))}</em></button>`;
+    }).join("");
+    renderPanel();
   }
-  setupEvents();
+  function renderPanel() {
+    const d = W.days[selectedDay];
+    const venueLoc = `${t(W.venue.name).replace(/[‘’']/g, "")}, ${t(W.venue.address)}`;
+    $("#dayPanel").innerHTML = `
+      <p class="day-title">${esc(t(d.label))}</p>
+      <ol class="rituals">${d.events.map((ev, i) => {
+        const cal = ev.start ? `<a href="${gcal({ title: `${t(ev.name)} · ${coupleText()}`, start: ev.start, location: ev.map === "baraat" ? "Hotel New Haveli, Jaipur" : venueLoc, details: t(ev.about) })}" target="_blank" rel="noopener">${esc(u("addCal"))}</a>` : "";
+        const map = ev.map === "baraat" ? `<a href="${W.baraat.mapsUrl}" target="_blank" rel="noopener">${esc(u("route"))}</a>` : "";
+        return `<li class="ritual${ev.highlight ? " hl" : ""}" style="--i:${i}">
+          <span class="r-ico" aria-hidden="true"><svg viewBox="0 0 48 48">${ICONS[ev.icon] || ICONS.ganesh}</svg></span>
+          <div class="r-card">
+            <div class="r-top"><h3 class="r-name">${esc(t(ev.name))}</h3><span class="r-time">${esc(t(ev.time))}</span></div>
+            <p class="r-about">${esc(t(ev.about))}</p>
+            ${cal || map ? `<div class="r-links">${cal}${map}</div>` : ""}
+          </div>
+        </li>`;
+      }).join("")}</ol>
+      <p class="r-venue">${esc(u("atVenue"))} <b>${esc(venueShort())}</b></p>`;
+  }
+  $("#dayTabs").addEventListener("click", (e) => {
+    const b = e.target.closest(".day-tab");
+    if (!b) return;
+    selectedDay = +b.dataset.i;
+    $$(".day-tab").forEach((x) => x.setAttribute("aria-selected", String(x === b)));
+    renderPanel();
+    Sound.init(); Sound.bell(1200, 0.05);
+  });
 
-  /* ═════════════ Stay, contacts, venue ═════════════ */
-  const INFO_ICONS = [
-    '<svg viewBox="0 0 48 48"><path d="M6 40V22a18 14 0 0 1 36 0v18"/><path d="M18 40V28a6 6 0 0 1 12 0v12"/><path d="M24 4v4M4 40h40"/></svg>',
-    '<svg viewBox="0 0 48 48"><path d="M44 22c0-2-2-3-4-3H30L20 4h-5l5 15h-9l-4-5H3l3 9-3 9h4l4-5h9l-5 15h5l10-15h10c2 0 4-1 4-3z"/></svg>',
-    '<svg viewBox="0 0 48 48"><circle cx="18" cy="18" r="7"/><path d="M18 4v3M18 29v3M4 18h3M29 18h3M8 8l2 2M28 8l-2 2M8 28l2-2"/><path d="M20 40h18a7 7 0 0 0 0-14 10 10 0 0 0-19 3 6 6 0 0 0 1 11z"/></svg>',
-  ];
-  $("#infoGrid").innerHTML = W.stay.map((s, i) => `<article class="info reveal"><div class="info-ico">${INFO_ICONS[i % INFO_ICONS.length]}</div><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></article>`).join("");
-  $("#contacts").innerHTML = W.contacts.map((c) => `<a class="contact reveal" href="tel:${esc(c.phone.replace(/\s/g, ""))}"><span class="av">${esc(c.name[0])}</span><span><b>${esc(c.name)}</b><small>${esc(c.role)} · ${esc(c.phone)}</small></span></a>`).join("");
-  $("#copyAddr").addEventListener("click", () => copy(`${W.venue.name}, ${W.venue.address}`, "Address copied"));
-  $("#hashtag").addEventListener("click", () => copy(W.hashtag, "Hashtag copied"));
+  /* ═════════════ Family, businesses, sender ═════════════ */
+  const PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>';
+  function renderFamily() {
+    $("#famGrid").innerHTML = W.family.map((f) => `<article class="fam reveal-in"><h3>${esc(t(f.title))}</h3><ul>${f.names.map((n) => `<li${/^\(|^एवं/.test(n) ? ' class="sub"' : ""}>${esc(n)}</li>`).join("")}</ul></article>`).join("");
+    $("#biz").innerHTML = W.businesses.map((b) => `<div class="biz-item"><span class="av" aria-hidden="true">✦</span><span><b>${esc(t(b.name))}</b><small>${esc(t(b.place))}</small></span></div>`).join("");
+    $("#phones").innerHTML = W.sender.phones.map((p) => `<a class="phone" href="tel:${esc(p.replace(/\s/g, ""))}">${PHONE}${esc(p)}</a>`).join("");
+  }
 
   /* ═════════════ RSVP ═════════════ */
+  let rsvpMessage = "", guests = 2;
+  function renderChips() {
+    const prevChecked = $$("#dayChips input").map((i) => i.checked);
+    $("#dayChips").innerHTML = W.days.map((d, i) => {
+      const dd = d.date.slice(8).replace(/^0/, "");
+      const names = d.events.slice(0, 2).map((e) => t(e.name)).join(", ") + (d.events.length > 2 ? "…" : "");
+      return `<label><input type="checkbox" id="day${i}" value="${i}"${prevChecked[i] === false ? "" : " checked"}><span>${dd} ${esc(t(W.dateLabel.month))} · ${esc(names)}</span></label>`;
+    }).join("");
+  }
   function setupRSVP() {
-    const form = $("#rsvpForm"), sec = $("#rsvp"), chips = $("#eventChips");
-    chips.innerHTML = W.events.map((e, i) => `<label><input type="checkbox" id="ev${i}" value="${esc(e.name)}" checked><span>${esc(e.name)}</span></label>`).join("");
-    let guests = 2;
-    const setG = (n) => { guests = Math.max(1, Math.min(12, n)); $("#gCount").textContent = guests; };
+    const form = $("#rsvpForm"), sec = $("#rsvp");
+    const setG = (n) => { guests = Math.max(1, Math.min(15, n)); $("#gCount").textContent = guests; };
     $("#gMinus").onclick = () => setG(guests - 1);
     $("#gPlus").onclick = () => setG(guests + 1);
     form.addEventListener("change", () => sec.classList.toggle("declined", $("#rNo").checked));
-
     const draft = store.get("rsvp-draft", null);
-    if (draft && !guest) { $("#rName").value = draft.name || ""; $("#rMsg").value = draft.msg || ""; }
+    if (guest) $("#rName").value = guest;
+    else if (draft) { $("#rName").value = draft.name || ""; $("#rMsg").value = draft.msg || ""; }
     form.addEventListener("input", () => store.set("rsvp-draft", { name: $("#rName").value, msg: $("#rMsg").value }));
 
-    let message = "";
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const name = $("#rName").value.trim();
       if (!name) { $("#formErr").hidden = false; $("#rName").focus(); return; }
       $("#formErr").hidden = true;
       const yes = $("#rYes").checked;
-      const fns = $$("input:checked", chips).map((i) => i.value);
-      message = [
-        `🙏 RSVP for ${couple}'s wedding`,
-        `Name: ${name}`,
-        yes ? `Attending: Yes, ${guests} ${guests === 1 ? "guest" : "guests"}` : "Attending: Sorry, can't make it",
-        yes && fns.length ? `Functions: ${fns.join(", ")}` : "",
-        $("#rMsg").value.trim() ? `Message: ${$("#rMsg").value.trim()}` : "",
+      const days = $$("#dayChips input:checked").map((i) => {
+        const d = W.days[+i.value];
+        return `${d.date.slice(8).replace(/^0/, "")} ${t(W.dateLabel.month)}`;
+      });
+      const msg = $("#rMsg").value.trim();
+      rsvpMessage = [
+        `🙏 ${u("rsvpFor")}`,
+        `${u("nameLbl")}: ${name}`,
+        yes ? `${u("yesLine")} · ${guests} ${u("members")}` : u("noLine"),
+        yes && days.length ? `${u("daysLbl")}: ${days.join(", ")}` : "",
+        msg ? `${u("msgLbl")}: ${msg}` : "",
       ].filter(Boolean).join("\n");
-      $("#waLink").href = `https://wa.me/${W.rsvp.whatsapp}?text=${encodeURIComponent(message)}`;
+      $("#waLink").href = `https://wa.me/${W.rsvp.whatsapp}?text=${encodeURIComponent(rsvpMessage)}`;
       form.hidden = true; $("#rsvpDone").hidden = false;
       const r = $("#rsvpDone").getBoundingClientRect();
       FX.burst(r.left + r.width / 2, r.top + 60, yes ? 80 : 20, 0.9);
       if (yes) Sound.chimes();
     });
-    $("#copyRsvp").onclick = () => copy(message, "RSVP copied");
+    $("#copyRsvp").onclick = () => copy(rsvpMessage, "copiedRsvp");
     $("#editRsvp").onclick = () => { form.hidden = false; $("#rsvpDone").hidden = true; };
   }
   setupRSVP();
 
+  /* ═════════════ Venue, hashtag ═════════════ */
+  $("#mapBtn").href = W.venue.mapsUrl;
+  $("#baraatMap").href = W.baraat.mapsUrl;
+  $("#copyAddr").addEventListener("click", () => copy(`${t(W.venue.name).replace(/[‘’']/g, "")}, ${t(W.venue.address)}`, "copiedAddr"));
+  $("#hashtag").textContent = W.hashtag;
+  $("#hashtag").addEventListener("click", () => copy(W.hashtag, "copiedHash"));
+
   /* ═════════════ Blessings ═════════════ */
   let blessings = store.get("blessings", 0);
-  setText("blessCount", blessings);
+  $("#blessCount").textContent = blessings;
   $("#blessBtn").addEventListener("click", (e) => {
     blessings++; store.set("blessings", blessings);
-    setText("blessCount", blessings);
+    $("#blessCount").textContent = blessings;
     Sound.init(); Sound.ctx?.resume(); Sound.bell(880 + Math.random() * 300, 0.1);
     FX.rain(26);
     const r = e.currentTarget.getBoundingClientRect();
     FX.burst(r.left + r.width / 2, r.top, 22, 0.6);
     navigator.vibrate?.(15);
   });
+
+  /* ═════════════ Apply language ═════════════ */
+  const T = {
+    groomName: () => t(W.groom.name), brideName: () => t(W.bride.name),
+    groomTitle: () => t(W.groom.title), brideTitle: () => t(W.bride.title),
+    weekday: () => t(W.dateLabel.weekday), day: () => W.dateLabel.day,
+    month: () => t(W.dateLabel.month), year: () => W.dateLabel.year,
+    monthYear: () => `${t(W.dateLabel.monthLong)} ${W.dateLabel.year}`,
+    venueShort, blessing: () => t(W.invitation.blessing), hosts: () => t(W.invitation.hosts),
+    relation: () => t(W.invitation.relation), occasion: () => t(W.invitation.occasion), closing: () => t(W.invitation.closing),
+    revealLine: () => `${t(W.dateLabel.weekday)}, ${W.dateLabel.day} ${t(W.dateLabel.monthLong)} ${W.dateLabel.year} · ${venueShort()}`,
+    venueName: () => t(W.venue.name), venueAddr: () => t(W.venue.address),
+    baraatNote: () => t(W.baraat.note), senderName: () => t(W.sender.name), senderAddr: () => t(W.sender.address),
+  };
+
+  function applyLang() {
+    root.lang = L;
+    document.title = L === "hi" ? `${coupleText()} · शुभ विवाह` : `${coupleText()} · Shubh Vivah`;
+    $$("[data-i18n]").forEach((el) => { const v = UI[el.dataset.i18n]; if (v) el.textContent = t(v); });
+    $$("[data-t]").forEach((el) => { const f = T[el.dataset.t]; if (f) el.textContent = f(); });
+    $$("[data-lang-toggle]").forEach((b) => (b.textContent = L === "hi" ? "English" : "हिंदी"));
+
+    if ($("#gate")) {
+      $("#sealMono").innerHTML = initials;
+      $("#gateNames").innerHTML = `${esc(t(W.groom.name))} <small>${esc(u("sang"))}</small> ${esc(t(W.bride.name))}`;
+      $("#gateDear").innerHTML = guest
+        ? `<span class="shriman">${esc(u("shriman"))}</span><b>${esc(guest)}</b><span class="inv">${esc(u("invited"))}</span>`
+        : `<span class="inv">${esc(u("invitedPlain"))}</span>`;
+    }
+
+    $("#doha").innerHTML = (L === "hi" ? W.invitation.doha : W.shloka.hi).map((l) => `<p>${esc(l)}</p>`).join("");
+    $("#groomParents").innerHTML = W.groom.parents.map((p) => `<p>${esc(t(p))}</p>`).join("");
+    $("#brideParents").innerHTML = W.bride.parents.map((p) => `<p>${esc(t(p))}</p>`).join("");
+    $("#rName").placeholder = u("fNamePh");
+    $("#rMsg").placeholder = u("fMsgPh");
+
+    const main = W.days.find((d) => d.main) || W.days[W.days.length - 1];
+    const last = main.events.find((e) => e.start && e.icon === "bhoj") || main.events[main.events.length - 1];
+    $("#calBtn").href = gcal({
+      title: `${coupleText()} · ${L === "hi" ? "शुभ विवाह" : "Wedding"}`,
+      start: W.weddingDate,
+      end: new Date(new Date(last.start || W.weddingDate).getTime() + 3 * 36e5).toISOString(),
+      location: `${t(W.venue.name).replace(/[‘’']/g, "")}, ${t(W.venue.address)}`,
+      details: `${t(W.baraat.note)} ${location.href.split("#")[0]}`,
+    });
+
+    renderDays();
+    renderFamily();
+    renderChips();
+    deckCaptions.forEach((f) => f());
+    lbRefresh();
+    coinPainters.forEach((p) => p());
+  }
+
+  $$("[data-lang-toggle]").forEach((b) => b.addEventListener("click", () => {
+    L = L === "hi" ? "en" : "hi";
+    store.set("lang", L);
+    applyLang();
+  }));
 
   /* ═════════════ Dock: active section + hide on scroll ═════════════ */
   const dock = $("#dock");
@@ -989,5 +1128,6 @@ ${studs}
     lastY = y;
   }, { passive: true });
 
+  applyLang();
   armReveals();
 })();

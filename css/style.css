@@ -19,9 +19,10 @@
 
   --foil: linear-gradient(100deg, #8a6a2b 0%, #e9cf8a 18%, #b8913f 34%, #fff1c4 50%, #b48a3a 64%, #ecd08c 82%, #8a6a2b 100%);
 
-  --f-script: "Pinyon Script", "Great Vibes", cursive;
-  --f-serif: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
-  --f-caps: "Marcellus SC", "Cormorant SC", Georgia, serif;
+  --f-script: "Pinyon Script", "Amita", cursive;
+  --f-hi: "Amita", "Tiro Devanagari Hindi", serif;
+  --f-serif: "Cormorant Garamond", "Tiro Devanagari Hindi", Garamond, "Times New Roman", serif;
+  --f-caps: "Marcellus SC", "Tiro Devanagari Hindi", Georgia, serif;
   --f-deva: "Tiro Devanagari Hindi", "Noto Serif Devanagari", serif;
 
   --ease-out: cubic-bezier(.16, 1, .3, 1);
@@ -40,6 +41,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  font-variant-numeric: lining-nums;
   -webkit-tap-highlight-color: transparent;
 }
 body.locked { overflow: hidden; height: 100%; }
@@ -585,66 +587,6 @@ body.revealed .rise { animation: rise 1.4s var(--ease-out) both; animation-delay
 .swipe-ico { width: 22px; height: 14px; background: var(--swipe) center / contain no-repeat; animation: nudge 1.6s ease-in-out infinite; }
 @keyframes nudge { 50% { transform: translateX(5px); } }
 
-/* ═════════════ EVENTS ═════════════ */
-.timeline { position: relative; max-width: 760px; margin: 2rem auto 0; display: grid; gap: 2.4rem; }
-.thread { position: absolute; left: 50%; top: 0; width: 4px; height: 100%; margin-left: -2px; overflow: visible; z-index: 0; }
-.thread path { fill: none; stroke: url(#threadGrad); stroke-width: 3; stroke-linecap: round; }
-.ev {
-  --accent: var(--sindoor); --tint: #fff;
-  position: relative; z-index: 1; width: calc(50% - 34px);
-  perspective: 1200px; cursor: pointer; text-align: left;
-  -webkit-tap-highlight-color: transparent;
-}
-.ev:nth-of-type(odd) { justify-self: start; }
-.ev:nth-of-type(even) { justify-self: end; }
-.ev .knot {
-  position: absolute; top: 34px; width: 22px; height: 22px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fff3c4, var(--gold) 55%, var(--gold-deep));
-  box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--gold), 0 0 18px rgba(242, 159, 5, .6);
-}
-.ev:nth-of-type(odd) .knot { right: -45px; }
-.ev:nth-of-type(even) .knot { left: -45px; }
-.ev-inner { position: relative; transform-style: preserve-3d; transition: transform .9s var(--ease-out); display: grid; }
-.ev.flipped .ev-inner { transform: rotateY(180deg); }
-.ev-face, .ev-back {
-  grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  border-radius: 18px; overflow: hidden;
-  background: #fffaf2;
-  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 16px 36px rgba(80, 20, 20, .16);
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
-}
-.ev-back { transform: rotateY(180deg); padding: 1.4rem 1.3rem; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(160deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #000)); color: #fff7e6; }
-.ev-head {
-  position: relative; padding: 1.2rem 1.3rem 1rem; color: #fff8ea;
-  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #000));
-  overflow: hidden;
-}
-.ev-head::after { content: ""; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px; background: var(--mandala-white) center / contain no-repeat; opacity: .22; animation: spin 50s linear infinite; }
-.ev-icon { width: 38px; height: 38px; margin-bottom: .5rem; }
-.ev-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.ev-local { font-family: var(--f-deva); font-size: .95rem; opacity: .85; display: block; }
-.ev-name { font-family: var(--f-script); font-weight: 400; font-size: 2.5rem; line-height: 1; margin: .05rem 0 0; }
-.ev-body { padding: 1rem 1.3rem 1.2rem; display: grid; gap: .45rem; font-size: 1rem; }
-.ev-row { display: flex; gap: .6rem; align-items: flex-start; line-height: 1.35; color: var(--ink); }
-.ev-row svg { width: 16px; height: 16px; flex: 0 0 auto; margin-top: 3px; fill: var(--accent); }
-.ev-more { margin-top: .3rem; font-family: var(--f-caps); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); display: inline-flex; align-items: center; gap: .35rem; }
-.ev-back h4 { font-family: var(--f-caps); font-weight: 400; letter-spacing: .2em; font-size: .72rem; text-transform: uppercase; margin: 0 0 .3rem; opacity: .85; }
-.ev-back .dress { font-family: var(--f-script); font-size: 2.2rem; line-height: 1.1; margin: 0 0 .7rem; }
-.swatches { display: flex; gap: .5rem; margin-bottom: .9rem; }
-.swatches i { width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(255,255,255,.8); box-shadow: 0 3px 8px rgba(0,0,0,.25); }
-.ev-back p { margin: 0 0 1rem; font-style: italic; line-height: 1.4; }
-.ev-back a { align-self: flex-start; color: inherit; font-family: var(--f-caps); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; padding: .55rem .9rem; border-radius: 99px; border: 1px solid rgba(255,255,255,.6); text-decoration: none; }
-.ev.haldi { --accent: #D99A06; }
-.ev.mehendi { --accent: #4F6B2A; }
-.ev.sangeet { --accent: #7E2462; }
-.ev.wedding { --accent: #A4161A; }
-.ev.reception { --accent: #23305A; }
-@media (max-width: 720px) {
-  .thread { left: 15px; }
-  .ev, .ev:nth-of-type(odd), .ev:nth-of-type(even) { width: auto; justify-self: stretch; margin-left: 40px; }
-  .ev:nth-of-type(odd) .knot, .ev:nth-of-type(even) .knot { left: -36px; right: auto; }
-}
-
 /* ═════════════ VENUE ═════════════ */
 .venue-card {
   display: grid; grid-template-columns: 1.1fr 1fr; max-width: 900px; margin: 1.6rem auto 0;
@@ -666,28 +608,6 @@ body.revealed .rise { animation: rise 1.4s var(--ease-out) both; animation-delay
   .venue-body { padding: 1.6rem 1.3rem; text-align: center; }
   .venue .btn-row { justify-content: center; }
 }
-
-/* ═════════════ STAY ═════════════ */
-.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.8rem auto 2.6rem; max-width: 900px; }
-.info {
-  text-align: left; padding: 1.4rem 1.3rem; border-radius: 18px;
-  background: #fffaf2; border: 1px solid rgba(201, 160, 74, .35);
-  box-shadow: 0 10px 26px rgba(110, 20, 35, .07);
-}
-.info h3 { margin: .5rem 0 .3rem; font-family: var(--f-caps); font-weight: 400; letter-spacing: .14em; font-size: .9rem; text-transform: uppercase; color: var(--maroon); }
-.info p { margin: 0; font-size: 1.02rem; color: var(--ink-soft); line-height: 1.5; }
-.info .info-ico { width: 34px; height: 34px; color: var(--gold-deep); }
-.info .info-ico svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.contacts-h { font-family: var(--f-caps); font-weight: 400; letter-spacing: .18em; font-size: .8rem; text-transform: uppercase; color: var(--gold-deep); margin: 0 0 1rem; }
-.contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; }
-.contact {
-  display: flex; align-items: center; gap: .8rem; text-align: left;
-  padding: .7rem 1rem .7rem .7rem; border-radius: 99px; background: #fffaf2; border: 1px solid rgba(201, 160, 74, .4);
-  text-decoration: none;
-}
-.contact .av { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--maroon), var(--maroon-900)); color: var(--gold-hi); font-family: var(--f-script); font-size: 1.5rem; }
-.contact b { display: block; font-weight: 600; line-height: 1.2; font-size: 1rem; }
-.contact small { color: var(--ink-soft); font-size: .85rem; user-select: all; }
 
 /* ═════════════ RSVP ═════════════ */
 .rsvp-card, .rsvp-done {
@@ -786,3 +706,213 @@ body.revealed .rise { animation: rise 1.4s var(--ease-out) both; animation-delay
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .3s !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ═════════════ v2: Hindi-first additions ═════════════ */
+html[lang="hi"] body * { letter-spacing: 0 !important; text-transform: none !important; }
+html[lang="hi"] .script-h { font-family: var(--f-hi); font-weight: 700; font-size: clamp(2.2rem, 9vw, 3.2rem); line-height: 1.45; }
+html[lang="hi"] .script-h.small { font-size: clamp(1.9rem, 7.5vw, 2.4rem); }
+html[lang="hi"] .eyebrow { font-family: var(--f-hi); font-size: 1rem; }
+html[lang="hi"] .lede, html[lang="hi"] .timer-note { font-style: normal; font-size: 1.05rem; }
+html[lang="hi"] body { font-size: 18px; }
+
+.lang-btn {
+  border: 1px solid rgba(201, 160, 74, .7); border-radius: 99px;
+  background: rgba(59, 10, 18, .82); color: var(--gold-hi); backdrop-filter: blur(8px);
+  font-family: var(--f-caps); font-size: .78rem; padding: .55rem 1rem; line-height: 1;
+  box-shadow: 0 6px 18px rgba(59, 10, 18, .3);
+}
+html[lang="en"] .lang-btn { font-family: var(--f-hi); font-size: .9rem; padding: .45rem 1rem .55rem; }
+.gate-lang { position: absolute; z-index: 6; top: calc(env(safe-area-inset-top, 0px) + 14px); right: calc(env(safe-area-inset-right, 0px) + 14px); transition: opacity .4s ease; }
+.gate.opening .gate-lang { opacity: 0; pointer-events: none; }
+.float-lang { position: fixed; z-index: 50; top: calc(env(safe-area-inset-top, 0px) + 18px); left: calc(env(safe-area-inset-left, 0px) + 14px); opacity: 0; transform: scale(.7); pointer-events: none; transition: opacity .6s ease, transform .6s var(--ease-out); }
+body.revealed .float-lang { opacity: 1; transform: none; pointer-events: auto; }
+
+.ganesh { display: block; margin: 0 auto; background: var(--ganesh-maroon) center / contain no-repeat; }
+.gate-ganesh { width: 64px; height: 64px; background-image: var(--ganesh-gold); margin-bottom: .3rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,.6)); }
+.hero-ganesh { width: 74px; height: 74px; margin-top: .3rem; }
+.gate-dear { font-family: var(--f-hi); font-style: normal; }
+.gate-dear .shriman { display: block; font-size: 1rem; color: #E9CF8A; }
+.gate-dear b { font-family: var(--f-hi); font-weight: 700; font-size: clamp(1.7rem, 7.5vw, 2.3rem); border-bottom: 1px dashed rgba(233, 207, 138, .6); padding: 0 .4rem .1rem; display: inline-block; margin-top: .2rem; }
+html[lang="en"] .gate-dear b { font-family: var(--f-script); font-weight: 400; font-size: clamp(2rem, 9vw, 2.6rem); }
+.gate-dear .inv { display: block; font-size: 1.05rem; margin-top: .3rem; }
+.gate-names { font-family: var(--f-hi); font-weight: 700; font-size: clamp(2.3rem, 10vw, 3.2rem); line-height: 1.35; }
+html[lang="en"] .gate-names { font-family: var(--f-script); font-weight: 400; }
+.gate-names small { font-size: .5em; font-weight: 400; vertical-align: .3em; padding: 0 .15em; }
+html[lang="hi"] .seal-cta { font-family: var(--f-hi); font-size: .85rem; }
+
+.shubh {
+  font-family: var(--f-hi); font-weight: 700; font-size: clamp(1.9rem, 8vw, 2.6rem); line-height: 1.4; margin: .2rem 0 0;
+  background: linear-gradient(100deg, #6e1423, #a4161a 40%, #c9a04a 50%, #a4161a 60%, #6e1423); background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s linear infinite;
+}
+.hero .arch { margin-top: .9rem; width: min(210px, 54vw); }
+html[lang="hi"] .names .name { font-family: var(--f-hi); font-weight: 700; font-size: clamp(3.3rem, 15vw, 5.2rem); line-height: 1.3; }
+.sang { display: flex; flex-direction: column; align-items: center; margin: -.4rem 0 -.3rem; color: var(--gold-deep); }
+.sang small, .couple-sang small { font-family: var(--f-hi); font-size: 1.05rem; line-height: 1; }
+html[lang="en"] .sang small, html[lang="en"] .couple-sang small { font-family: var(--f-script); font-size: 1.6rem; }
+.knot-ico { display: block; width: 66px; height: 46px; background: var(--knot2) center / contain no-repeat; }
+
+.datebox { display: grid; justify-items: center; margin-top: 1rem; color: var(--maroon); font-family: var(--f-hi); }
+.db-wd { font-size: 1.15rem; line-height: 1.3; }
+.db-day {
+  font-family: var(--f-serif); font-weight: 600; font-size: 2.6rem; line-height: 1; color: var(--maroon-900);
+  padding: .35rem 1.1rem .45rem; margin: .25rem 0; position: relative;
+  border: 2px solid var(--gold); box-shadow: inset 0 0 0 3px var(--ivory), inset 0 0 0 4px var(--gold);
+  background: rgba(255, 250, 238, .7);
+}
+.db-day::before, .db-day::after { content: ""; position: absolute; top: 50%; width: 46px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.db-day::before { right: calc(100% + 8px); } .db-day::after { left: calc(100% + 8px); transform: scaleX(-1); }
+.db-my { font-size: 1.15rem; line-height: 1.3; }
+html[lang="en"] .datebox { font-family: var(--f-caps); }
+html[lang="en"] .db-wd, html[lang="en"] .db-my { font-size: .85rem; letter-spacing: .22em; text-transform: uppercase; }
+.hero-place { margin: .7rem 0 0; font-family: var(--f-hi); color: var(--ink-soft); font-size: 1.05rem; }
+html[lang="en"] .hero-place { font-family: var(--f-caps); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; }
+
+/* hanging jhoomar ornaments */
+.jhoomars { position: absolute; left: 0; right: 0; top: 60px; height: 0; z-index: 3; }
+.jh {
+  position: absolute; top: 0; width: 36px; border: 0; padding: 0; background: none;
+  transform-origin: 50% 0; animation: swing var(--sw, 3.4s) ease-in-out infinite alternate;
+}
+.jh::before { content: ""; display: block; width: 2px; height: var(--len, 60px); margin: 0 auto; background: repeating-linear-gradient(180deg, #b8913f 0 4px, transparent 4px 6px); }
+.jh .medal { display: block; width: 36px; height: 36px; border-radius: 50%; background: var(--mandala-maroon) center / 112% no-repeat, radial-gradient(circle, #fff8e8, #f3e2c0); box-shadow: 0 0 0 1.5px #b8913f, 0 6px 12px rgba(110, 20, 35, .25); }
+.jh .bead { display: block; width: 8px; height: 12px; margin: 2px auto 0; border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; background: radial-gradient(circle at 40% 35%, #ff8fa0, #a4161a); }
+.jh.ring { animation: ring 1.6s var(--ease-out); }
+@keyframes swing { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+@keyframes ring { 0% { transform: rotate(0); } 20% { transform: rotate(22deg); } 45% { transform: rotate(-16deg); } 70% { transform: rotate(9deg); } 100% { transform: rotate(0); } }
+
+/* invitation */
+.doha { font-family: var(--f-hi); color: var(--maroon); font-size: 1.15rem; line-height: 1.7; margin-bottom: 1.2rem; }
+.doha p { margin: 0; }
+.doha.small { font-size: .98rem; color: var(--gold-deep); margin-bottom: 1.8rem; }
+.invite-blessing { font-family: var(--f-hi); font-size: 1.05rem; text-transform: none; letter-spacing: .02em; }
+html[lang="en"] .invite-blessing { font-family: var(--f-caps); font-size: .78rem; text-transform: uppercase; letter-spacing: .18em; }
+.invite-hosts { font-family: var(--f-hi); font-weight: 700; font-size: 1.3rem; line-height: 1.5; color: var(--maroon); max-width: 26ch; margin: 0 auto; text-wrap: balance; }
+html[lang="en"] .invite-hosts { font-family: var(--f-serif); font-weight: 600; font-size: 1.45rem; }
+.invite-rel { margin: .5rem 0 1.8rem; color: var(--ink-soft); font-style: italic; }
+.couple { grid-template-columns: 1fr; gap: .4rem; }
+.person { display: grid; justify-items: center; }
+.p-title { font-family: var(--f-hi); color: var(--gold-deep); font-size: 1rem; }
+html[lang="en"] .p-title { font-family: var(--f-caps); font-size: .78rem; letter-spacing: .2em; }
+.person h3 { font-size: 2.9rem; line-height: 1.25; }
+html[lang="hi"] .person h3 { font-family: var(--f-hi); font-weight: 700; font-size: 2.4rem; }
+.p-parents p { margin: 0; font-size: .98rem; color: var(--ink-soft); line-height: 1.5; }
+.couple-sang { display: grid; justify-items: center; color: var(--gold-deep); margin: .4rem 0; }
+.mangal {
+  display: inline-flex; align-items: center; gap: .6rem; margin: 0 auto 1rem; padding: .45rem 1.4rem .55rem;
+  background: linear-gradient(135deg, #8a1a2c, var(--maroon-900)); color: var(--gold-hi); border-radius: 6px;
+  font-family: var(--f-hi); font-weight: 700; font-size: 1.25rem; box-shadow: 0 0 0 2px var(--ivory), 0 0 0 3px var(--gold), 0 10px 22px rgba(110, 20, 35, .25);
+}
+html[lang="en"] .mangal { font-family: var(--f-caps); font-weight: 400; font-size: .9rem; letter-spacing: .2em; }
+.mangal::before, .mangal::after { content: "✦"; font-size: .7em; color: var(--marigold); }
+.invite-occasion { margin: 0 auto 1rem; max-width: 30ch; font-size: 1.15rem; color: var(--ink); text-wrap: balance; }
+.invite-closing { font-style: normal; }
+html[lang="en"] .invite-closing, html[lang="en"] .invite-occasion { font-style: italic; }
+
+/* coins in Hindi */
+html[lang="hi"] .coin-under small { font-family: var(--f-hi); font-size: .85rem; }
+html[lang="hi"] .coin-under b { font-family: var(--f-hi); font-size: clamp(1.4rem, 6vw, 2.1rem); }
+html[lang="hi"] .tile small { font-family: var(--f-hi); font-size: .85rem; }
+html[lang="hi"] .dock a { font-family: var(--f-hi); font-size: .68rem; }
+
+/* ═════════════ Day-wise programme ═════════════ */
+.days { display: flex; justify-content: center; gap: .6rem; margin: 0 auto 1.8rem; flex-wrap: wrap; }
+.day-tab {
+  position: relative; width: 74px; padding: .6rem 0 .55rem; border-radius: 16px;
+  border: 1px solid rgba(201, 160, 74, .55); background: #fffaf2; color: var(--maroon);
+  display: grid; justify-items: center; gap: .1rem; line-height: 1.1;
+  transition: transform .3s var(--ease-out), background .3s ease, box-shadow .3s ease;
+}
+.day-tab small { font-family: var(--f-hi); font-size: .85rem; color: var(--ink-soft); }
+html[lang="en"] .day-tab small { font-family: var(--f-caps); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; }
+.day-tab b { font-family: var(--f-serif); font-weight: 600; font-size: 1.9rem; }
+.day-tab em { font-style: normal; font-size: .72rem; font-family: var(--f-hi); color: var(--gold-deep); }
+.day-tab[aria-selected="true"] { background: linear-gradient(160deg, #8a1a2c, var(--maroon-900)); color: var(--gold-hi); border-color: transparent; transform: translateY(-4px); box-shadow: 0 12px 24px rgba(59, 10, 18, .3); }
+.day-tab[aria-selected="true"] small, .day-tab[aria-selected="true"] em { color: #E9CF8A; }
+.day-tab.main::after { content: "♥"; position: absolute; top: -9px; right: -6px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: .7rem; color: #fff; background: var(--sindoor); box-shadow: 0 0 0 2px var(--ivory); }
+
+.day-panel { max-width: 640px; margin: 0 auto; text-align: left; }
+.day-title { text-align: center; font-family: var(--f-hi); font-size: 1.2rem; color: var(--maroon); margin: 0 0 1.2rem; }
+html[lang="en"] .day-title { font-family: var(--f-caps); font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; }
+.rituals { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 1rem; }
+.rituals::before { content: ""; position: absolute; left: 27px; top: 20px; bottom: 20px; width: 2px; background: linear-gradient(180deg, var(--marigold), var(--gold), var(--sindoor)); border-radius: 2px; }
+.ritual { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: .9rem; align-items: start; animation: ritualIn .7s var(--ease-out) both; animation-delay: calc(var(--i) * 90ms); }
+@keyframes ritualIn { from { opacity: 0; transform: translateY(18px); } }
+.r-ico {
+  position: relative; z-index: 1; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 35% 30%, #fff8e6, #f6e3bd); color: var(--maroon);
+  box-shadow: 0 0 0 2px var(--gold), 0 0 0 6px var(--ivory), 0 8px 18px rgba(110, 20, 35, .18);
+}
+.r-ico svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.r-card {
+  min-width: 0; padding: .9rem 1.1rem 1rem; border-radius: 16px; background: #fffaf2;
+  border: 1px solid rgba(201, 160, 74, .4); box-shadow: 0 10px 24px rgba(110, 20, 35, .08);
+}
+.ritual.hl .r-card { background: linear-gradient(150deg, #8a1a2c, var(--maroon-900)); color: #F6E6CF; border-color: transparent; box-shadow: 0 14px 30px rgba(59, 10, 18, .3); }
+.ritual.hl .r-ico { background: var(--foil); color: var(--maroon-900); }
+.r-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .2rem .8rem; }
+.r-name { margin: 0; font-family: var(--f-hi); font-weight: 700; font-size: 1.45rem; line-height: 1.35; color: var(--maroon); }
+html[lang="en"] .r-name { font-family: var(--f-serif); font-weight: 600; font-size: 1.4rem; }
+.ritual.hl .r-name { color: var(--gold-hi); }
+.r-time { font-family: var(--f-hi); font-size: .95rem; color: var(--sindoor); white-space: nowrap; }
+html[lang="en"] .r-time { font-family: var(--f-caps); font-size: .78rem; letter-spacing: .12em; }
+.ritual.hl .r-time { color: #F3D99B; }
+.r-about { margin: .2rem 0 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.45; }
+.ritual.hl .r-about { color: #EAD3B5; }
+.r-links { display: flex; flex-wrap: wrap; gap: .4rem .9rem; margin-top: .5rem; }
+.r-links a { font-family: var(--f-hi); font-size: .85rem; color: var(--gold-deep); text-decoration: none; border-bottom: 1px dashed currentColor; }
+html[lang="en"] .r-links a { font-family: var(--f-caps); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
+.r-venue { text-align: center; margin: 1.6rem 0 0; color: var(--ink-soft); font-style: italic; }
+.r-venue b { font-family: var(--f-hi); color: var(--maroon); font-style: normal; }
+
+/* venue additions */
+.venue-addr { margin-top: .6rem; }
+html[lang="hi"] .venue-body h3 { font-family: var(--f-hi); font-weight: 700; font-size: 1.9rem; }
+.baraat-card {
+  position: relative; z-index: 1; display: flex; gap: 1rem; align-items: flex-start; text-align: left;
+  max-width: 900px; margin: 1.2rem auto 0; padding: 1.2rem 1.3rem; border-radius: 18px;
+  border: 1px dashed rgba(233, 207, 138, .55); background: rgba(255, 238, 205, .05);
+}
+.baraat-ico { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; background: var(--foil); position: relative; }
+.baraat-ico::after { content: ""; position: absolute; inset: 9px; background: var(--shehnai) center / contain no-repeat; }
+.baraat-card h3 { margin: 0 0 .2rem; font-family: var(--f-hi); font-weight: 700; font-size: 1.3rem; color: var(--gold-hi); }
+html[lang="en"] .baraat-card h3 { font-family: var(--f-serif); font-weight: 600; }
+.baraat-card p { margin: 0 0 .5rem; color: #F3E3C8; line-height: 1.5; }
+.text-link { color: var(--gold-hi); font-size: .95rem; text-underline-offset: 4px; }
+
+/* ═════════════ Family ═════════════ */
+.fam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; max-width: 960px; margin: 1.6rem auto 2.4rem; }
+.fam {
+  position: relative; padding: 1.4rem 1.2rem 1.3rem; border-radius: 18px; background: #fffaf2;
+  border: 1px solid rgba(201, 160, 74, .4); box-shadow: 0 10px 24px rgba(110, 20, 35, .07);
+}
+.fam::before { content: ""; position: absolute; inset: 6px; border-radius: 13px; border: 1px solid rgba(201, 160, 74, .25); pointer-events: none; }
+.fam h3 { margin: 0 0 .6rem; font-family: var(--f-hi); font-weight: 700; font-size: 1.35rem; color: var(--sindoor); }
+html[lang="en"] .fam h3 { font-family: var(--f-caps); font-weight: 400; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-deep); }
+.fam ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; font-family: "Tiro Devanagari Hindi", var(--f-serif); font-size: 1.05rem; color: var(--ink); }
+.fam li.sub { color: var(--ink-soft); font-size: .95rem; }
+.biz-h { font-family: var(--f-hi); font-weight: 700; font-size: 1.3rem; color: var(--gold-deep); margin: 0 0 .8rem; }
+html[lang="en"] .biz-h { font-family: var(--f-caps); font-weight: 400; font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; }
+.biz { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-bottom: 2.4rem; }
+.biz-item { display: flex; align-items: center; gap: .8rem; text-align: left; padding: .8rem 1.2rem .8rem .8rem; border-radius: 99px; background: #fffaf2; border: 1px solid rgba(201, 160, 74, .45); }
+.biz-item .av { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--maroon), var(--maroon-900)); color: var(--gold-hi); font-size: 1rem; }
+.biz-item b { display: block; font-family: var(--f-hi); font-size: 1.1rem; color: var(--maroon); line-height: 1.3; }
+.biz-item small { color: var(--ink-soft); font-size: .9rem; }
+.sender { max-width: 520px; margin: 0 auto; padding: 1.6rem 1.4rem; border-radius: 22px; background: linear-gradient(150deg, #8a1a2c, var(--maroon-900)); color: #F6E6CF; box-shadow: 0 0 0 3px var(--cream), 0 0 0 4px var(--gold), 0 20px 40px rgba(59, 10, 18, .25); }
+.sender-label { font-family: var(--f-hi); color: #E9CF8A; font-size: 1rem; }
+html[lang="en"] .sender-label { font-family: var(--f-caps); font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; }
+.sender h3 { margin: .1rem 0 .3rem; font-family: var(--f-hi); font-weight: 700; font-size: 1.7rem; color: var(--gold-hi); }
+.sender p { margin: 0 0 1rem; color: #EAD3B5; }
+.phones { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+.phone { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem 1rem; border-radius: 99px; text-decoration: none; background: rgba(255, 238, 205, .1); border: 1px solid rgba(233, 207, 138, .5); color: var(--gold-hi); font-variant-numeric: tabular-nums; font-size: 1.05rem; }
+.phone svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* RSVP + misc in Hindi */
+html[lang="hi"] .field > span, html[lang="hi"] .field legend { font-family: var(--f-hi); font-size: .95rem; }
+html[lang="hi"] .seg span { font-family: var(--f-hi); font-size: 1rem; }
+html[lang="hi"] .btn { font-family: var(--f-hi); font-size: 1rem; }
+html[lang="hi"] .blessing-btn { font-family: var(--f-hi); font-size: 1.05rem; }
+html[lang="hi"] .deck-hint, html[lang="hi"] .gate-hint { font-family: var(--f-hi); font-size: .85rem; }
+html[lang="hi"] .card figcaption, html[lang="hi"] .lightbox figcaption { font-family: var(--f-hi); font-size: 1.35rem; }
+html[lang="hi"] .toast { font-family: var(--f-hi); font-size: .95rem; }
+html[lang="hi"] .sign, html[lang="hi"] .hashtag { font-style: normal; }

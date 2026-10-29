@@ -1,6 +1,6 @@
 # शुभ विवाह · मोहित संग सोनल
 
-Interactive wedding invitation for Mohit & Sonal (20 November 2026, Rajkamal Palace, Jaipur). Opens in Hindi with an English switch. Guests tap a gold seal to open carved palace doors, marigold garlands part to reveal the invitation, and the page unfolds with falling rose petals, scratch-to-reveal date coins, a live countdown, a swipeable photo deck, flip cards for every function, venue details, and an RSVP that sends straight to WhatsApp.
+Interactive wedding invitation for Mohit & Sonal (20 November 2026, Rajkamal Palace, Jaipur). Opens in English with a Hindi switch (add `?lang=hi` to open in Hindi). Guests tap a gold seal to open carved palace doors, marigold garlands part to reveal the invitation, and the page unfolds with falling rose petals, scratch-to-reveal date coins, a live countdown, a swipeable photo deck, flip cards for every function, venue details, and an RSVP that sends straight to WhatsApp.
 
 ## Edit the details
 
@@ -19,8 +19,8 @@ Add an mp3 at `assets/music.mp3`. Without it, a soft synthesized tanpura and san
 Add the guest's name to the link and the doors greet them by name:
 
 ```
-https://<your-site>/?to=शर्मा%20परिवार
-https://<your-site>/?to=Sharma%20Family&lang=en
+https://<your-site>/?to=Sharma%20Family
+https://<your-site>/?to=शर्मा%20परिवार&lang=hi
 ```
 
 ## Publish

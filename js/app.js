@@ -17,8 +17,8 @@
 
   /* ═════════════ Language ═════════════ */
   const params = new URLSearchParams(location.search);
-  let L = params.get("lang") === "en" || location.hash === "#en" ? "en" : params.get("lang") === "hi" ? "hi" : store.get("lang", "hi");
-  if (L !== "en") L = "hi";
+  let L = params.get("lang") === "hi" || location.hash === "#hi" ? "hi" : params.get("lang") === "en" ? "en" : store.get("site-lang", "en");
+  if (L !== "hi") L = "en";
   const t = (v) => (v && typeof v === "object" && !Array.isArray(v) ? v[L] ?? v.hi ?? v.en : v ?? "");
 
   const UI = {
@@ -1182,7 +1182,7 @@ ${studs}
 
   $$("[data-lang-toggle]").forEach((b) => b.addEventListener("click", () => {
     L = L === "hi" ? "en" : "hi";
-    store.set("lang", L);
+    store.set("site-lang", L);
     applyLang();
   }));
 

@@ -977,3 +977,9 @@ body.revealed .names .name {
 .toran, .jhoomars { transition: opacity 1.4s ease .2s; }
 body.preopen .toran, body.preopen .jhoomars { opacity: 0; }
 .cinema.docked { -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%); mask-image: linear-gradient(180deg, #000 72%, transparent 100%); }
+
+/* lock horizontal scrolling on every device */
+html, body { overflow-x: hidden; }
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
+main, section, footer { max-width: 100vw; overflow-x: clip; }
+.reveal.pending { transform: perspective(900px) rotateX(-14deg) translateY(30px) scale(.94); transform-origin: 50% 100%; }

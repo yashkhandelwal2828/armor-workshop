@@ -2,14 +2,15 @@
   ───────────────────────────────────────────────────────────────
   WEDDING DETAILS — edit this file only.
   Text is written as { hi: "हिंदी", en: "English" }. The site opens
-  in Hindi; guests can switch to English with the button at the top.
+  in English; guests can switch to Hindi with the button at the top.
+  Add ?lang=hi to a link to open it in Hindi.
 
   Photos: put images in  assets/photos/  (see the README there).
   Missing photos show an ornamental placeholder.
 
   Personal links for relatives (the doors greet them by name):
-    https://<your-site>/?to=शर्मा%20परिवार
-    https://<your-site>/?to=Sharma%20Family&lang=en
+    https://<your-site>/?to=Sharma%20Family
+    https://<your-site>/?to=शर्मा%20परिवार&lang=hi
   ───────────────────────────────────────────────────────────────
 */
 window.WEDDING = {

@@ -165,11 +165,11 @@
       <path d="M232 348 q-2 10 12 10 q14 0 18 -6 q-14 -6 -30 -4z" fill="#C9A04A"/>
       <path d="M262 348 q-2 10 12 10 q14 0 18 -6 q-14 -6 -30 -4z" fill="#C9A04A"/>
       <path d="M220 160 C236 150 280 150 296 160 L306 300 C282 312 234 312 210 300 Z" fill="#F2C14E"/>
-      <path d="M220 160 L236 156 L247 246 L214 270 Z" fill="#2F6B3A"/>
-      <path d="M296 160 L280 156 L269 246 L302 270 Z" fill="#2F6B3A"/>
-      <g fill="#F2C6D0">${[[226, 190], [232, 222], [222, 250], [290, 190], [284, 222], [294, 250]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6"/>`).join("")}</g>
+      <path d="M220 160 L236 156 L247 246 L214 270 Z" fill="#C2185B"/>
+      <path d="M296 160 L280 156 L269 246 L302 270 Z" fill="#C2185B"/>
+      <g fill="#FFD76A">${[[226, 190], [232, 222], [222, 250], [290, 190], [284, 222], [294, 250]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6"/>`).join("")}</g>
       <g fill="#C9A04A">${[172, 186, 200, 214].map((y) => `<circle cx="258" cy="${y}" r="2"/>`).join("")}</g>
-      <path d="M228 158 C240 200 250 232 252 304 L262 304 C258 232 248 196 238 155 Z" fill="#D6246E" opacity=".92"/>
+      <path d="M228 158 C240 200 250 232 252 304 L262 304 C258 232 248 196 238 155 Z" fill="#3E8A2E" opacity=".92"/>
       <path d="M226 172 Q212 212 224 244" stroke="#F2C14E" stroke-width="14" stroke-linecap="round" fill="none"/>
       <circle cx="226" cy="250" r="7.5" fill="${groomSkin}"/>
       <rect x="250" y="134" width="16" height="22" fill="${groomSkin}"/>
@@ -192,12 +192,12 @@
 
     <!-- bride (left) -->
     <g class="bride">
-      <path d="M110 222 C130 216 172 216 190 222 L230 344 C190 360 110 360 70 344 Z" fill="#D6246E"/>
+      <path d="M110 222 C130 216 172 216 190 222 L230 344 C190 360 110 360 70 344 Z" fill="#3E8A2E"/>
       <path d="M70 344 C110 360 190 360 230 344 L226 330 C188 345 112 345 74 330 Z" fill="#F2B705"/>
       <g fill="#FFD76A">${[[110, 262], [150, 258], [190, 262], [96, 296], [136, 300], [176, 300], [212, 296], [120, 324], [180, 324]].map(([x, y]) => `<path d="M${x} ${y - 4} l3 4 l-3 4 l-3 -4z"/>`).join("")}</g>
       <g fill="#fff" opacity=".7">${Array.from({ length: 14 }, (_, k) => `<circle cx="${80 + k * 11}" cy="${338 + Math.sin(k) * 1.5}" r="1.4"/>`).join("")}</g>
-      <path d="M120 160 C130 152 170 152 180 160 L190 224 L110 224 Z" fill="#3F7A2E"/>
-      <path d="M110 222 H190" stroke="#F2B705" stroke-width="4"/>
+      <path d="M120 160 C130 152 170 152 180 160 L190 224 L110 224 Z" fill="#D6246E"/>
+      <path d="M110 222 H190" stroke="#F2B705" stroke-width="4"/><path d="M90 300 C120 290 180 290 212 300 M84 316 C120 306 182 306 218 316" stroke="#F2B705" stroke-width="1.6" fill="none" opacity=".8"/>
       <path d="M138 158 Q150 174 162 158 Z" fill="${brideSkin}"/>
       <rect x="142" y="136" width="16" height="22" fill="${brideSkin}"/>
       <path d="M138 156 Q150 168 162 156" stroke="#E9B949" stroke-width="3" fill="none"/>
@@ -239,5 +239,44 @@
 </svg>`;
   }
 
-  window.MehendiArt = { hennaHand, umbrella, marigoldString, coupleSwing, HENNA };
+
+  /* ───────── Hanging bird cage (pinjra) with a little bird ───────── */
+  function birdCage() {
+    let bars = "";
+    for (let k = -3; k <= 3; k++) bars += `<path d="M${k * 7} -28 Q${k * 9} 0 ${k * 8} 26" stroke="#C9A04A" stroke-width="1.4" fill="none"/>`;
+    return `<svg viewBox="-34 -240 68 290" xmlns="http://www.w3.org/2000/svg" class="cage-svg">
+      <line x1="0" y1="-240" x2="0" y2="-46" stroke="#8a6a2b" stroke-width="1.2"/>
+      <circle cx="0" cy="-44" r="5" fill="none" stroke="#C9A04A" stroke-width="2"/>
+      <path d="M-26 -10 Q-26 -40 0 -40 Q26 -40 26 -10" fill="none" stroke="#C9A04A" stroke-width="2"/>
+      ${bars}
+      <ellipse cx="0" cy="26" rx="28" ry="5" fill="#C9A04A"/>
+      <path d="M-22 -2 h44" stroke="#C9A04A" stroke-width="1.4"/>
+      <g class="cage-bird"><ellipse cx="0" cy="6" rx="7" ry="9" fill="#F2B705"/><circle cx="3" cy="-4" r="5" fill="#F2B705"/><path d="M7 -5 l5 1 l-5 2z" fill="#E8512A"/><circle cx="4" cy="-5" r="1.2" fill="#1E140E"/><path d="M-6 10 l-6 6" stroke="#D6246E" stroke-width="3" stroke-linecap="round"/></g>
+      <path d="M-10 -2 q4 -8 8 0 q4 -8 8 0" fill="#D6246E" opacity=".8"/>
+      <circle cx="0" cy="34" r="3" fill="#D6246E"/><line x1="0" y1="31" x2="0" y2="44" stroke="#D6246E" stroke-width="1.5"/>
+    </svg>`;
+  }
+
+  /* ───────── Twinkling string lights (catenary) ───────── */
+  function stringLights(w = 400, n = 3) {
+    let path = "", bulbs = "";
+    const span = w / n;
+    for (let i = 0; i < n; i++) {
+      const x0 = i * span, x1 = x0 + span, sag = 34;
+      path += `M${x0} 4 Q${x0 + span / 2} ${4 + sag * 2} ${x1} 4 `;
+      for (let k = 1; k < 8; k++) {
+        const tt = k / 8, x = x0 + tt * span, y = 4 + sag * 4 * tt * (1 - tt);
+        const c = ["#FFE08A", "#FFC2D6", "#C8F0A0", "#FFE08A"][k % 4];
+        bulbs += `<circle class="bulb" style="--bd:${((i * 8 + k) * 0.37 % 2).toFixed(2)}s" cx="${x.toFixed(1)}" cy="${(y + 5).toFixed(1)}" r="3.2" fill="${c}"/>`;
+      }
+    }
+    return `<svg viewBox="0 0 ${w} 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" class="lights-svg"><path d="${path}" stroke="#5a4a1a" stroke-width="1" fill="none"/>${bulbs}</svg>`;
+  }
+
+  /* ───────── Lotus flower ───────── */
+  function lotus(c1 = "#F28BB2", c2 = "#D6246E") {
+    return `<svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg"><path d="M30 6 C36 14 36 24 30 32 C24 24 24 14 30 6Z" fill="${c1}"/><path d="M30 32 C24 22 14 18 6 20 C10 28 20 34 30 32Z" fill="${c2}"/><path d="M30 32 C36 22 46 18 54 20 C50 28 40 34 30 32Z" fill="${c2}"/><path d="M30 32 C26 26 20 22 14 22 C18 28 24 32 30 32Z M30 32 C34 26 40 22 46 22 C42 28 36 32 30 32Z" fill="${c1}"/><ellipse cx="30" cy="35" rx="20" ry="4" fill="#3F7A2E"/></svg>`;
+  }
+
+  window.MehendiArt = { hennaHand, umbrella, marigoldString, coupleSwing, birdCage, stringLights, lotus, HENNA };
 })();

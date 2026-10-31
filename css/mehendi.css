@@ -318,3 +318,20 @@ html[lang="hi"] .sign { font-style: normal; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .3s !important; }
 }
 .hero .scene-hint { position: absolute; z-index: 3; left: 0; right: 0; bottom: 6px; margin: 0; color: #E5DDB8; text-align: center; }
+
+/* ═════════════ Decor: string lights, bird cage, mandala, lotuses ═════════════ */
+.lights { position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 70px; pointer-events: none; }
+.lights svg { width: 100%; height: 100%; }
+.lights .bulb { animation: twinkle 1.8s ease-in-out infinite alternate; animation-delay: calc(var(--bd) * -1); filter: drop-shadow(0 0 3px #FFD76A); }
+@keyframes twinkle { from { opacity: .35; } to { opacity: 1; } }
+.umb.cage { width: 46px; }
+.cage-svg .cage-bird { transform-box: fill-box; transform-origin: 50% 100%; animation: bob2 1.4s ease-in-out infinite; }
+@keyframes bob2 { 50% { transform: translateY(-2px) rotate(-8deg); } }
+.scene-mandala { position: absolute; z-index: -1; left: 50%; top: 52%; width: 120%; aspect-ratio: 1; transform: translate(-50%, -50%); background: var(--mandala) center / contain no-repeat; opacity: .35; animation: spin 120s linear infinite; pointer-events: none; }
+@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.lotuses { position: relative; z-index: 2; width: 100%; display: flex; justify-content: space-around; margin-top: -26px; padding: 0 2%; pointer-events: none; }
+.lotuses span { width: 46px; animation: lotusBob 3s ease-in-out infinite alternate; animation-delay: var(--d); }
+.lotuses svg { width: 100%; height: auto; }
+@keyframes lotusBob { to { transform: translateY(-4px); } }
+.scene { isolation: isolate; }
+.hero .lotuses { margin-top: auto; } .hero .scene { margin-bottom: -6px; }

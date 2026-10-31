@@ -81,7 +81,11 @@
   };
   const cone = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 54"><path d="M17 54 L4 14 Q17 4 30 14 Z" fill="#E9B949" stroke="#9c7a2e" stroke-width="1.5"/><path d="M6 20 Q17 14 28 20" stroke="#D6246E" stroke-width="3" fill="none"/><path d="M8 28 Q17 23 26 28" stroke="#3F7A2E" stroke-width="2" fill="none"/><path d="M4 14 Q17 0 30 14 Q17 8 4 14Z" fill="#F29F05"/><circle cx="17" cy="52" r="2.2" fill="#7A2E0E"/></svg>`;
   const hennaRule = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 36"><g fill="none" stroke="#7A2E0E" stroke-width="1.4" stroke-linecap="round"><path d="M10 18 H120 M200 18 H310"/><path d="M120 18 q8 -10 16 0 q-8 10 -16 0 M184 18 q8 -10 16 0 q-8 10 -16 0"/><path d="M160 4 C176 14 170 32 160 32 C150 32 144 14 160 4 Z"/><path d="M160 12 C166 18 164 26 160 26 C156 26 154 18 160 12 Z"/></g><g fill="#7A2E0E">${[30, 50, 70, 90, 230, 250, 270, 290].map((x) => `<circle cx="${x}" cy="${18}" r="2.4"/>`).join("")}</g></svg>`;
+  const mandala = (c) => { let g = ""; const ring = (r, n, len, w, off = 0) => { for (let k = 0; k < n; k++) { const an = k * 360 / n + off; g += `<path transform="rotate(${an})" d="M0 ${-r}Q${w} ${-(r + len / 2)} 0 ${-(r + len)}Q${-w} ${-(r + len / 2)} 0 ${-r}Z"/>`; } };
+    g += '<circle r="14"/>'; ring(14, 8, 24, 9); ring(44, 16, 30, 9, 11.25); g += '<circle r="80"/><circle r="86"/>'; ring(86, 24, 34, 10); g += '<circle r="126"/>'; ring(126, 32, 40, 8, 5.6); g += '<circle r="172"/>';
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-180 -180 360 360"><g fill="none" stroke="${c}" stroke-width="1.6">${g}</g></svg>`; };
   [
+    ["--mandala", svgURI(mandala("#C9A04A"))],
     ["--paisley-light", svgURI(paisley("#3F7A2E", 0.12))],
     ["--paisley-dark", svgURI(paisley("#F2B705", 0.12))],
     ["--scallop-top", svgURI(scallop("#FFF6D9", true))],
@@ -197,7 +201,11 @@
   const umbColors = [["#D6246E", "#F2B705", "#3F7A2E"], ["#3F7A2E", "#F2C14E", "#D6246E"], ["#F29F05", "#D6246E", "#2F6B3A"], ["#2A9D8F", "#F2B705", "#D6246E"], ["#D6246E", "#3F7A2E", "#F2B705"], ["#F2B705", "#3F7A2E", "#D6246E"], ["#7E2462", "#F29F05", "#3F7A2E"]];
   function buildHero() {
     const n = innerWidth < 600 ? 5 : 7;
-    $("#umbrellas").innerHTML = umbColors.slice(0, n).map((c, i) => `<button class="umb" type="button" aria-label="Spin umbrella" style="height:${[78, 100, 66, 92, 74, 96, 70][i]}%;--sw:${(2.8 + (i % 3) * .5).toFixed(1)}s;animation-delay:${-i * .6}s">${ART.umbrella(...c)}</button>`).join("");
+    const items = umbColors.slice(0, n).map((c, i) => `<button class="umb" type="button" aria-label="Spin umbrella" style="height:${[78, 100, 66, 92, 74, 96, 70][i]}%;--sw:${(2.8 + (i % 3) * .5).toFixed(1)}s;animation-delay:${-i * .6}s">${ART.umbrella(...c)}</button>`);
+    items.splice(Math.floor(n / 2), 0, `<button class="umb cage" type="button" aria-label="Bird cage" style="height:88%;--sw:3.6s">${ART.birdCage()}</button>`);
+    $("#umbrellas").innerHTML = items.join("");
+    $("#lights").innerHTML = ART.stringLights(400, innerWidth < 600 ? 2 : 4);
+    $("#lotuses").innerHTML = Array.from({ length: innerWidth < 600 ? 5 : 9 }, (_, i) => `<span style="--d:${i * .3}s">${ART.lotus(i % 2 ? "#FFD1E3" : "#F28BB2", i % 2 ? "#F28BB2" : "#D6246E")}</span>`).join("");
     $("#garlandL").innerHTML = ART.marigoldString(18);
     $("#garlandR").innerHTML = ART.marigoldString(18);
     $("#couple").innerHTML = ART.coupleSwing();

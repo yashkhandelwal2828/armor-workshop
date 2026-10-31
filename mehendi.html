@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mehendi · Mohit &amp; Sonal</title>
+<meta name="description" content="You are invited to the Mehendi celebration of Mohit &amp; Sonal, Jaipur.">
+<meta name="theme-color" content="#1F3A1C">
+<meta property="og:title" content="Mehendi · Mohit &amp; Sonal">
+<meta property="og:description" content="Tap the hand to apply mehendi and open your invitation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%233F7A2E'/%3E%3Ccircle cx='32' cy='32' r='12' fill='none' stroke='%23F2B705' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23D6246E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus+SC&family=Pinyon+Script&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+<link rel="stylesheet" href="css/mehendi.css">
+</head>
+<body class="locked preopen">
+
+<!-- ═════════════ GATE: bare palm, tap to apply mehendi ═════════════ -->
+<div id="gate" class="gate">
+  <div class="lace lace-tl" aria-hidden="true"></div><div class="lace lace-br" aria-hidden="true"></div>
+  <div class="gate-top">
+    <p class="ganesh-line" data-t="ganeshLine"></p>
+    <p class="gate-dear" id="gateDear"></p>
+    <h1 class="gate-title" data-i18n="mehendi"></h1>
+  </div>
+  <button class="hand-btn" id="handBtn" type="button" aria-label="Apply mehendi">
+    <span class="hand-glow" aria-hidden="true"></span>
+    <span class="hand-wrap" id="gateHand"></span>
+    <span class="cone" id="cone" aria-hidden="true"></span>
+  </button>
+  <div class="gate-bottom">
+    <p class="gate-cta" id="gateCta" data-i18n="tapHand"></p>
+    <p class="gate-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span data-i18n="sound"></span></p>
+  </div>
+  <button class="lang-btn gate-lang" type="button" data-lang-toggle>हिंदी</button>
+</div>
+
+<canvas id="fx" class="fx" aria-hidden="true"></canvas>
+
+<button class="lang-btn float-lang" type="button" data-lang-toggle>हिंदी</button>
+<button id="musicBtn" class="music-btn" type="button" aria-label="Pause music" aria-pressed="true">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<main>
+  <!-- ═════════════ HERO: umbrellas, title, couple on swing ═════════════ -->
+  <section class="hero" id="home">
+    <div class="umbrellas" id="umbrellas" aria-hidden="true"></div>
+    <div class="garland garland-l" id="garlandL" aria-hidden="true"></div>
+    <div class="garland garland-r" id="garlandR" aria-hidden="true"></div>
+
+    <div class="hero-text">
+      <p class="ganesh-line rise" style="--d:0" data-t="ganeshLine"></p>
+      <p class="eyebrow rise" style="--d:1" data-i18n="joinUs"></p>
+      <h2 class="title rise" style="--d:2" data-i18n="mehendi"></h2>
+      <p class="couple-line rise" style="--d:3" data-t="coupleLine"></p>
+      <div class="date-pill rise" style="--d:4"><span data-t="dateLabel"></span><b data-t="time"></b></div>
+    </div>
+
+    <button class="scene rise" style="--d:5" id="scene" type="button" aria-label="Wave to the couple">
+      <span class="scene-inner" id="couple"></span>
+    </button>
+    <p class="scene-hint rise" style="--d:6" data-i18n="tapCouple"></p>
+    <div class="ground" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═════════════ INVITATION ═════════════ -->
+  <section class="invite band-cream">
+    <div class="wrap narrow">
+      <div class="henna-rule" aria-hidden="true"></div>
+      <p class="inv-blessing reveal" data-t="blessing"></p>
+      <p class="inv-hosts reveal" data-i18n="hostsLine"></p>
+      <p class="inv-body reveal" data-i18n="invBody"></p>
+      <h3 class="inv-names reveal" data-t="coupleLine"></h3>
+      <p class="inv-note reveal" data-t="note"></p>
+    </div>
+  </section>
+
+  <!-- ═════════════ FIND THE NAME GAME ═════════════ -->
+  <section class="game band-green" id="game">
+    <div class="wrap narrow">
+      <p class="eyebrow light reveal" data-i18n="gameEye"></p>
+      <h2 class="section-h light reveal" data-i18n="gameH"></h2>
+      <p class="lede light reveal" data-i18n="gameLede"></p>
+      <div class="game-hand reveal" id="gameHand" role="button" tabindex="0" aria-label="Find the hidden name"></div>
+      <p class="game-status" id="gameStatus" aria-live="polite" data-i18n="gameStart"></p>
+      <button class="link-btn light" id="hintBtn" type="button" data-i18n="hint" hidden></button>
+    </div>
+  </section>
+
+  <!-- ═════════════ DETAILS ═════════════ -->
+  <section class="details band-cream" id="details">
+    <div class="wrap">
+      <p class="eyebrow reveal" data-i18n="whenWhere"></p>
+      <h2 class="section-h reveal" data-i18n="detailsH"></h2>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 7h14v10H5z"/></svg></span>
+          <h3 data-i18n="when"></h3>
+          <p data-t="dateLabel"></p>
+          <p class="strong" data-t="time"></p>
+          <a class="text-link" id="calLink" target="_blank" rel="noopener" data-i18n="addCal"></a>
+        </article>
+        <article class="card reveal">
+          <span class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+          <h3 data-i18n="where"></h3>
+          <p class="strong" data-t="venueName"></p>
+          <p data-t="venueAddr"></p>
+          <a class="text-link" id="mapLink" target="_blank" rel="noopener" data-i18n="map"></a>
+        </article>
+        <article class="card reveal">
+          <span class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 2h6l-1 4 4 4-2 2 3 10H5l3-10-2-2 4-4z"/></svg></span>
+          <h3 data-i18n="dress"></h3>
+          <p class="strong" data-t="dress"></p>
+          <div class="swatches" id="swatches"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ COUNTDOWN ═════════════ -->
+  <section class="countdown band-green">
+    <div class="wrap">
+      <p class="eyebrow light reveal" data-i18n="cdEye"></p>
+      <div class="timer reveal">
+        <div class="tile"><b data-u="d">00</b><small data-i18n="uD"></small></div>
+        <div class="tile"><b data-u="h">00</b><small data-i18n="uH"></small></div>
+        <div class="tile"><b data-u="m">00</b><small data-i18n="uM"></small></div>
+        <div class="tile"><b data-u="s">00</b><small data-i18n="uS"></small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ RSVP ═════════════ -->
+  <section class="rsvp band-cream" id="rsvp">
+    <div class="wrap narrow">
+      <p class="eyebrow reveal" data-i18n="rsvpEye"></p>
+      <h2 class="section-h reveal" data-i18n="rsvpH"></h2>
+      <form class="rsvp-card reveal" id="rsvpForm" novalidate>
+        <label class="field"><span data-i18n="fName"></span><input id="rName" autocomplete="name" required></label>
+        <fieldset class="field">
+          <legend data-i18n="fAttend"></legend>
+          <div class="seg">
+            <label><input type="radio" name="attend" id="rYes" value="yes" checked><span data-i18n="fYes"></span></label>
+            <label><input type="radio" name="attend" id="rNo" value="no"><span data-i18n="fNo"></span></label>
+          </div>
+        </fieldset>
+        <div class="field attend-only">
+          <span data-i18n="fGuests"></span>
+          <div class="stepper"><button type="button" id="gMinus" aria-label="−">−</button><output id="gCount">2</output><button type="button" id="gPlus" aria-label="+">+</button></div>
+        </div>
+        <label class="field"><span data-i18n="fMsg"></span><textarea id="rMsg" rows="3"></textarea></label>
+        <p class="form-err" id="formErr" hidden data-i18n="fErr"></p>
+        <button class="btn btn-green wide" type="submit" data-i18n="fSubmit"></button>
+      </form>
+      <div class="rsvp-done" id="rsvpDone" hidden>
+        <h3 class="section-h small" data-i18n="doneH"></h3>
+        <p data-i18n="doneP"></p>
+        <a class="btn btn-whatsapp wide" id="waLink" target="_blank" rel="noopener"><span data-i18n="doneWa"></span></a>
+        <button class="btn btn-ghost" id="copyRsvp" type="button" data-i18n="doneCopy"></button>
+        <button class="link-btn" id="editRsvp" type="button" data-i18n="doneEdit"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ FOOTER ═════════════ -->
+  <footer class="finale band-green">
+    <div class="wrap narrow">
+      <div class="finale-hands" id="finaleHands" aria-hidden="true"></div>
+      <h2 class="section-h light reveal" data-i18n="seeYou"></h2>
+      <button class="petal-btn" id="petalBtn" type="button"><span data-i18n="petals"></span> <b id="petalCount">0</b></button>
+      <p class="sign" data-i18n="sign"></p>
+      <p class="contact" id="contact"></p>
+    </div>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/mehendi-art.js"></script>
+<script src="js/mehendi.js"></script>
+</body>
+</html>

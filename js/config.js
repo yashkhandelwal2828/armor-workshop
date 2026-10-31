@@ -149,6 +149,23 @@ window.WEDDING = {
     },
   ],
 
+  // Mehendi card (mehendi.html). ⚠ Date, time and venue are placeholders: confirm them.
+  mehendi: {
+    start: "2026-11-18T16:00:00+05:30",
+    end: "2026-11-18T20:00:00+05:30",
+    dateLabel: { hi: "बुधवार, 18 नवम्बर 2026", en: "Wednesday, 18 November 2026" },
+    day: "18", month: { hi: "नवम्बर", en: "November" },
+    time: { hi: "सायं 4:00 बजे से", en: "4:00 PM onwards" },
+    venue: {
+      name: { hi: "‘राजकमल पैलेस’", en: "Rajkamal Palace" },
+      address: { hi: "रजत पथ, मांग्यावास रोड, मानसरोवर (जयपुर) - 302020", en: "Rajat Path, Mangyawas Road, Mansarovar, Jaipur - 302020" },
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Rajkamal+Palace+Rajat+Path+Mangyawas+Road+Mansarovar+Jaipur",
+    },
+    dress: { hi: "हरे, पीले और गुलाबी रंग", en: "Shades of green, yellow & pink" },
+    palette: ["#3F7A2E", "#F2B705", "#D6246E", "#F29F05"],
+    note: { hi: "मेहंदी, ढोलक, गीत और ढेर सारी मस्ती!", en: "Henna, dholak, songs and lots of fun!" },
+  },
+
   // Family listing (names stay as written on the card)
   family: [
     { title: { hi: "विशेष आग्रह", en: "With warm requests" }, names: [

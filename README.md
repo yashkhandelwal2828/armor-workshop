@@ -6,10 +6,11 @@ Interactive wedding invitation for Mohit & Sonal (20 November 2026, Rajkamal Pal
 
 Everything (names, family, day-wise programme, venue, contacts, WhatsApp number) lives in **`js/config.js`**, written in Hindi and English.
 
-## Two cards
+## Cards
 
 - **Full card** (`/`): every ceremony, 16–20 November.
 - **Wedding-only card** (`/shadi`): just the wedding-day events marked `shadi: true` in `js/config.js` (Baraat, Pritibhoj, Panigrahan).
+- **Mehendi card** (`/mehendi`): a separate green-and-haldi themed card. Guests tap a bare palm to apply mehendi, meet the animated couple on a marigold swing, and hunt for the groom's name hidden in the bride's mehendi. Its date, time, venue and dress code live under `mehendi` in `js/config.js`.
 
 `shadi.html` is generated from `index.html`. After editing `index.html`, run `python3 scripts/build-pages.py`.
 

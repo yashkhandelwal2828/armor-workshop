@@ -91,6 +91,7 @@ window.WEDDING = {
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hotel+New+Haveli+Shiv+Mandir+Mansarovar+Jaipur",
   },
 
+  // Events marked shadi: true also appear on the wedding-only card (shadi.html).
   // Day-wise programme. icon: ganesh | kalash | haldi | tilak | sangeet | bhoj | bhat | chaak | nikasi | baraat | phere
   days: [
     {
@@ -138,11 +139,11 @@ window.WEDDING = {
           about: { hi: "चाक पूजन की पारंपरिक रस्म", en: "Traditional worship of the potter's wheel" } },
         { icon: "nikasi", name: { hi: "निकासी", en: "Nikasi" }, time: { hi: "सायं 4:00 बजे", en: "4:00 PM" }, start: "2026-11-20T16:00:00+05:30",
           about: { hi: "दूल्हे की निकासी", en: "The groom's ceremonial departure" } },
-        { icon: "baraat", name: { hi: "बारात प्रस्थान", en: "Baraat" }, time: { hi: "सायं 5:30 बजे", en: "5:30 PM" }, start: "2026-11-20T17:30:00+05:30",
+        { shadi: true, icon: "baraat", name: { hi: "बारात प्रस्थान", en: "Baraat" }, time: { hi: "सायं 5:30 बजे", en: "5:30 PM" }, start: "2026-11-20T17:30:00+05:30",
           about: { hi: "शिव मन्दिर होटल न्यू हवेली से विवाह स्थल के लिए", en: "From Shiv Mandir Hotel New Haveli to the venue" }, map: "baraat" },
-        { icon: "bhoj", name: { hi: "प्रीतिभोज", en: "Dinner" }, time: { hi: "सायं 7:15 बजे", en: "7:15 PM" }, start: "2026-11-20T19:15:00+05:30",
+        { shadi: true, icon: "bhoj", name: { hi: "प्रीतिभोज", en: "Dinner" }, time: { hi: "सायं 7:15 बजे", en: "7:15 PM" }, start: "2026-11-20T19:15:00+05:30",
           about: { hi: "स्नेह भोज", en: "Wedding dinner" } },
-        { icon: "phere", name: { hi: "पाणिग्रहण संस्कार", en: "Pheras" }, time: { hi: "शुभ लग्नानुसार", en: "At the auspicious muhurat" },
+        { shadi: true, icon: "phere", name: { hi: "पाणिग्रहण संस्कार", en: "Pheras" }, time: { hi: "शुभ लग्नानुसार", en: "At the auspicious muhurat" },
           about: { hi: "सात फेरों का पवित्र बंधन", en: "The sacred seven vows" }, highlight: true },
       ],
     },

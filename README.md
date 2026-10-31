@@ -6,6 +6,13 @@ Interactive wedding invitation for Mohit & Sonal (20 November 2026, Rajkamal Pal
 
 Everything (names, family, day-wise programme, venue, contacts, WhatsApp number) lives in **`js/config.js`**, written in Hindi and English.
 
+## Two cards
+
+- **Full card** (`/`): every ceremony, 16–20 November.
+- **Wedding-only card** (`/shadi`): just the wedding-day events marked `shadi: true` in `js/config.js` (Baraat, Pritibhoj, Panigrahan).
+
+`shadi.html` is generated from `index.html`. After editing `index.html`, run `python3 scripts/build-pages.py`.
+
 ## Add photos
 
 Put images in **`assets/photos/`**. See `assets/photos/README.md` for file names.

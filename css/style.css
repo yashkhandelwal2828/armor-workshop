@@ -984,3 +984,4 @@ html, body { overflow-x: hidden; }
 main, section, footer { max-width: 100vw; overflow-x: clip; }
 .reveal.pending { transform: perspective(900px) rotateX(-14deg) translateY(30px) scale(.94); transform-origin: 50% 100%; }
 .fam li.sub { text-transform: none !important; letter-spacing: 0 !important; font-style: italic; }
+.shadi-card #dayTabs { display: none; }

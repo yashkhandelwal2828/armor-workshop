@@ -3,6 +3,9 @@
   "use strict";
 
   const W = window.WEDDING;
+  // Wedding-only card (shadi.html, or #shadi): keep just the wedding-day events marked shadi: true
+  const SHADI = document.documentElement.dataset.card === "shadi" || location.hash === "#shadi";
+  if (SHADI) W.days = W.days.filter((d) => d.main).map((d) => ({ ...d, events: d.events.filter((e) => e.shadi) }));
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -42,6 +45,7 @@
     evEye: { hi: "मांगलिक कार्यक्रम", en: "The ceremonies" },
     evH: { hi: "वैवाहिक कार्यक्रम", en: "Wedding programme" },
     evLede: { hi: "दिन चुनें और सभी रस्मों का समय देखें।", en: "Pick a day to see every ceremony." },
+    evLedeShadi: { hi: "शुक्रवार, 20 नवम्बर को विवाह समारोह में आपका सादर स्वागत है।", en: "Join us on Friday, 20 November for the wedding ceremony." },
     addCal: { hi: "+ कैलेंडर में जोड़ें", en: "+ Add to calendar" },
     route: { hi: "रास्ता देखें", en: "Directions" },
     atVenue: { hi: "स्थान:", en: "Venue:" },
@@ -1139,6 +1143,13 @@ ${studs}
     venueName: () => t(W.venue.name), venueAddr: () => t(W.venue.address),
     baraatNote: () => t(W.baraat.note), senderName: () => t(W.sender.name), senderAddr: () => t(W.sender.address),
   };
+
+  if (SHADI) {
+    document.body.classList.add("shadi-card");
+    $('#events .lede').dataset.i18n = "evLedeShadi";
+    $("#dayTabs").hidden = true;
+    $("#dayChips").closest("fieldset").hidden = true;
+  }
 
   function applyLang() {
     root.lang = L;

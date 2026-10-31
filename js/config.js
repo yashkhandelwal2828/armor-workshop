@@ -14,7 +14,7 @@
   ───────────────────────────────────────────────────────────────
 */
 window.WEDDING = {
-  monogram: ["M", "S"],
+  monogram: { hi: ["मो", "सो"], en: ["M", "S"] },
 
   groom: {
     title: { hi: "आयुष्मान्", en: "Chi." },
@@ -32,7 +32,7 @@ window.WEDDING = {
     ],
   },
 
-  hashtag: "#MohitWedsSonal",
+  hashtag: { hi: "#मोहितसंगसोनल", en: "#MohitWedsSonal" },
 
   // Countdown target: baraat departure
   weddingDate: "2026-11-20T17:30:00+05:30",
@@ -45,12 +45,18 @@ window.WEDDING = {
   },
   city: { hi: "जयपुर", en: "Jaipur" },
 
-  shloka: {
-    hi: ["ॐ वक्रतुण्ड महाकाय, सूर्य कोटि समप्रभः।", "निर्विघ्नं कुरुमे देव, सर्व कार्येषु सर्वदा॥"],
+  ganeshLine: { hi: "॥ श्री गणेशाय नमः ॥", en: "|| Shri Ganeshaya Namah ||" },
+  shubhLine: { hi: "॥ शुभ विवाह ॥", en: "|| Shubh Vivah ||" },
+  mangalShloka: {
+    hi: ["मंगलम् भगवान विष्णुः, मंगलम् गरुड़ ध्वजः।", "मंगलम् पुण्डरीकाक्षः, मंगलाय तनो हरिः॥"],
+    en: ["Mangalam Bhagavan Vishnuh, Mangalam Garudadhvajah,", "Mangalam Pundarikakshah, Mangalaya Tano Harih."],
   },
 
   invitation: {
-    doha: ["विघ्न हरण मंगल करण, गणनायक गणराज।", "प्रथम निमंत्रण आपको, सकल सुधारो काज॥"],
+    doha: {
+      hi: ["विघ्न हरण मंगल करण, गणनायक गणराज।", "प्रथम निमंत्रण आपको, सकल सुधारो काज॥"],
+      en: ["Vighna haran mangal karan, gananayak ganraj,", "Pratham nimantran aapko, sakal sudharo kaaj."],
+    },
     blessing: { hi: "श्री राधागोविन्द जी महाराज की असीम अनुकम्पा से", en: "With the infinite grace of Shri Radha Govind Ji Maharaj" },
     hosts: { hi: "श्रीमती मालती देवी एवं धर्मपत्नी स्व. श्री रामप्रसाद जी खण्डेलवाल", en: "Smt. Malti Devi, wife of Late Shri Ramprasad Ji Khandelwal" },
     relation: { hi: "अपने सुपौत्र", en: "joyfully invites you to the wedding of her grandson" },
@@ -144,11 +150,25 @@ window.WEDDING = {
 
   // Family listing (names stay as written on the card)
   family: [
-    { title: { hi: "विशेष आग्रह", en: "With warm requests" }, names: ["सीताराम ताम्बी", "सुमन - वल्लभ जी", "सीमा - के.के. जी", "शीतल - राहुल जी", "श्रुति, खुशी"] },
-    { title: { hi: "उत्तराकांक्षी", en: "Eagerly awaiting you" }, names: ["सुरेश - रानी", "महेश - किरण", "दिनेश - मोनिका"] },
-    { title: { hi: "दर्शनाभिलाषी", en: "Hoping to see you" }, names: ["घनश्याम, विमल, मुकेश", "राकेश, राहुल, यश, प्राजल", "दक्ष एवं समस्त घीया परिवार", "(कंचनपुर वाले)"] },
-    { title: { hi: "ननिहाल पक्ष", en: "Maternal family" }, names: ["रामरतन जी - सावित्री देवी", "नीरज - रेखा", "रमेश - मीनाक्षी", "अभिषेक - विदीषा", "शुभम् - सौरव", "एवं समस्त बड़गोती परिवार", "(अचरोल वाले)"] },
-    { title: { hi: "बाल मनुहार", en: "With love from the little ones" }, names: ["रिद्धी, ख्वाहिश"] },
+    { title: { hi: "विशेष आग्रह", en: "With warm requests" }, names: [
+      { hi: "सीताराम ताम्बी", en: "Sitaram Tambi" }, { hi: "सुमन - वल्लभ जी", en: "Suman - Vallabh Ji" },
+      { hi: "सीमा - के.के. जी", en: "Seema - K.K. Ji" }, { hi: "शीतल - राहुल जी", en: "Sheetal - Rahul Ji" },
+      { hi: "श्रुति, खुशी", en: "Shruti, Khushi" },
+    ] },
+    { title: { hi: "उत्तराकांक्षी", en: "Eagerly awaiting you" }, names: [
+      { hi: "सुरेश - रानी", en: "Suresh - Rani" }, { hi: "महेश - किरण", en: "Mahesh - Kiran" }, { hi: "दिनेश - मोनिका", en: "Dinesh - Monika" },
+    ] },
+    { title: { hi: "दर्शनाभिलाषी", en: "Hoping to see you" }, names: [
+      { hi: "घनश्याम, विमल, मुकेश", en: "Ghanshyam, Vimal, Mukesh" }, { hi: "राकेश, राहुल, यश, प्राजल", en: "Rakesh, Rahul, Yash, Prajal" },
+      { hi: "दक्ष एवं समस्त घीया परिवार", en: "Daksh and the entire Ghiya family" }, { hi: "(कंचनपुर वाले)", en: "(Kanchanpur)", sub: true },
+    ] },
+    { title: { hi: "ननिहाल पक्ष", en: "Maternal family" }, names: [
+      { hi: "रामरतन जी - सावित्री देवी", en: "Ramratan Ji - Savitri Devi" }, { hi: "नीरज - रेखा", en: "Neeraj - Rekha" },
+      { hi: "रमेश - मीनाक्षी", en: "Ramesh - Meenakshi" }, { hi: "अभिषेक - विदीषा", en: "Abhishek - Vidisha" },
+      { hi: "शुभम् - सौरव", en: "Shubham - Saurav" },
+      { hi: "एवं समस्त बड़गोती परिवार", en: "and the entire Badgoti family", sub: true }, { hi: "(अचरोल वाले)", en: "(Achrol)", sub: true },
+    ] },
+    { title: { hi: "बाल मनुहार", en: "With love from the little ones" }, names: [{ hi: "रिद्धी, ख्वाहिश", en: "Riddhi, Khwahish" }] },
   ],
 
   businesses: [

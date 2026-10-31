@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mohit weds Sonal · Shubh Vivah</title>
-<meta name="description" content="मोहित संग सोनल के शुभ विवाह का निमंत्रण · 20 नवम्बर 2026 · राजकमल पैलेस, जयपुर">
+<meta name="description" content="You are invited to the wedding of Mohit &amp; Sonal · 20 November 2026 · Rajkamal Palace, Jaipur">
 <meta name="theme-color" content="#3B0A12">
-<meta property="og:title" content="मोहित संग सोनल · शुभ विवाह">
-<meta property="og:description" content="शुक्रवार, 20 नवम्बर 2026 · राजकमल पैलेस, जयपुर. निमंत्रण खोलने के लिए टैप करें।">
+<meta property="og:title" content="Mohit weds Sonal · Shubh Vivah">
+<meta property="og:description" content="Friday, 20 November 2026 · Rajkamal Palace, Jaipur. Tap to open your invitation.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236E1423'/%3E%3Ccircle cx='32' cy='32' r='25' fill='none' stroke='%23E9CF8A' stroke-width='2'/%3E%3Cpath d='M32 14c5 8 9 12 9 18a9 9 0 0 1-18 0c0-6 4-10 9-18z' fill='%23F29F05'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 
   <div class="gate-top">
     <span class="ganesh gate-ganesh" aria-hidden="true"></span>
-    <p class="deva">॥ श्री गणेशाय नमः ॥</p>
+    <p class="deva" data-t="ganeshLine">॥ श्री गणेशाय नमः ॥</p>
     <p class="gate-dear" id="gateDear"></p>
   </div>
 
@@ -74,8 +74,8 @@
 
     <div class="hero-inner">
       <span class="ganesh hero-ganesh rise" style="--d:0" aria-hidden="true"></span>
-      <p class="deva rise" style="--d:0">॥ श्री गणेशाय नमः ॥</p>
-      <h2 class="shubh rise" style="--d:1">॥ शुभ विवाह ॥</h2>
+      <p class="deva rise" style="--d:0" data-t="ganeshLine">॥ श्री गणेशाय नमः ॥</p>
+      <h2 class="shubh rise" style="--d:1" data-t="shubhLine">॥ शुभ विवाह ॥</h2>
 
       <figure class="arch rise" style="--d:2">
         <div class="arch-frame">
@@ -177,10 +177,7 @@
   <!-- ═════════════ EVENTS ═════════════ -->
   <section id="events" class="events band-ivory arch-top">
     <div class="wrap">
-      <div class="doha small reveal" id="shloka2">
-        <p>मंगलम् भगवान विष्णुः, मंगलम् गरुड़ ध्वजः।</p>
-        <p>मंगलम् पुण्डरीकाक्षः, मंगलाय तनो हरिः॥</p>
-      </div>
+      <div class="doha small reveal" id="shloka2"></div>
       <p class="eyebrow reveal" data-i18n="evEye"></p>
       <h2 class="script-h reveal" data-i18n="evH"></h2>
       <p class="lede reveal" data-i18n="evLede"></p>
@@ -323,7 +320,7 @@
 
       <div class="divider light" aria-hidden="true"></div>
       <p class="hashtag"><span data-i18n="hashLine"></span> <button type="button" id="hashtag" class="hash-btn"></button></p>
-      <p class="deva big">॥ शुभ विवाह ॥</p>
+      <p class="deva big" data-t="shubhLine">॥ शुभ विवाह ॥</p>
       <p class="sign" data-i18n="sign"></p>
     </div>
   </footer>

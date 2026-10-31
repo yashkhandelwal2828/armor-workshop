@@ -34,7 +34,7 @@
     cDay: { hi: "दिन", en: "Day" }, cMonth: { hi: "माह", en: "Month" }, cYear: { hi: "वर्ष", en: "Year" },
     scratch: { hi: "खुरचें", en: "SCRATCH" },
     saveDate: { hi: "तिथि याद रखें", en: "Save the date" },
-    calBtn: { hi: "Google कैलेंडर में जोड़ें", en: "Add to Google Calendar" },
+    calBtn: { hi: "गूगल कैलेंडर में जोड़ें", en: "Add to Google Calendar" },
     cdEye: { hi: "शुभ घड़ी की उलटी गिनती", en: "Counting down to the big day" },
     uD: { hi: "दिन", en: "Days" }, uH: { hi: "घंटे", en: "Hours" }, uM: { hi: "मिनट", en: "Minutes" }, uS: { hi: "सेकंड", en: "Seconds" },
     cdNote: { hi: "बारात प्रस्थान तक", en: "until the baraat sets off" },
@@ -47,7 +47,7 @@
     atVenue: { hi: "स्थान:", en: "Venue:" },
     venueEye: { hi: "स्थान", en: "The venue" },
     venueH: { hi: "विवाह स्थल", en: "Where we celebrate" },
-    mapBtn: { hi: "Google मैप्स पर देखें", en: "Open in Google Maps" },
+    mapBtn: { hi: "गूगल मैप्स पर देखें", en: "Open in Google Maps" },
     copyAddr: { hi: "पता कॉपी करें", en: "Copy address" },
     baraatH: { hi: "बारात प्रस्थान", en: "Baraat departure" },
     baraatMap: { hi: "होटल न्यू हवेली का रास्ता देखें →", en: "Directions to Hotel New Haveli →" },
@@ -74,8 +74,8 @@
     fErr: { hi: "कृपया अपना नाम लिखें।", en: "Please add your name so we know who's coming." },
     fSubmit: { hi: "जवाब तैयार करें", en: "Prepare my RSVP" },
     doneH: { hi: "धन्यवाद!", en: "Thank you!" },
-    doneP: { hi: "आपका जवाब तैयार है। नीचे टैप करके WhatsApp पर भेजें।", en: "Your reply is ready. Tap below to send it on WhatsApp." },
-    doneWa: { hi: "WhatsApp पर भेजें", en: "Send on WhatsApp" },
+    doneP: { hi: "आपका जवाब तैयार है। नीचे टैप करके व्हाट्सऐप पर भेजें।", en: "Your reply is ready. Tap below to send it on WhatsApp." },
+    doneWa: { hi: "व्हाट्सऐप पर भेजें", en: "Send on WhatsApp" },
     doneCopy: { hi: "संदेश कॉपी करें", en: "Copy message instead" },
     doneEdit: { hi: "जवाब बदलें", en: "Edit my reply" },
     blessH: { hi: "आशीर्वाद दें", en: "Shower your blessings" },
@@ -178,7 +178,7 @@
 
   /* ═════════════ Basics ═════════════ */
   const wedDate = new Date(W.weddingDate);
-  const initials = `${W.monogram[0]} <i>&amp;</i> ${W.monogram[1]}`;
+  const initials = () => { const m = t(W.monogram); return `${esc(m[0])} <i>${L === "hi" ? "♥" : "&amp;"}</i> ${esc(m[1])}`; };
   const guest = (() => {
     const q = params.get("to");
     if (q) return q.trim().slice(0, 60);
@@ -372,7 +372,7 @@ ${studs}
       el.classList.add("ph");
       el.style.backgroundImage = "";
       if (el.dataset.palace) el.innerHTML = `<div class="ph-palace">${palaceSVG()}</div>`;
-      else el.innerHTML = `<div class="ph-mono"><span>${initials}</span><small>${esc(W.groom.name.en)} · ${esc(W.bride.name.en)}</small></div>`;
+      else el.innerHTML = `<div class="ph-mono"><span>${initials()}</span><small>${esc(t(W.groom.name))} · ${esc(t(W.bride.name))}</small></div>`;
     };
     if (!src) return ph();
     const img = new Image();
@@ -1052,7 +1052,7 @@ ${studs}
   /* ═════════════ Family, businesses, sender ═════════════ */
   const PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>';
   function renderFamily() {
-    $("#famGrid").innerHTML = W.family.map((f) => `<article class="fam reveal-in"><h3>${esc(t(f.title))}</h3><ul>${f.names.map((n) => `<li${/^\(|^एवं/.test(n) ? ' class="sub"' : ""}>${esc(n)}</li>`).join("")}</ul></article>`).join("");
+    $("#famGrid").innerHTML = W.family.map((f) => `<article class="fam reveal-in"><h3>${esc(t(f.title))}</h3><ul>${f.names.map((n) => `<li${n.sub || /^\(/.test(t(n)) ? ' class="sub"' : ""}>${esc(t(n))}</li>`).join("")}</ul></article>`).join("");
     $("#biz").innerHTML = W.businesses.map((b) => `<div class="biz-item"><span class="av" aria-hidden="true">✦</span><span><b>${esc(t(b.name))}</b><small>${esc(t(b.place))}</small></span></div>`).join("");
     $("#phones").innerHTML = W.sender.phones.map((p) => `<a class="phone" href="tel:${esc(p.replace(/\s/g, ""))}">${PHONE}${esc(p)}</a>`).join("");
   }
@@ -1111,8 +1111,7 @@ ${studs}
   $("#mapBtn").href = W.venue.mapsUrl;
   $("#baraatMap").href = W.baraat.mapsUrl;
   $("#copyAddr").addEventListener("click", () => copy(`${t(W.venue.name).replace(/[‘’']/g, "")}, ${t(W.venue.address)}`, "copiedAddr"));
-  $("#hashtag").textContent = W.hashtag;
-  $("#hashtag").addEventListener("click", () => copy(W.hashtag, "copiedHash"));
+    $("#hashtag").addEventListener("click", () => copy(t(W.hashtag), "copiedHash"));
 
   /* ═════════════ Blessings ═════════════ */
   let blessings = store.get("blessings", 0);
@@ -1134,7 +1133,7 @@ ${studs}
     weekday: () => t(W.dateLabel.weekday), day: () => W.dateLabel.day,
     month: () => t(W.dateLabel.month), year: () => W.dateLabel.year,
     monthYear: () => `${t(W.dateLabel.monthLong)} ${W.dateLabel.year}`,
-    venueShort, blessing: () => t(W.invitation.blessing), hosts: () => t(W.invitation.hosts),
+    venueShort, ganeshLine: () => t(W.ganeshLine), shubhLine: () => t(W.shubhLine), blessing: () => t(W.invitation.blessing), hosts: () => t(W.invitation.hosts),
     relation: () => t(W.invitation.relation), occasion: () => t(W.invitation.occasion), closing: () => t(W.invitation.closing),
     revealLine: () => `${t(W.dateLabel.weekday)}, ${W.dateLabel.day} ${t(W.dateLabel.monthLong)} ${W.dateLabel.year} · ${venueShort()}`,
     venueName: () => t(W.venue.name), venueAddr: () => t(W.venue.address),
@@ -1149,14 +1148,17 @@ ${studs}
     $$("[data-lang-toggle]").forEach((b) => (b.textContent = L === "hi" ? "English" : "हिंदी"));
 
     if ($("#gate")) {
-      $("#sealMono").innerHTML = initials;
+      $("#sealMono").innerHTML = initials();
       $("#gateNames").innerHTML = `${esc(t(W.groom.name))} <small>${esc(u("sang"))}</small> ${esc(t(W.bride.name))}`;
       $("#gateDear").innerHTML = guest
         ? `<span class="shriman">${esc(u("shriman"))}</span><b>${esc(guest)}</b><span class="inv">${esc(u("invited"))}</span>`
         : `<span class="inv">${esc(u("invitedPlain"))}</span>`;
     }
 
-    $("#doha").innerHTML = (L === "hi" ? W.invitation.doha : W.shloka.hi).map((l) => `<p>${esc(l)}</p>`).join("");
+    $("#doha").innerHTML = t(W.invitation.doha).map((l) => `<p>${esc(l)}</p>`).join("");
+    $("#shloka2").innerHTML = t(W.mangalShloka).map((l) => `<p>${esc(l)}</p>`).join("");
+    $("#hashtag").textContent = t(W.hashtag);
+    $$(".photo-slot.ph").forEach((el) => { const m = $(".ph-mono", el); if (m) m.innerHTML = `<span>${initials()}</span><small>${esc(t(W.groom.name))} · ${esc(t(W.bride.name))}</small>`; });
     $("#groomParents").innerHTML = W.groom.parents.map((p) => `<p>${esc(t(p))}</p>`).join("");
     $("#brideParents").innerHTML = W.bride.parents.map((p) => `<p>${esc(t(p))}</p>`).join("");
     $("#rName").placeholder = u("fNamePh");

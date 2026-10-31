@@ -4,15 +4,80 @@
   "headers": [
     {
       "source": "/(js|css)/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
     },
     {
       "source": "/js/vendor/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/mehandi",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/mehndi",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/mehendi-card",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/mehandi-card",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/mehndi-card",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/henna",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/Mehendi",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/Mehandi",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/Mehndi",
+      "destination": "/mehendi.html"
+    },
+    {
+      "source": "/shaadi",
+      "destination": "/shadi.html"
+    },
+    {
+      "source": "/wedding",
+      "destination": "/shadi.html"
+    },
+    {
+      "source": "/Shadi",
+      "destination": "/shadi.html"
     }
   ]
 }
